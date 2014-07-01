@@ -1,9 +1,16 @@
-deployom
+About DeployOM
 ========
 
-Deployment Operations Manager
+DeployOM is framework for custom operation management and automation tools.
+
+Features of DeployOM project:
+ * Multi Release Configuration
+ * Multi Site View
+ * REST (Jersey) Services based on Grizlly NIO Framework
+ * HTML5 Customized Web-interface
+ * Module based architecture
 
 License
 =======
 
-Copyright (c) 2014, Mikhail Volkov (MIT License)
+DeployOM is licensed under MIT License.
