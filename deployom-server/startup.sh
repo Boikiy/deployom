@@ -5,6 +5,7 @@
 
 # File Caching, should be disable for fast Development
 export FILE_CACHE_ENABLED=true
+export STATIC_PATH=web
 
 # Checking Java
 if $JAVA_HOME/bin/java -version 2>&1|grep '1.[678]'

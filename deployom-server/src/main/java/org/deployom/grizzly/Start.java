@@ -43,6 +43,7 @@ public class Start {
     private static final String JERSEY_CONTEXT = "/jersey";
     private static String SERVER_IP = "0.0.0.0";
     private static Integer SERVER_PORT = 8080;
+    private static String STATIC_PATH = "../deployom-web/web";
     private static final Logger logger = Logger.getLogger(Start.class.getName());
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -79,6 +80,11 @@ public class Start {
             listener.getFileCache().setEnabled(false);
         }
 
+        // Static folder
+        if (System.getenv("STATIC_PATH") != null) {
+            STATIC_PATH = System.getenv("STATIC_PATH");
+        }
+
         // Initialize Context
         WebappContext context = new WebappContext("context", JERSEY_CONTEXT);
 
@@ -95,7 +101,7 @@ public class Start {
         context.setAttribute("Server", server);
 
         // Add Web Static
-        server.getServerConfiguration().addHttpHandler(new StaticHttpHandler("web"), "/");
+        server.getServerConfiguration().addHttpHandler(new StaticHttpHandler(STATIC_PATH), "/");
 
         // Start Server
         try {

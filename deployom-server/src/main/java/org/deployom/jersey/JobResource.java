@@ -95,7 +95,7 @@ public class JobResource {
         jobThread.submit(new JobThread(siteName, jobName, context));
 
         // Return
-        return jobName + " scheduled";
+        return jobName + " job scheduled";
     }
 
     @POST
