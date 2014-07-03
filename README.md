@@ -1,7 +1,7 @@
 About DeployOM
 ========
 
-DeployOM is framework for customized Service Operation Management and Automation Tools.
+DeployOM is framework for customized Operations Support Systems (OSS).
 
 Features of DeployOM project:
  * Multi Release Configuration
