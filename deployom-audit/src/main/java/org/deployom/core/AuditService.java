@@ -29,8 +29,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.poi.common.usermodel.Hyperlink;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFCreationHelper;
 import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFHyperlink;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -66,6 +69,7 @@ public class AuditService {
 
         // Create book
         HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFCreationHelper creationHelper = workbook.getCreationHelper();
 
         // Default Style
         HSSFCellStyle style = workbook.createCellStyle();
@@ -87,6 +91,36 @@ public class AuditService {
         styleError.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
         styleError.setWrapText(true);
 
+        // Link Style
+        HSSFCellStyle styleLink = workbook.createCellStyle();
+        font = workbook.createFont();
+        font.setUnderline(HSSFFont.U_SINGLE);
+        font.setColor(IndexedColors.BLUE.getIndex());
+        styleLink.setFont(font);
+
+        // Create Summary
+        HSSFSheet summarySheet = workbook.createSheet("Summary");
+        int summaryRownum = 0;
+        int summaryCellnum = 0;
+
+        //Create a new row in current sheet
+        Row summaryRow = summarySheet.createRow(summaryRownum++);
+
+        // 0
+        Cell summaryCell = summaryRow.createCell(summaryCellnum++);
+        summaryCell.setCellValue("Job");
+        summaryCell.setCellStyle(styleHeader);
+
+        // 1
+        summaryCell = summaryRow.createCell(summaryCellnum++);
+        summaryCell.setCellValue("Finished");
+        summaryCell.setCellStyle(styleHeader);
+
+        // 2
+        summaryCell = summaryRow.createCell(summaryCellnum++);
+        summaryCell.setCellValue("Errors");
+        summaryCell.setCellStyle(styleHeader);
+
         for (Job job : releaseService.getJobs()) {
 
             // Open Job
@@ -97,6 +131,7 @@ public class AuditService {
 
             int rownum = 0;
             int cellnum = 0;
+            int errors = 0;
 
             //Create a new row in current sheet
             Row row = sheet.createRow(rownum++);
@@ -180,8 +215,14 @@ public class AuditService {
 
                         // Error
                         if (command.isError() == true) {
+                            row.getCell(0).setCellStyle(styleError);
+                            row.getCell(1).setCellStyle(styleError);
+                            row.getCell(2).setCellStyle(styleError);
+                            row.getCell(3).setCellStyle(styleError);
+                            row.getCell(4).setCellStyle(styleError);
                             row.getCell(5).setCellStyle(styleError);
                             row.getCell(4).setCellValue("Y");
+                            errors++;
                         }
                     }
                 }
@@ -194,7 +235,44 @@ public class AuditService {
             sheet.setColumnWidth(3, 14000);
             sheet.setColumnWidth(4, 3000);
             sheet.setColumnWidth(5, 20000);
+
+            // Summary
+            summaryRow = summarySheet.createRow(summaryRownum++);
+            summaryCellnum = 0;
+
+            // 0
+            summaryCell = summaryRow.createCell(summaryCellnum++);
+            summaryCell.setCellValue(job.getJobName());
+            summaryCell.setCellStyle(style);
+
+            // Set Link
+            HSSFHyperlink link = creationHelper.createHyperlink(Hyperlink.LINK_DOCUMENT);
+            link.setAddress("" + job.getJobName() + "!A1");
+            summaryCell.setHyperlink(link);
+            summaryCell.setCellStyle(styleLink);
+
+            // 1
+            summaryCell = summaryRow.createCell(summaryCellnum++);
+            summaryCell.setCellValue(jobService.getJob().getFinished());
+            summaryCell.setCellStyle(style);
+
+            // 2
+            summaryCell = summaryRow.createCell(summaryCellnum++);
+            summaryCell.setCellValue(errors);
+            summaryCell.setCellStyle(style);
+
+            // If errors found
+            if (errors > 0) {
+                summaryRow.getCell(0).setCellStyle(styleError);
+                summaryRow.getCell(1).setCellStyle(styleError);
+                summaryRow.getCell(2).setCellStyle(styleError);
+            }
         }
+
+        // Set Summary Size
+        summarySheet.setColumnWidth(0, 6000);
+        summarySheet.setColumnWidth(1, 8000);
+        summarySheet.setColumnWidth(2, 4000);
 
         // Save
         try {
