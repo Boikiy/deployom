@@ -1732,7 +1732,7 @@ function afterLogin(config, role) {
 
         // Add Release tab
         var releaseLi = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + release.releaseName, text: release.releaseName, href: '#' + release.releaseName});
+        var a = $('<a/>', {id: 'A_' + release.releaseName, text: release.releaseName, href: '#' + release.releaseName, title: 'Click to refresh'});
         releaseLi.append(a);
         ul.append(releaseLi);
         $("#tabsDiv").append($('<div/>', {id: release.releaseName}));
@@ -1815,7 +1815,7 @@ function releaseTab(release, ul) {
         text: 'Custom Jobs', 'title': 'Custom Jobs for periodic Commands execution'}).button().click(function() {
 
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_JOBS', text: 'Custom Jobs [' + releaseName + ']', href: '#' + releaseName + '_JOBS'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_JOBS', text: 'Custom Jobs [' + releaseName + ']', href: '#' + releaseName + '_JOBS', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -1859,7 +1859,7 @@ function releaseTab(release, ul) {
     var chartsButton = $('<button/>', {"class": "flow",
         text: 'Service Charts', 'title': 'Charts for Commands'}).button().click(function() {
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_CHARTS', text: 'Service Charts [' + releaseName + ']', href: '#' + releaseName + '_CHARTS'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_CHARTS', text: 'Service Charts [' + releaseName + ']', href: '#' + releaseName + '_CHARTS', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -1904,7 +1904,7 @@ function releaseTab(release, ul) {
         text: 'Service Connections', 'title': 'Connections between Services'}).button().click(function() {
 
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_CONNECTIONS', text: 'Service Connections [' + releaseName + ']', href: '#' + releaseName + '_CONNECTIONS'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_CONNECTIONS', text: 'Service Connections [' + releaseName + ']', href: '#' + releaseName + '_CONNECTIONS', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -1955,7 +1955,7 @@ function releaseTab(release, ul) {
         text: 'Service Flows', 'title': 'Grouping Services in Flows'}).button().click(function() {
 
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_FLOWS', text: 'Service Flows [' + releaseName + ']', href: '#' + releaseName + '_FLOWS'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_FLOWS', text: 'Service Flows [' + releaseName + ']', href: '#' + releaseName + '_FLOWS', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -2001,7 +2001,7 @@ function releaseTab(release, ul) {
     var modulesButton = $('<button/>', {"class": "flow",
         text: 'Service Modules', 'title': 'Adding Modules for Services'}).button().click(function() {
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_MODULES', text: 'Service Modules [' + releaseName + ']', href: '#' + releaseName + '_MODULES'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_MODULES', text: 'Service Modules [' + releaseName + ']', href: '#' + releaseName + '_MODULES', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -2046,7 +2046,7 @@ function releaseTab(release, ul) {
         text: 'Site Map', 'title': 'Mapping Services in Site Configuration'}).button().click(function() {
 
         var li = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + releaseName + '_SITE', text: 'Site Map [' + releaseName + ']', href: '#' + releaseName + '_SITE'});
+        var a = $('<a/>', {id: 'A_' + releaseName + '_SITE', text: 'Site Map [' + releaseName + ']', href: '#' + releaseName + '_SITE', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
         span.click(function(event) {
             li.remove();
@@ -2094,6 +2094,9 @@ function releaseTab(release, ul) {
         dataType: "json",
         success: function(release) {
 
+            // Update Header
+            h1.append(' (version ' + release.version + ')');
+
             // For each Host
             $.each(release.host, function() {
                 var host = this;
@@ -2105,7 +2108,7 @@ function releaseTab(release, ul) {
                 // Set Host Icon
                 setHostIcon(hostButton, 'ui-icon-extlink').click(function() {
                     var li = $('<li/>');
-                    var a = $('<a/>', {id: 'A_' + hostType, text: hostType + ' [' + releaseName + ']', href: '#' + hostType});
+                    var a = $('<a/>', {id: 'A_' + hostType, text: hostType + ' [' + releaseName + ']', href: '#' + hostType, title: 'Click to refresh'});
                     var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
                     span.click(function(event) {
                         li.remove();
@@ -2173,7 +2176,6 @@ function releaseTab(release, ul) {
 
             // If no Hosts
             if (!release.host.length) {
-                hostsTd.text(LANG.noHosts);
                 updateServicePasswordButton.button('disable');
                 updateCommandPasswordButton.button('disable');
             }
@@ -3103,6 +3105,7 @@ function modulesTab(release) {
     var addModuleButton = $('<button/>', {text: 'Add Module'});
     setButtonIcon(addModuleButton).click(function() {
         $("#addModuleReleaseName").val(release.releaseName);
+        $("#addModuleHostType").change();
         $("#addModuleDialog").dialog("open");
     });
 
@@ -3598,7 +3601,8 @@ function commandsTab(release, host, li) {
     var addServiceLinkButton = $('<button/>', {text: "Add Service Link"});
     setButtonIcon(addServiceLinkButton).click(function() {
         $("#addServiceLinkReleaseName").val(releaseName);
-        $("#addServiceLinkHostType").val(hostType).change();
+        $("#addServiceLinkHostType").val(hostType);
+        $("#addServiceLinkSelect").change();
         $("#addServiceLinkDialog").dialog("open");
     });
 
