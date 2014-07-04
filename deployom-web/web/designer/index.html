@@ -1,0 +1,898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/3p/js/jquery.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery.cookie.js"></script>
+        <link type="text/css" rel="stylesheet" href="/3p/css/jquery-ui.css" />
+
+        <script type="text/javascript" src="/server/js/common.js"></script>
+        <script type="text/javascript" src="/server/js/custom.js"></script>
+        <script type="text/javascript" src="/designer/js/designer.js"></script>
+        <link type="text/css" rel="stylesheet" href="/server/css/common.css"/>
+        <link type="text/css" rel="stylesheet" href="/server/css/custom.css"/>
+
+        <title>Designer</title>
+    </head>
+    <body>
+
+        <table id='header' class="hidden">
+            <tr><td width="95%"><h1 id="envName">Local</h1></td>
+                <td width="1%" class="head">
+                    <div id="headSelect">
+                        <input type="radio" id="designer" name="menuSelect" checked="checked"/><label for="designer">DESIGNER</label>
+                        <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="updateServicePasswordDialog" class="dialog" title="Update Service Password">
+            <form id="updateServicePasswordForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateServicePasswordReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" value="root" id="updateServicePasswordLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Old Password</label>
+                    <input type="text" name="OldPassword" id="updateServicePasswordOld" class="ui-widget-content ui-corner-all" />
+                    <label>New Password</label>
+                    <input type="text" name="NewPassword" id="updateServicePasswordNew" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateCommandPasswordDialog" class="dialog" title="Update Command Password">
+            <form id="updateCommandPasswordForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Password will be updated inside executable command</p>
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateCommandPasswordReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" id="updateCommandPasswordLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Old Password</label>
+                    <input type="text" name="OldPassword" id="updateCommandPasswordOld" class="ui-widget-content ui-corner-all" />
+                    <label>New Password</label>
+                    <input type="text" name="NewPassword" id="updateCommandPasswordNew" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateJobDialog" class="dialog" title="Change Job Properties">
+            <form id="updateJobForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateJobReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="updateJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Start</label>
+                    <input type="text" name="Start" id="updateJobStart" class="ui-widget-content ui-corner-all" />
+                    <label>Period</label>
+                    <input type="text" name="Period" id="updateJobPeriod" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateFlowDialog" class="dialog" title="Change Flow Properties">
+            <form id="updateFlowForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateFlowReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="updateFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Filter</label>
+                    <input type="text" name="Filter" id="updateFlowFilter" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="renameFlowDialog" class="dialog" title="Rename Flow">
+            <form id="renameFlowForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="renameFlowReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="renameFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>New Flow Name</label>
+                    <input type="text" name="NewFlowName" id="renameFlowNewFlowName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addFlowDialog" class="dialog" title="Add Flow">
+            <form id="addFlowForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addFlowReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" name="FlowName" id="addFlowName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeFlowDialog" class="dialog" title="Remove Flow">
+            <form id="removeFlowForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeFlowReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="removeFlowName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeJobDialog" class="dialog" title="Remove Job">
+            <form id="removeJobForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeJobReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="removeJobName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeConnectionDialog" class="dialog" title="Remove Connection">
+            <form id="removeConnectionForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeConnectionReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Connection Name</label>
+                    <input type="text" readonly="readonly" name="ConnectionName" id="removeConnectionName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addJobDialog" class="dialog" title="Add Job">
+            <form id="addJobForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addJobReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" name="JobName" id="addJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Start</label>
+                    <input type="text" name="Start" id="addJobStart" value="5" class="ui-widget-content ui-corner-all" />
+                    <label>Job Period</label>
+                    <input type="text" name="Period" id="addJobPeriod" value="30" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addConnectionDialog" class="dialog" title="Add Connection">
+            <form id="addConnectionForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addConnectionReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Connection Name</label>
+                    <input type="text" name="ConnectionName" id="addConnectionName" class="ui-widget-content ui-corner-all" />
+                    <label>Start Service Name</label>
+                    <input type="text" name="StartServiceName" id="addConnectionStartServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Start Host Name</label>
+                    <input type="text" name="StartHostName" id="addConnectionStartHostName" class="ui-widget-content ui-corner-all" />
+                    <label>End Service Name</label>
+                    <input type="text" name="EndServiceName" id="addConnectionEndServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>End Host Name</label>
+                    <input type="text" name="EndHostName" id="addConnectionEndHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateConnectionDialog" class="dialog" title="Update Connection">
+            <form id="updateConnectionForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateConnectionReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Connection Name</label>
+                    <input type="text" readonly="readonly" name="ConnectionName" id="updateConnectionName" class="ui-widget-content ui-corner-all" />
+                    <label>Start Service Name</label>
+                    <input type="text" name="StartServiceName" id="updateConnectionStartServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Start Host Name</label>
+                    <input type="text" name="StartHostName" id="updateConnectionStartHostName" class="ui-widget-content ui-corner-all" />
+                    <label>End Service Name</label>
+                    <input type="text" name="EndServiceName" id="updateConnectionEndServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>End Host Name</label>
+                    <input type="text" name="EndHostName" id="updateConnectionEndHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addFlowHostDialog" class="dialog" title="Add Flow Group">
+            <form id="addFlowHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addFlowHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="addFlowHostFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addFlowHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="addFlowHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addSiteHostDialog" class="dialog" title="Add Site Group">
+            <form id="addSiteHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addSiteHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addSiteHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="addSiteHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateFlowHostDialog" class="dialog" title="Update Flow Group">
+            <form id="updateFlowHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateFlowHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="updateFlowHostFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="updateFlowHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="updateFlowHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="renameFlowHostDialog" class="dialog" title="Rename Flow Group">
+            <form id="renameFlowHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="renameFlowHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="renameFlowHostFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="renameFlowHostName" class="ui-widget-content ui-corner-all" />
+                    <label>New Group Name</label>
+                    <input type="text" name="NewHostName" id="renameFlowHostNewFlowName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateSiteHostDialog" class="dialog" title="Update Site Group">
+            <form id="updateSiteHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateSiteHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="updateSiteHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="updateSiteHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addJobHostDialog" class="dialog" title="Add Job Group">
+            <form id="addJobHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addJobHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="addJobHostJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addJobHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="addJobHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateJobHostDialog" class="dialog" title="Update Job Group">
+            <form id="updateJobHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateJobHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="updateJobHostJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="updateJobHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Type (regex)</label>
+                    <input type="text" name="HostType" id="updateJobHostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeFlowHostDialog" class="dialog" title="Remove Flow Group">
+            <form id="removeFlowHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Host definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeFlowHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="removeFlowHostFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="removeFlowHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeSiteHostDialog" class="dialog" title="Remove Site Group">
+            <form id="removeSiteHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Host definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeSiteHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="removeSiteHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeJobHostDialog" class="dialog" title="Remove Job Group">
+            <form id="removeJobHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Host definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeJobHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="removeJobHostJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="removeJobHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addFlowServiceDialog" class="dialog" title="Add Flow Service">
+            <form id="addFlowServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addFlowServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="addFlowServiceFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addFlowServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="addFlowServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addSiteServiceDialog" class="dialog" title="Add Site Service">
+            <form id="addSiteServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addSiteServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addSiteServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="addSiteServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Filter</label>
+                    <input type="text" name="HostFilter" id="addSiteServiceHostFilter" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeFlowServiceDialog" class="dialog" title="Remove Flow Service">
+            <form id="removeFlowServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeFlowServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Flow Name</label>
+                    <input type="text" readonly="readonly" name="FlowName" id="removeFlowServiceFlowName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="removeFlowServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="removeFlowServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeSiteServiceDialog" class="dialog" title="Remove Site Service">
+            <form id="removeSiteServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeSiteServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="removeSiteServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="removeSiteServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addReleaseDialog" class="dialog" title="Add Release">
+            <form id="addReleaseForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Release Name</label>
+                    <input type="text" name="ReleaseName" id="addReleaseName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeReleaseDialog" class="dialog" title="Remove Release">
+            <form id="removeReleaseForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Release definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>Release Name</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeReleaseName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="uploadReleaseDialog" class="dialog" title="Upload Release File">
+            <form id="uploadReleaseForm" method="post" action="/jersey/Release/uploadRelease" enctype="multipart/form-data">
+                <fieldset class="ui-helper-reset">
+                    <label>Release Name</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="uploadReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Release File</label>
+                    <input type="file" name="Release" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <form class="hidden" id="downloadReleaseForm" method="post" action="/jersey/Release/downloadRelease">
+            <fieldset class="ui-helper-reset">
+                <input type="text" name="ReleaseName" id="downloadReleaseName" />
+            </fieldset>
+        </form>
+
+        <div id="addJobServiceDialog" class="dialog" title="Add Job Service">
+            <form id="addJobServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addJobServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="addJobServiceJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" readonly="readonly" name="HostName" id="addJobServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="addJobServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeJobServiceDialog" class="dialog" title="Remove Job Service">
+            <form id="removeJobServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeJobServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="removeJobServiceJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="removeJobServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="removeJobServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addJobCommandDialog" class="dialog" title="Add Service Command">
+            <form id="addJobCommandForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addJobCommandReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="addJobCommandJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="addJobCommandHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="addJobCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Command</label>
+                    <input type="text" name="CommandId" id="addJobCommandId" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeJobCommandDialog" class="dialog" title="Remove Service Command">
+            <form id="removeJobCommandForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeJobCommandReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Job Name</label>
+                    <input type="text" readonly="readonly" name="JobName" id="removeJobCommandJobName" class="ui-widget-content ui-corner-all" />
+                    <label>Group Name</label>
+                    <input type="text" name="HostName" id="removeJobCommandHostName" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" id="removeJobCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Command</label>
+                    <input type="text" name="CommandId" id="removeJobCommandId" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addHostDialog" class="dialog" title="Add Host Type">
+            <form id="addHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" name="HostType" id="addHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" value="root" id="addHostLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="text" name="Password" id="addHostPassword" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateServiceDialog" class="dialog" title="Update Service">
+            <form id="updateServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="updateServiceHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="updateServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Linked Host</label>
+                    <select name="ServiceLink" id="updateServiceLink" class="ui-widget-content ui-corner-all"></select>
+                    <label>Login</label>
+                    <input type="text" name="Login" id="updateServiceLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="text" name="Password" id="updateServicePassword" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="replaceServiceCommandsDialog" class="dialog" title="Replace Commands Executable">
+            <form id="replaceServiceCommandsForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>All Matches in command's Executable will be replaced.</p>
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="replaceServiceCommandsReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="replaceServiceCommandsHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="replaceServiceCommandsServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Match</label>
+                    <input type="text" name="Match" id="replaceServiceCommandsMatch" class="ui-widget-content ui-corner-all" />
+                    <label>Replace</label>
+                    <input type="text" name="Replace" id="replaceServiceCommandsReplace" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="transferServiceDialog" class="dialog" title="Transfer Service">
+            <form id="transferServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="transferServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="transferServiceHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="transferServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>New Host Type</label>
+                    <select name="NewHostType" id="transferServiceNewHostType" class="ui-widget-content ui-corner-all"></select>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="copyServiceDialog" class="dialog" title="Copy Service">
+            <form id="copyServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="copyServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="copyServiceHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="copyServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Copy Platform Release</label>
+                    <select name="NewReleaseName" id="copyServiceNewReleaseName" class="ui-widget-content ui-corner-all"></select>
+                    <label>Copy Host Type</label>
+                    <select name="NewHostType" id="copyServiceNewHostType" class="ui-widget-content ui-corner-all"></select>
+                    <label>Copy Service Name</label>
+                    <input type="text" name="NewServiceName" id="copyServiceNewServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="renameHostDialog" class="dialog" title="Rename Host Type">
+            <form id="renameHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="renameHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="renameHostType" class="ui-widget-content ui-corner-all" />
+                    <label>New Host Type</label>
+                    <input type="text" name="NewHostType" id="renameHostNewHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="renameServiceDialog" class="dialog" title="Rename Service">
+            <form id="renameServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="renameServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="renameServiceHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="renameServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>New Service Name</label>
+                    <input type="text" name="NewServiceName" id="renameServiceNewServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeHostDialog" class="dialog" title="Remove Host">
+            <form id="removeHostForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Host definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeHostReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" id="removeHostType" name="HostType" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addServiceDialog" class="dialog" title="Add Service">
+            <form id="addServiceForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="addServiceHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" name="ServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Check Online command</label>
+                    <textarea name="CmdOnline" class="property ui-widget-content ui-corner-all"></textarea>
+                    <label>Match for Online command</label>
+                    <textarea name="CmdOnlineMatch" class="property ui-widget-content ui-corner-all"></textarea>
+                    <label>Login</label>
+                    <input type="text" name="Login" value="root" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="text" name="Password" value="" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addServiceLinkDialog" class="dialog" title="Add Service Link">
+            <form id="addServiceLinkForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addServiceLinkReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="addServiceLinkHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Linked Host</label>
+                    <select name="ServiceLink" id="addServiceLinkSelect" class="ui-widget-content ui-corner-all"></select>
+                    <label>Service Name</label>
+                    <select name="ServiceName" id="addServiceLinkServiceName" class="ui-widget-content ui-corner-all"></select>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeServiceDialog" class="dialog" title="Remove Service">
+            <form id="removeServiceForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Service definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeServiceReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" id="removeServiceHostType" name="HostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" id="removeServiceName" name="ServiceName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addCommandDialog" class="dialog" title="Add Service Command">
+            <form id="addCommandForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addCommandReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="addCommandHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="addCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Command Id</label>
+                    <input type="text" name="CommandId" id="addCommandId" class="ui-widget-content ui-corner-all" />
+                    <label>Executable</label>
+                    <textarea name="Exec" id="addCommandExec" class="property ui-widget-content ui-corner-all"></textarea>
+                    <label>Title</label>
+                    <input type="text" name="Title" id="addCommandTitle" class="ui-widget-content ui-corner-all" />
+                    <label>Group</label>
+                    <select name="Group" id="addCommandGroup" class="ui-widget-content ui-corner-all">
+                        <option id=""></option>
+                        <option id="Configuration">Configuration</option>
+                        <option id="Database">Database</option>
+                        <option id="GUI">GUI</option>
+                        <option id="Operations">Operations</option>
+                        <option id="Reports">Reports</option>
+                    </select>
+                    <label>Match</label>
+                    <input type="text" name="Match" id="addCommandMAtch" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addChartDialog" class="dialog" title="Add Service Chart">
+            <form id="addChartForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addChartReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="addChartHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="addChartServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Chart Id</label>
+                    <input type="text" readonly="readonly" name="ChartId" id="addChartId" class="ui-widget-content ui-corner-all" />
+                    <label>Title</label>
+                    <input type="text" name="Title" id="addChartTitle" class="ui-widget-content ui-corner-all" />
+                    <label>Label 1</label>
+                    <input type="text" name="Label1" id="addChartLabel1" class="ui-widget-content ui-corner-all" />
+                    <label>Label 2</label>
+                    <input type="text" name="Label2" id="addChartLabel2" class="ui-widget-content ui-corner-all" />
+                    <label>Label 3</label>
+                    <input type="text" name="Label3" id="addChartLabel3" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addModuleDialog" class="dialog" title="Add Service Module">
+            <form id="addModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="addModuleReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <select name="HostType" id="addModuleHostType" class="ui-widget-content ui-corner-all"></select>
+                    <label>Service Name</label>
+                    <select name="ServiceName" id="addModuleServiceName" class="ui-widget-content ui-corner-all"></select>
+                    <label>Module Name</label>
+                    <select name="ModuleName" id="addModuleName" class="ui-widget-content ui-corner-all"></select>
+                    <label>Context</label>
+                    <input type="text" name="Context" id="addModuleContext" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" id="addModuleLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="text" name="Password" id="addModulePassword" class="ui-widget-content ui-corner-all" />
+                    <label>Port</label>
+                    <input type="text" name="Port" id="addModulePort" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateCommandDialog" class="dialog" title="Update Service Command">
+            <form id="updateCommandForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateCommandReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="updateCommandHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="updateCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Command Id</label>
+                    <input type="text" readonly="readonly" name="CommandId" id="updateCommandId" class="ui-widget-content ui-corner-all" />
+                    <label>Executable</label>
+                    <textarea name="Exec" id="updateCommandExec" class="property ui-widget-content ui-corner-all"></textarea>
+                    <label>Title</label>
+                    <input type="text" name="Title" id="updateCommandTitle" class="ui-widget-content ui-corner-all" />
+                    <label>Group</label>
+                    <select name="Group" id="updateCommandGroup" class="ui-widget-content ui-corner-all">
+                        <option id=""></option>
+                        <option id="Configuration">Configuration</option>
+                        <option id="Database">Database</option>
+                        <option id="GUI">GUI</option>
+                        <option id="Operations">Operations</option>
+                        <option id="Reports">Reports</option>
+                    </select>
+                    <label>Match</label>
+                    <input type="text" name="Match" id="updateCommandMatch" class="ui-widget-content ui-corner-all" />
+                    <label>Match 2</label>
+                    <input type="text" name="Match2" id="updateCommandMatch2" class="ui-widget-content ui-corner-all" />
+                    <label>Not Match</label>
+                    <input type="text" name="NotMatch" id="updateCommandNotMatch" class="ui-widget-content ui-corner-all" />
+                    <label>Not Match 2</label>
+                    <input type="text" name="NotMatch2" id="updateCommandNotMatch2" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateChartDialog" class="dialog" title="Update Service Chart">
+            <form id="updateChartForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateChartReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="updateChartHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="updateChartServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Chart Id</label>
+                    <input type="text" readonly="readonly" name="ChartId" id="updateChartId" class="ui-widget-content ui-corner-all" />
+                    <label>Title</label>
+                    <input type="text" name="Title" id="updateChartTitle" class="ui-widget-content ui-corner-all" />
+                    <label>Label 1</label>
+                    <input type="text" name="Label1" id="updateChartLabel1" class="ui-widget-content ui-corner-all" />
+                    <label>Label 2</label>
+                    <input type="text" name="Label2" id="updateChartLabel2" class="ui-widget-content ui-corner-all" />
+                    <label>Label 3</label>
+                    <input type="text" name="Label3" id="updateChartLabel3" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateModuleDialog" class="dialog" title="Update Service Module">
+            <form id="updateModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="updateModuleReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="updateModuleHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="updateModuleServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Module Name</label>
+                    <input type="text" readonly="readonly" name="ModuleName" id="updateModuleName" class="ui-widget-content ui-corner-all" />
+                    <label>Context</label>
+                    <input type="text" name="Context" id="updateModuleContext" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" id="updateModuleLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="text" name="Password" id="updateModulePassword" class="ui-widget-content ui-corner-all" />
+                    <label>Port</label>
+                    <input type="text" name="Port" id="updateModulePort" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeCommandDialog" class="dialog" title="Remove Service Command">
+            <form id="removeCommandForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeCommandReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="removeCommandHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="removeCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Command Id</label>
+                    <input type="text" readonly="readonly" name="CommandId" id="removeCommandId" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeChartDialog" class="dialog" title="Remove Service Chart">
+            <form id="removeChartForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeChartReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="removeChartHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="removeChartServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Chart Id</label>
+                    <input type="text" readonly="readonly" name="ChartId" id="removeChartId" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeModuleDialog" class="dialog" title="Remove Service Module">
+            <form id="removeModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Platform Release</label>
+                    <input type="text" readonly="readonly" name="ReleaseName" id="removeModuleReleaseName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <input type="text" readonly="readonly" name="HostType" id="removeModuleHostType" class="ui-widget-content ui-corner-all" />
+                    <label>Service Name</label>
+                    <input type="text" readonly="readonly" name="ServiceName" id="removeModuleServiceName" class="ui-widget-content ui-corner-all" />
+                    <label>Module Name</label>
+                    <input type="text" readonly="readonly" name="ModuleName" id="removeModuleName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="tabsDiv"></div>
+
+        <table id='footer' class="hidden">
+            <tr><td align="left" id="now">Loaded on </td>
+                <td align="right" id="title"></td>
+            </tr>
+            <tr class="bold">
+                <td align="left"><span id="version">DeployOM, version </span></td>
+            </tr>
+            <tr class="bold">
+                <td align="left" colspan="2"><ul id="menu"></ul></td>
+            </tr>
+        </table>
+    </body>
+</html>

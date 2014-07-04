@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/3p/js/jquery.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery.cookie.js"></script>
+        <link type="text/css" rel="stylesheet" href="/3p/css/jquery-ui.css" />
+
+        <script type="text/javascript" src="/help/js/help.js"></script>
+        <script type="text/javascript" src="/server/js/common.js"></script>
+        <link type="text/css" rel="stylesheet" href="/server/css/common.css"/>
+        <link type="text/css" rel="stylesheet" href="/server/css/custom.css"/>
+
+        <title>Help</title>
+    </head>
+    <body>
+
+        <table id='header' class="hidden">
+            <tr><td width="95%"><h1 id="envName">Local</h1></td>
+                <td width="1%" class="head">
+                    <div id="headSelect">
+                        <input type="radio" id="help" name="menuSelect" checked="checked"/><label for="help">HELP</label>
+                        <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="tabsDiv" class='hidden'>
+            <ul>
+                <li><a href="#server_help">Server</a></li>
+                <li><a href="#dashboard_help">Dashboard</a></li>
+                <li><a href="#site_help">Site Management</a></li>
+                <li><a href="#designer_help">Designer</a></li>
+                <li><a href="#changelog">Change Log</a></li>
+            </ul>
+
+            <div id="server_help">
+                <h1 class="center">Server</h1>
+                <h2>Update Environment</h2>
+                <div class="indent">Used for update environment name and title shown in the interface.</div>
+
+                <h1 class="center">Sites</h1>
+                <div class="indent">The "Sites" tab allow to add and remove sites.</div>
+
+                <div class="indent">Any number of Sites are supported, but from performance point of view and network topology should be
+                    configured as local and remote.</div>
+
+                <div class="indent">After adding or removing Sites application should be restarted to schedule Custom Jobs execution.</div>
+
+                <h2>Add Local Site</h2>
+                <div class="indent">For Site with hosts in the same network as host where application installed.</div>
+
+                <h2>Add Remote Site</h2>
+                <div class="indent">For Site with hosts in different network as host where application installed.</div>
+
+                <h1 class="center">Users</h1>
+                <div class="indent">The "Users" tab allow to add and remove Users.</div>
+
+                <h1 class="center">Modules</h1>
+                <div class="indent">The "Modules" tab allow to register and remove modules.</div>
+
+                <h1 class="center">Logging</h1>
+                <div class="indent">The "Logging" tab displays critical web application messages (host unavailability, major release errors, etc).</div>
+
+            </div>
+
+            <div id="dashboard_help">
+                <div class="indent">Tab for each Site contain Service Flows, Modules and Events.</div>
+            </div>
+
+            <div id="site_help">
+                <h1 class="center">Configured Services</h1>
+
+                <div class="indent">The "Configured Services" tab displays Hosts with online and offline Services for one site.
+                    Services can be changed in the "Change Layout" tab.</div>
+
+                <div class="indent">Each service is a button with left click menu.
+                    All services have "Online" menu which shows information about online status of the Service.</div>
+                <div class="indent">Besides "Online" Service specific actions implemented.</div>
+
+                <h1 class="center">Change Layout</h1>
+                <div class="indent">The "Change Layout" tab displays all services for each Host Type according to Platform Release.</div>
+                <div class="indent">Each Host is a button with left click menu "Update Host" and "Remove Host".</div>
+                <div class="indent">Each Service is a button to manually add or remove.</div>
+
+                <h2>Update host</h2>
+                <div class="indent">Host type and IP can be updated using left click menu "Update Host".</div>
+
+                <h2>Remove host</h2>
+                <div class="indent">Host can be removed using left click menu "Remove Host". Host definition will be removed permanently and can not be recovered.</div>
+            </div>
+
+            <div id="designer_help">
+                <div class="indent">Tab for each Release will contain Release definitions and Services.</div>
+
+                <h1 class="center">Custom Jobs</h1>
+
+                <div class="indent">All jobs have "period" (how often job will be run) and "start"
+                    (when job will be run after application start) parameters.</div>
+                <div class="indent">Each Job schedule in separate thread.</div>
+
+                <h1 class="center">Service Connections</h1>
+                <div class="indent">Connections between Services.</div>
+
+                <h1 class="center">Service Flows</h1>
+                <div class="indent">Based on requirement any Service Flow can be configured.</div>
+
+                <h1 class="center">Site Map</h1>
+                <div class="indent">Full Site configuration with Service mapping.</div>
+
+            </div>
+
+            <div id="changelog">
+                <h1 class="center">Version 3.0 (070314)</h1>
+                <ul>
+                    <li>Backend: Cookie based Authentication added for Web-Services</li>
+                    <li>Performance: XML format changed to JSON</li>
+                </ul>
+                <h1 class="center">Version 2.0 (042414)</h1>
+                <ul>
+                    <li>Frontend: interface was completely redesigned based on new Server architecture</li>
+                    <li>Performance: Tomcat Web Server was changed to Grizzly NIO Framework</li>
+                </ul>
+                <h1 class="center">Version 1.0</h1>
+                <ul>
+                    <li>Initial Release</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <table id='footer' class="hidden">
+            <tr><td align="left" id="now">Loaded on </td>
+                <td align="right" id="title"></td>
+            </tr>
+            <tr class="bold">
+                <td align="left"><span id="version">DeployOM, version </span></td>
+            </tr>
+        </table>
+    </body>
+</html>

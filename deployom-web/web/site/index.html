@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/3p/js/jquery.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery.cookie.js"></script>
+        <!--[if lt IE 9]>
+        <script language="javascript" type="text/javascript" src="/3p/js/excanvas.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="/3p/js/jquery.jqplot.js"></script>
+        <script type="text/javascript" src="/3p/js/jqplot.categoryAxisRenderer.js"></script>
+        <script type="text/javascript" src="/3p/js/jqplot.pointLabels.js"></script>
+        <link rel="stylesheet" type="text/css" href="/3p/css/jquery.jqplot.css" />
+        <link type="text/css" rel="stylesheet" href="/3p/css/jquery-ui.css" />
+
+        <script type="text/javascript" src="/site/js/site.js"></script>
+        <script type="text/javascript" src="/server/js/common.js"></script>
+        <script type="text/javascript" src="/server/js/custom.js"></script>
+        <link type="text/css" rel="stylesheet" href="/server/css/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="/server/css/common.css"/>
+
+        <title>Site Management</title>
+    </head>
+    <body>
+
+        <table id='header' class="hidden">
+            <tr><td width="95%"><h1 id="envName">Local</h1></td>
+                <td width="1%" class="head">
+                    <div id="headSelect">
+                        <input type="radio" id="site" name="menuSelect" checked="checked"/><label for="site">SITE</label>
+                        <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="addHostDialog" class="dialog" title="Add Host">
+            <form id="addHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="addHostSiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="addHostServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <select name="HostType" id="addHostType" class="ui-widget-content ui-corner-all"></select>
+                    <label>Host IP</label>
+                    <input type="text" name="IP" id="addHostIP" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <input type="text" id="addHostName" name="HostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeHostDialog" class="dialog" title="Remove Host">
+            <form id="removeHostForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Host definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="removeHostSiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="removeHostServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <input type="text" readonly="readonly" id="removeHostName" name="HostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeSiteDialog" class="dialog" title="Remove Site">
+            <form id="removeSiteForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Site definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" id="removeSiteName" name="SiteName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeEventsDialog" class="dialog" title="Remove Events">
+            <form id="removeEventsForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>All Events will be removed. Please confirm.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="removeEventsSiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="removeEventsServerURL" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateHostDialog" class="dialog" title="Update Host">
+            <form id="updateHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="updateHostSiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="updateHostServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <input type="text" readonly="readonly" id="updateHostName" name="HostName" class="ui-widget-content ui-corner-all" />
+                    <label>Host Type</label>
+                    <select name="HostType" id="updateHostType" class="ui-widget-content ui-corner-all"></select>
+                    <label>Host IP</label>
+                    <input type="text" name="IP" id="updateHostIP" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="renameHostDialog" class="dialog" title="Rename Host">
+            <form id="renameHostForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="renameHostSiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="renameHostServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <input type="text" readonly="readonly" id="renameHostName" name="HostName" class="ui-widget-content ui-corner-all" />
+                    <label>New Host Name</label>
+                    <input type="text" name="NewHostName" id="renameNewHostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="getHostsDialog" class="dialog" title="Get Hosts List">
+            <form id="getHostsForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Please choose Host and Parameters for Hosts List.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" id="getHostsSiteName" name="SiteName" class="ui-widget-content ui-corner-all" />
+                    <input type="hidden" readonly="readonly" name="ServerURL" id="getHostsServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <select name="HostName" id="getHostsHostName" class="ui-widget-content ui-corner-all">
+                    </select>
+                    <label>Command Executable</label>
+                    <input type="text" id="getHostsExec" name="Exec" value="grep -v '^#' /etc/hosts" class="ui-widget-content ui-corner-all" />
+                    <label>Host Pattern</label>
+                    <input type="text" name="HostPattern" value="^(\d+.\d+.\d+.\d+)\s+([\w-]+)" class="ui-widget-content ui-corner-all" />
+                    <label>Type Pattern</label>
+                    <input type="text" name="TypePattern" value="mach=(\S+)" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <form class="hidden" id="downloadSiteForm" method="post" action="/jersey/Site/downloadSite">
+            <fieldset class="ui-helper-reset">
+                <input type="text" name="SiteName" id="downloadSiteName" />
+            </fieldset>
+        </form>
+
+        <div id="uploadSiteDialog" class="dialog" title="Upload Site File">
+            <form id="uploadSiteForm" method="post" action="/jersey/Site/uploadSite" enctype="multipart/form-data">
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" readonly="readonly" name="SiteName" id="uploadSiteName" class="ui-widget-content ui-corner-all" />
+                    <label>Site File</label>
+                    <input type="file" name="Site" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="tabsDiv"></div>
+
+        <table id='footer' class="hidden">
+            <tr><td align="left" id="now">Loaded on </td>
+                <td align="right" id="title"></td>
+            </tr>
+            <tr class="bold">
+                <td align="left"><span id="version">DeployOM, version </span></td>
+                <td align="right"><span id='legend-error' class="ui-state-error">Red means Offline</span> <span id='legend-ok' class="ui-state-ok">Green means Online</span></td>
+            </tr>
+            <tr class="bold">
+                <td align="left" colspan="2"><ul id="menu"></ul></td>
+            </tr>
+        </table>
+    </body>
+</html>

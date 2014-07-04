@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/3p/js/jquery.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery.cookie.js"></script>
+        <!--[if lt IE 9]>
+        <script language="javascript" type="text/javascript" src="/3p/js/excanvas.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="/3p/js/jquery.jqplot.js"></script>
+        <script type="text/javascript" src="/3p/js/jqplot.categoryAxisRenderer.js"></script>
+        <script type="text/javascript" src="/3p/js/jqplot.pointLabels.js"></script>
+        <link rel="stylesheet" type="text/css" href="/3p/css/jquery.jqplot.css" />
+        <link type="text/css" rel="stylesheet" href="/3p/css/jquery-ui.css" />
+
+        <script type="text/javascript" src="/charts/js/charts.js"></script>
+        <script type="text/javascript" src="/server/js/custom.js"></script>
+        <script type="text/javascript" src="/server/js/common.js"></script>
+        <link type="text/css" rel="stylesheet" href="/server/css/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="/server/css/common.css"/>
+
+        <title>Charts</title>
+    </head>
+    <body>
+
+        <table id='header' class="hidden">
+            <tr><td width="95%"><h1 id="envName">Local</h1></td>
+                <td width="1%" class="head">
+                    <div id="headSelect">
+                        <input type="radio" id="charts" name="menuSelect" checked="checked"/><label for="charts">CHARTS</label>
+                        <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="tabsDiv"></div>
+
+        <table id='footer' class="hidden">
+            <tr><td align="left" id="now">Loaded on </td>
+                <td align="right" id="title"></td>
+            </tr>
+            <tr class="bold">
+                <td align="left"><span id="version">DeployOM, version </span></td>
+            </tr>
+            <tr class="bold">
+                <td align="left" colspan="2"><ul id="menu"></ul></td>
+            </tr>
+        </table>
+    </body>
+</html>

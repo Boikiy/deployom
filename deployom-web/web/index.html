@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+        <script type="text/javascript" src="/3p/js/jquery.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/3p/js/jquery.cookie.js"></script>
+        <link type="text/css" rel="stylesheet" href="/3p/css/jquery-ui.css" />
+
+        <script type="text/javascript" src="/server/js/common.js"></script>
+        <script type="text/javascript" src="/server/js/server.js"></script>
+        <script type="text/javascript" src="/server/js/custom.js"></script>
+        <link type="text/css" rel="stylesheet" href="/server/css/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="/server/css/common.css"/>
+
+        <title>Server</title>
+    </head>
+    <body>
+
+        <table id='header' class="hidden">
+            <tr><td width="95%"><h1 id="envName">Local</h1></td>
+                <td width="1%" class="head hidden">
+                    <div id="siteSelect"/>
+                </td>
+                <td width="1%" class="head">
+                    <div id="headSelect">
+                        <input type="radio" id="server" name="menuSelect" checked="checked"/><label for="server">SERVER</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="updateConfigDialog" class="dialog" title="Update Configuration">
+            <form id="updateConfigForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Environment Name</label>
+                    <input type="text" id="updateConfigName" name="EnvName" class="ui-widget-content ui-corner-all" />
+                    <label>Title</label>
+                    <input type="text" id="updateConfigTitle" name="Title" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div> 
+
+        <div id="stopServerDialog" class="dialog" title="Stop Server">
+            <form id="stopServerForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Application Server will be stopped.</p>
+            </form>
+        </div>
+
+        <div id="addUserDialog" class="dialog" title="Add User">
+            <form id="addUserForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>User Name</label>
+                    <input type="text" name="UserName" id="addUserName" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="password" name="Password" id="addUserPassword" class="ui-widget-content ui-corner-all" />
+                    <label>Role</label>
+                    <select name="Role" id="addUserRole" class="ui-widget-content ui-corner-all">
+                        <option id="admin">admin</option>
+                        <option id="customer">customer</option>
+                        <option id="support">support</option>
+                    </select>
+                    <label>Email (for Events/Notification)</label>
+                    <input type="email" name="Email" id="addUserEmail" class="ui-widget-content ui-corner-all" />
+                    <label>Information</label>
+                    <input type="text" name="Info" id="addUserInfo" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addModuleDialog" class="dialog" title="Add Module">
+            <form id="addModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Module Name</label>
+                    <input type="text" name="ModuleName" id="addModuleName" class="ui-widget-content ui-corner-all" />
+                    <label>Context</label>
+                    <input type="text" name="Context" id="addModuleContext" value="/" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" id="addModuleLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="password" id="addModulePassword" name="Password" class="ui-widget-content ui-corner-all" />
+                    <label>IP</label>
+                    <input type="text" name="IP" id="addModuleIP" class="ui-widget-content ui-corner-all" />
+                    <label>Port</label>
+                    <input type="text" name="Port" id="addModulePort" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateModuleDialog" class="dialog" title="Update Module">
+            <form id="updateModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>Module Name</label>
+                    <input type="text" name="ModuleName" readonly="readonly" id="updateModuleName" class="ui-widget-content ui-corner-all" />
+                    <label>Context</label>
+                    <input type="text" name="Context" id="updateModuleContext" value="/" class="ui-widget-content ui-corner-all" />
+                    <label>Login</label>
+                    <input type="text" name="Login" id="updateModuleLogin" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="password" id="updateModulePassword" name="Password" class="ui-widget-content ui-corner-all" />
+                    <label>IP</label>
+                    <input type="text" name="IP" id="updateModuleIP" class="ui-widget-content ui-corner-all" />
+                    <label>Port</label>
+                    <input type="text" name="Port" id="updateModulePort" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeUserDialog" class="dialog" title="Remove User">
+            <form id="removeUserForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>User definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>User Name</label>
+                    <input type="text" readonly="readonly" name="UserName" id="removeUserName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="removeModuleDialog" class="dialog" title="Remove Module">
+            <form id="removeModuleForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <p><span class="ui-icon ui-icon-alert"></span>Module definition will be permanently removed and cannot be recovered. Please confirm.</p>
+                    <label>Module Name</label>
+                    <input type="text" readonly="readonly" name="ModuleName" id="removeModuleName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="updateUserDialog" class="dialog" title="Update User">
+            <form id="updateUserForm" action="/">
+                <fieldset class="ui-helper-reset">
+                    <label>User Name</label>
+                    <input type="text" readonly="readonly" name="UserName" id="updateUserName" class="ui-widget-content ui-corner-all" />
+                    <label>Password</label>
+                    <input type="password" name="Password" id="updateUserPassword" class="ui-widget-content ui-corner-all" />
+                    <label>Role</label>
+                    <select name="Role" id="updateUserRole" class="ui-widget-content ui-corner-all">
+                        <option id="admin">admin</option>
+                        <option id="customer">customer</option>
+                        <option id="support">support</option>
+                    </select>
+                    <label>Email (for Events/Notification)</label>
+                    <input type="text" name="Email" id="updateUserEmail" class="ui-widget-content ui-corner-all" />
+                    <label>Information</label>
+                    <input type="text" name="Info" id="updateUserInfo" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addSiteLocalDialog" class="dialog" title="Add Local Site">
+            <form id="addSiteLocalForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Please enter Site name and choose Release. Initial Host is Optional.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Site Name</label>
+                    <input type="text" name="SiteName" id="addSiteLocalName" class="ui-widget-content ui-corner-all" />
+                    <label>Platform Release</label>
+                    <select name="ReleaseName" id="addSiteLocalReleaseName" class="ui-widget-content ui-corner-all"></select>
+                    <label>Host Type</label>
+                    <select name="HostType" id="addSiteLocalHostType" class="ui-widget-content ui-corner-all"></select>
+                    <label>Host IP</label>
+                    <input type="text" name="IP" id="addSiteLocalHostIP" class="ui-widget-content ui-corner-all" />
+                    <label>Host Name</label>
+                    <input type="text" id="addSiteLocalHostName" name="HostName" class="ui-widget-content ui-corner-all" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="addSiteRemoteDialog" class="dialog" title="Add Remote Site">
+            <form id="addSiteRemoteForm" action="/">
+                <p><span class="ui-icon ui-icon-alert"></span>Please enter Remote Server URL.</p>
+                <fieldset class="ui-helper-reset">
+                    <label>Server URL (http://IP:PORT)</label>
+                    <input type="text" name="ServerURL" value="http://0.0.0.0" id="addSiteRemoteServerURL" class="ui-widget-content ui-corner-all" />
+                    <label>Site Name</label>
+                    <select name="SiteName" id="addSiteRemoteName" class="ui-widget-content ui-corner-all">
+                    </select>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="tabsDiv"></div>
+
+        <table id='footer' class="hidden">
+            <tr><td align="left" id="now">Loaded on </td>
+                <td align="right" id="title"></td>
+            </tr>
+            <tr class="bold">
+                <td align="left"><span id="version">DeployOM, version </span></td>
+                <td align="right"><a href="/jersey/application.wadl">Jersey WADL</a></td>
+            </tr>
+            <tr class="bold">
+                <td align="left" colspan="2"><ul id="menu"></ul></td>
+            </tr>
+        </table>
+    </body>
+</html>
