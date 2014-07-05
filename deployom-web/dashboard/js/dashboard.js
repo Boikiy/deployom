@@ -245,7 +245,7 @@ function flowsTable(site, ul) {
                         });
                         $('#' + flowName).append(div);
 
-                        flowTab(flow, site, div, li);
+                        flowTab(flow, site, div);
                     },
                     error: function() {
                         $('#' + flowName).empty();
@@ -304,7 +304,7 @@ function modulesTable(site) {
     return table;
 }
 
-function flowTab(flow, site, div, flowLi) {
+function flowTab(flow, site, div) {
 
     var h1 = $('<h1/>', {'class': "center", text: flow.flowName});
     div.append(h1);
@@ -378,10 +378,8 @@ function flowTab(flow, site, div, flowLi) {
             // Add Service Class
             if (!service.online) {
                 serviceButton.addClass('ui-state-error');
-                flowLi.addClass('ui-state-error');
             } else {
                 serviceButton.addClass('ui-state-ok');
-                flowLi.addClass('ui-state-ok');
             }
 
             // Create a row for reports
