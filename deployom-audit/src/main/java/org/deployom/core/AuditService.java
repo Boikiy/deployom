@@ -74,11 +74,19 @@ public class AuditService {
         // Default Style
         HSSFCellStyle style = workbook.createCellStyle();
         style.setWrapText(true);
+        HSSFFont font = workbook.createFont();
+        font.setFontName("Courier New");
+        style.setFont(font);
+        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 
         // Header Style
         HSSFCellStyle styleHeader = workbook.createCellStyle();
+        styleHeader.cloneStyleFrom(style);
         styleHeader.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        HSSFFont font = workbook.createFont();
+        font = workbook.createFont();
         font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         font.setColor(HSSFColor.WHITE.index);
         styleHeader.setFillForegroundColor(IndexedColors.BLACK.getIndex());
@@ -87,12 +95,14 @@ public class AuditService {
 
         // Error Style
         HSSFCellStyle styleError = workbook.createCellStyle();
+        styleError.cloneStyleFrom(style);
         styleError.setFillForegroundColor(IndexedColors.CORAL.getIndex());
         styleError.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
         styleError.setWrapText(true);
 
         // Link Style
         HSSFCellStyle styleLink = workbook.createCellStyle();
+        styleLink.cloneStyleFrom(style);
         font = workbook.createFont();
         font.setUnderline(HSSFFont.U_SINGLE);
         font.setColor(IndexedColors.BLUE.getIndex());
@@ -206,8 +216,8 @@ public class AuditService {
 
                         // 5
                         cell = row.createCell(cellnum++);
-                        if (command.getOut().length() > 1000) {
-                            cell.setCellValue(command.getOut().substring(0, 1000) + "...");
+                        if (command.getOut().length() > 1024) {
+                            cell.setCellValue(command.getOut().substring(0, 1024) + "...");
                         } else {
                             cell.setCellValue(command.getOut());
                         }
@@ -271,7 +281,7 @@ public class AuditService {
 
         // Set Summary Size
         summarySheet.setColumnWidth(0, 6000);
-        summarySheet.setColumnWidth(1, 8000);
+        summarySheet.setColumnWidth(1, 10000);
         summarySheet.setColumnWidth(2, 4000);
 
         // Save
