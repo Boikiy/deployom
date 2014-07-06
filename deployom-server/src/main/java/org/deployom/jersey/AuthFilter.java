@@ -45,6 +45,17 @@ public class AuthFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext request) {
 
+        // Check Origin
+        String origin = request.getHeaderString("Origin");
+
+        // Add CORS
+        if (origin != null && !"".equals(origin)) {
+            // Required for CORS
+            response.addHeader("Access-Control-Allow-Origin", origin);
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.addHeader("Access-Control-Allow-Credentials", "true");
+        }
+
         // Get Cookie
         Cookie userName = request.getCookies().get("userName");
         Cookie password = request.getCookies().get("password");
@@ -66,18 +77,6 @@ public class AuthFilter implements ContainerRequestFilter {
             logger.log(Level.WARNING, "Unauthorized request to: {0}, Header: {1}",
                     new Object[]{request.getUriInfo().getAbsolutePath(), request.getHeaders()});
             request.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
-            return;
-        }
-
-        // Check Origin
-        String origin = request.getHeaderString("Origin");
-
-        // Add CORS
-        if (origin != null && !"".equals(origin)) {
-            // Required for CORS
-            response.addHeader("Access-Control-Allow-Origin", origin);
-            response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.addHeader("Access-Control-Allow-Credentials", "true");
         }
     }
 }

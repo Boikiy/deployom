@@ -129,7 +129,7 @@ public final class ConfigService {
     }
 
     private Config config;
-    private final String version = "3.070314";
+    private final String version = "3.070614";
 
     public ConfigService() {
 
