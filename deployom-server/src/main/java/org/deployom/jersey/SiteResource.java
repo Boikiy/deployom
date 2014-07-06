@@ -85,7 +85,7 @@ public class SiteResource {
         }
 
         // Return
-        return "Host " + hostName + " [" + siteName + "] added";
+        return siteName + ": Host " + hostName + " added";
     }
 
     @POST
@@ -883,9 +883,11 @@ public class SiteResource {
         SiteService siteService = new SiteService(siteName);
 
         // Remove Host
-        siteService.removeHost(hostName);
+        if (siteService.removeHost(hostName) == null) {
+            return "Host " + hostName + " [" + siteName + "] failed to remove";
+        }
 
-        return "Removed";
+        return siteName + ": Host " + hostName + " removed";
     }
 
     @POST
