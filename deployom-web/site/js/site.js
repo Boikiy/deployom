@@ -129,7 +129,7 @@ $(function() {
                     error: function() {
                         notificationMessage(LANG.submitError);
                     },
-                    complete: function(data) {
+                    success: function(data) {
                         notificationMessage(data);
                         $('#A_' + $('#removeHostSiteName').val() + '_LAYOUT').click();
                     }
