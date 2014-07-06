@@ -217,7 +217,7 @@ $(function() {
                     },
                     complete: function(data) {
                         alert(LANG.siteAdded);
-                        $('#A_SITES').click();
+                        location.reload();
                     }
                 });
 
@@ -262,7 +262,7 @@ $(function() {
                         $.each(config.site, function() {
                             var configSite = this;
 
-                            // Skip Remove Sites
+                            // Skip Remote Sites
                             if (configSite.serverURL) {
                                 return true;
                             }
@@ -290,7 +290,7 @@ $(function() {
                         notificationMessage(LANG.submitError);
                     },
                     complete: function(data) {
-                        $('#A_SITES').click();
+                        location.reload();
                     }
                 });
 
@@ -443,33 +443,6 @@ function afterLogin(config, role) {
 
     // Show on Load
     a.click();
-
-    // Add Sites tab
-    var sitesLi = $('<li/>');
-    var a = $('<a/>', {id: 'A_SITES', text: "Sites", href: '#SITES'});
-    sitesLi.append(a);
-    ul.append(sitesLi);
-    $('#tabsDiv').append($('<div/>', {id: 'SITES'}));
-
-    a.click(function(event) {
-        $.ajax({
-            url: "/jersey/Config/getConfig",
-            type: "GET",
-            dataType: "json",
-            beforeSend: function(data) {
-                $('#SITES').empty();
-                $('#SITES').prepend(LANG.loading);
-            },
-            error: function() {
-                $('#SITES').empty();
-                $('#SITES').prepend(LANG.submitError);
-            },
-            success: function(config) {
-                $('#SITES').empty();
-                $('#SITES').append(sitesTab(config, role));
-            }
-        });
-    });
 
     // Add Release for Local Sites
     $.each(config.release, function() {
@@ -658,52 +631,141 @@ function serverTab(config, role) {
     }
 
     $.each(config.site, function() {
-        var site = this;
+        var configSite = this;
 
         // Site Button
-        var siteButton = $('<button/>', {text: site.siteName, 'class': 'flow'});
+        var siteButton = $('<button/>', {text: configSite.siteName, 'class': 'flow'});
         sitesTd1.append(siteButton);
 
         // If updating disabled
-        if (!site.enabled) {
+        if (!configSite.enabled) {
             siteButton.text(siteButton.text() + ' [DISABLED]');
         }
 
         // On Click
         setSiteImage(siteButton).click(function() {
-            location.replace('/site#' + site.siteName);
+            location.replace('/site#' + configSite.siteName);
         });
 
         var siteUrl = "/jersey/Site/getSite";
-        if (site.serverURL) {
-            siteUrl = site.serverURL + siteUrl;
+        if (configSite.serverURL) {
+            siteUrl = configSite.serverURL + siteUrl;
         }
 
         // Check site
         $.ajax({
             url: siteUrl,
             type: "POST",
-            data: {SiteName: site.siteName},
+            data: {SiteName: configSite.siteName},
             dataType: "json",
             xhrFields: {
                 withCredentials: true
             },
             success: function(site) {
                 siteButton.addClass('ui-state-ok');
+
+                // Set Tooltip
+                siteButton.tooltip({
+                    items: "[class]",
+                    content: function() {
+                        // Create a table
+                        var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
+
+                        // Title
+                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Type'});
+                        var td2 = $('<td/>', {'class': 'ui', 'text': 'Local'});
+                        table.append($('<tr/>').append(td1, td2));
+
+                        // Remote site
+                        if (configSite.serverURL) {
+                            td2.text('Remote, ');
+                            var a = $('<a/>', {text: configSite.serverURL, target: '_blank', href: configSite.serverURL});
+                            td2.append(a);
+                        }
+
+                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Release'});
+                        var td2 = $('<td/>', {'class': 'ui', text: site.releaseName});
+                        table.append($('<tr/>').append(td1, td2));
+
+                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Hosts'});
+                        var td2 = $('<td/>', {'class': 'ui', text: site.host.length});
+                        table.append($('<tr/>').append(td1, td2));
+
+                        // Return
+                        return table;
+                    }});
             },
             error: function(jqXHR) {
                 siteButton.addClass('ui-state-error');
 
                 if (jqXHR.status === 0) {
-                    notificationMessage(site.siteName + ": " + LANG.connectionError);
+                    notificationMessage(configSite.siteName + ": " + LANG.connectionError);
+                    siteButton.text(siteButton.text() + ' [CONNECTION ERROR]');
                 } else if (jqXHR.status === 401) {
-                    notificationMessage(site.siteName + ": " + LANG.authError);
+                    notificationMessage(configSite.siteName + ": " + LANG.authError);
+                    siteButton.text(siteButton.text() + ' [AUTHENTICATION ERROR]');
                 } else {
-                    notificationMessage(site.siteName + ": " + LANG.submitError);
+                    notificationMessage(configSite.siteName + ": " + LANG.submitError);
+                    siteButton.text(siteButton.text() + ' [SUBMIT ERROR]');
                 }
             }
         });
     });
+
+    // Add Local Site
+    var addSiteLocalButton = $('<button/>', {text: 'New Local Site', 'class': 'flow', 'title': 'Click to add new Local Site'});
+    setModuleImage(addSiteLocalButton).click(function() {
+
+        $("#addSiteLocalDialog").dialog("open");
+
+        // Set OnChange
+        $("#addSiteLocalReleaseName").change(function() {
+
+            // Clear List
+            $('#addSiteLocalHostType').empty();
+
+            // If Release Name not found
+            if ($(this).val() === "") {
+                alert('Please choose Release Name');
+                return false;
+            }
+
+            // Open Release
+            $.ajax({
+                url: "/jersey/Release/getHosts",
+                type: "POST",
+                data: {ReleaseName: $(this).val()},
+                dataType: "json",
+                error: function() {
+                    notificationMessage(LANG.submitError);
+                },
+                success: function(release) {
+                    // For each Host
+                    $.each(release.host, function() {
+                        var host = this;
+
+                        $('#addSiteLocalHostType').append($('<option/>').val(host.hostType).text(host.hostType));
+                    });
+                }
+            });
+        });
+
+        // Change
+        $("#addSiteLocalReleaseName").change();
+    });
+    sitesTd1.append(addSiteLocalButton);
+
+    var addSiteRemoteButton = $('<button/>', {text: 'Connect Remote Site', 'class': 'flow', 'title': 'Click to connect Remote Site'});
+    setModuleImage(addSiteRemoteButton).click(function() {
+        $("#addSiteRemoteDialog").dialog("open");
+    });
+    sitesTd1.append(addSiteRemoteButton);
+
+    // If no Releases
+    if (!config.release.length || role !== "admin") {
+        addSiteLocalButton.button('disable');
+        addSiteRemoteButton.button('disable');
+    }
 
     // Create a table
     var modulesTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
@@ -759,214 +821,6 @@ function serverTab(config, role) {
     }
 
     return div.append(updateConfigButton, stopServerButton);
-}
-
-function sitesTab(config, role) {
-
-    var div = $('<div/>').click(function() {
-        $('#menu').hide();
-    });
-
-    // Create a table
-    var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Site'});
-    var td2 = $('<td/>', {'class': 'ui center', text: 'Type'});
-    var td3 = $('<td/>', {'class': 'ui hostname', text: 'Hosts'});
-    var td4 = $('<td/>', {'class': 'ui hostname', text: 'Connection'});
-    var td5 = $('<td/>', {'class': 'ui hostname', text: 'Release'});
-    table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3, td4, td5));
-    div.append(table);
-
-    // If no releases or sites defined
-    if (!config.release.length) {
-        var td1 = $('<td/>', {'colspan': 6}).append(LANG.noReleases);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
-    } else if (!config.site.length) {
-        var td1 = $('<td/>', {'colspan': 6}).append(LANG.noSites);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
-    }
-
-    // If releases defined and Admin
-    if (config.release.length) {
-
-        // Add Buttons
-        var addSiteLocalButton = $('<button/>', {text: "Add Local Site"});
-        setButtonIcon(addSiteLocalButton).click(function() {
-            $("#addSiteLocalDialog").dialog("open");
-
-            // Set OnChange
-            $("#addSiteLocalReleaseName").change(function() {
-
-                // Clear List
-                $('#addSiteLocalHostType').empty();
-
-                // If Release Name not found
-                if ($(this).val() === "") {
-                    alert('Please choose Release Name');
-                    return false;
-                }
-
-                // Open Release
-                $.ajax({
-                    url: "/jersey/Release/getHosts",
-                    type: "POST",
-                    data: {ReleaseName: $(this).val()},
-                    dataType: "json",
-                    error: function() {
-                        notificationMessage(LANG.submitError);
-                    },
-                    success: function(release) {
-                        // For each Host
-                        $.each(release.host, function() {
-                            var host = this;
-
-                            $('#addSiteLocalHostType').append($('<option/>').val(host.hostType).text(host.hostType));
-                        });
-                    }
-                });
-            });
-
-            // Change
-            $("#addSiteLocalReleaseName").change();
-        });
-
-        var addSiteRemoteButton = $('<button/>', {text: "Add Remote Site"});
-        setButtonIcon(addSiteRemoteButton).click(function() {
-            $("#addSiteRemoteDialog").dialog("open");
-        });
-        div.append(addSiteLocalButton, addSiteRemoteButton);
-
-        if (role !== "admin") {
-            addSiteLocalButton.button("disable");
-            addSiteRemoteButton.button("disable");
-        }
-    }
-
-    // For each site
-    $.each(config.site, function() {
-        var site = this;
-        var siteName = site.siteName;
-
-        var td1 = $('<td/>', {'class': 'ui hostname'});
-        var td2 = $('<td/>', {'class': 'ui '});
-        var td3 = $('<td/>', {'class': 'ui center'});
-        var td4 = $('<td/>', {'class': 'ui center'});
-        var td5 = $('<td/>', {'class': 'ui center'});
-        var tr = $('<tr/>', {'class': "ui high"}).append(td1, td2, td3, td4, td5);
-
-        // Check site Local or Remote
-        td2.text('Local');
-        if (site.serverURL) {
-            td2.text('Remote, ');
-            var a = $('<a/>', {text: site.serverURL, target: '_blank', href: site.serverURL});
-            td2.append(a);
-        }
-
-        // Add Site Button
-        var siteButton = $('<button/>', {"class": "hostname", text: siteName});
-
-        if (!site.enabled) {
-            td2.append(', ' + LANG.siteDisabled);
-            siteButton.text(siteButton.text() + ' [DISABLED]');
-        }
-
-        // Set Site Icon
-        setSiteIcon(siteButton).click(function() {
-
-            // Create Site Menu
-            var siteMenu = [];
-
-            // Only for Local Sites
-            if (!site.serverURL) {
-                // Update site
-                var updateSiteA = $('<a/>', {text: "Disable Site"});
-                updateSiteA.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
-                if (!site.enabled) {
-                    updateSiteA.text("Enable Site");
-                    updateSiteA.prepend($('<img/>', {'class': 'menu', src: '/server/img/start.png'}));
-                }
-
-                // Set Onclick
-                updateSiteA.click(function() {
-                    $('#menu').hide();
-                    // AJAX
-                    $.ajax({
-                        url: "/jersey/Config/updateSite",
-                        type: "POST",
-                        data: {SiteName: siteName, Enabled: !site.enabled},
-                        error: function() {
-                            notificationMessage(LANG.submitError);
-                        },
-                        complete: function(data) {
-                            $('#A_SITES').click();
-                        }
-                    });
-                });
-
-                siteMenu.push($('<li/>').append(updateSiteA));
-            }
-
-            $('#menu').empty();
-            $('#menu').append(siteMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
-            return false;
-        });
-        td1.append(siteButton);
-
-        // Disable button for non Admin
-        if (role !== "admin") {
-            siteButton.button("disable");
-        }
-
-        var siteUrl = "/jersey/Site/getSite";
-        if (site.serverURL) {
-            siteUrl = site.serverURL + siteUrl;
-        }
-
-        // Check site
-        $.ajax({
-            url: siteUrl,
-            type: "POST",
-            data: {SiteName: siteName},
-            dataType: "json",
-            xhrFields: {
-                withCredentials: true
-            },
-            beforeSend: function(data) {
-                td4.text(LANG.loading);
-            },
-            success: function(site) {
-                td4.text(LANG.ok);
-                var img = $('<img/>', {src: '/server/img/ok.png', 'class': 'index'});
-                td4.prepend(img);
-                td3.append(site.host.length);
-                td5.text(site.releaseName);
-
-                // Ok
-                siteButton.addClass('ui-state-ok');
-            },
-            error: function() {
-                td4.text(LANG.error);
-                var img = $('<img/>', {src: '/server/img/error.png', 'class': 'index'});
-                td4.prepend(img);
-                tr.addClass('ui-state-error');
-
-                // Error
-                siteButton.addClass('ui-state-error');
-            }
-        });
-
-        // Add Site
-        table.append(tr);
-    });
-
-    // Return table
-    return div;
 }
 
 function usersTab(config, role) {

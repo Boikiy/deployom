@@ -343,6 +343,12 @@ function setModuleImage(button) {
     else if (name.match(/mail/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/mail.png'}));
     }
+    else if (name.match(/add|new/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/add.png'}));
+    }
+    else if (name.match(/remote/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/virtual.png'}));
+    }
     else if (name.match(/purge/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/flow.png'}));
     }

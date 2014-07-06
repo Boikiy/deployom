@@ -422,6 +422,13 @@ function siteTab(configSite, role, ul) {
     var h1 = $('<h1/>', {'class': "center", text: siteName});
     div.append(h1);
 
+    // Remote Site
+    if (configSite.serverURL) {
+        h1.append(" (remote ");
+        h1.append($('<a/>', {text: configSite.serverURL, target: '_blank', href: configSite.serverURL}));
+        h1.append(")");
+    }
+
     // Create a table
     var siteTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var siteTd = $('<td/>', {'class': 'ui'});
@@ -951,6 +958,27 @@ function siteTab(configSite, role, ul) {
         $("#uploadSiteDialog").dialog("open");
     });
 
+    var updateSiteButton = $('<button/>', {text: "Disable Job Execution"});
+    if (!configSite.enabled) {
+        updateSiteButton.text("Enable Job Execution");
+    }
+
+    // Set Onclick
+    setButtonIcon(updateSiteButton).click(function() {
+
+        $.ajax({
+            url: "/jersey/Config/updateSite",
+            type: "POST",
+            data: {SiteName: siteName, Enabled: !configSite.enabled},
+            error: function() {
+                notificationMessage(LANG.submitError);
+            },
+            complete: function(data) {
+                location.reload();
+            }
+        });
+    });
+
     var removeSiteButton = $('<button/>', {text: "Remove Site"});
     setButtonIcon(removeSiteButton).click(function() {
         $("#removeSiteName").val(siteName);
@@ -969,11 +997,12 @@ function siteTab(configSite, role, ul) {
     // If Remote
     if (configSite.serverURL) {
         uploadSite.button('disable');
+        updateSiteButton.button('disable');
         removeSiteButton.button('disable');
     }
 
     // Return Div
-    return div.append(downloadSite, uploadSite, removeSiteButton);
+    return div.append(downloadSite, uploadSite, updateSiteButton, removeSiteButton);
 }
 
 function mapTab(site) {
