@@ -475,6 +475,9 @@ function siteTab(configSite, role, ul) {
                 url: siteUrl,
                 type: "POST",
                 dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
                 data: {SiteName: configSite.siteName},
                 success: function(site) {
 
@@ -878,11 +881,19 @@ function siteTab(configSite, role, ul) {
                     // Onclick Host
                     a.click(function() {
 
+                        var jobUrl = "/jersey/Job/getJob";
+                        if (configSite.serverURL) {
+                            jobUrl = configSite.serverURL + jobUrl;
+                        }
+
                         $.ajax({
-                            url: "/jersey/Job/getJob",
+                            url: jobUrl,
                             type: "POST",
                             data: {SiteName: siteName, JobName: job.jobName},
                             dataType: "json",
+                            xhrFields: {
+                                withCredentials: true
+                            },
                             beforeSend: function(data) {
                                 $('#' + siteName + '_' + job.jobName).empty();
                                 $('#' + siteName + '_' + job.jobName).prepend(LANG.loading);
