@@ -115,6 +115,14 @@ $(function() {
                 $('#tabsDiv').prepend(afterLogin(config, user.role));
                 $("#tabsDiv").tabs();
 
+                // Parse Tab from URL
+                var tab = window.location.hash.substr(1);
+                if (tab) {
+                    $('#A_' + tab).click();
+                } else if ($(".ui-tabs-active").text()) {
+                    $('#A_' + $(".ui-tabs-active").text()).click();
+                }
+
                 // Enable notifications
                 enableNotifications();
             });

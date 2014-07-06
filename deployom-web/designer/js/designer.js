@@ -1689,7 +1689,6 @@ function afterLogin(config, role) {
 
     // Release Tabs
     var ul = $('<ul/>');
-    var firstTab;
 
     // Set OnChange
     $("#copyServiceNewReleaseName").change(function() {
@@ -1737,22 +1736,12 @@ function afterLogin(config, role) {
         ul.append(releaseLi);
         $("#tabsDiv").append($('<div/>', {id: release.releaseName}));
 
-        // First Tab
-        if (!firstTab) {
-            firstTab = a;
-        }
-
         // Set onclick
         a.click(function() {
             $('#' + release.releaseName).empty();
             $('#' + release.releaseName).prepend(releaseTab(release, ul));
         });
     });
-
-    // Show Release
-    if (firstTab) {
-        firstTab.click();
-    }
 
     // Modules
     $.each(config.module, function() {

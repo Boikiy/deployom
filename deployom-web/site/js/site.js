@@ -384,7 +384,6 @@ function afterLogin(config, role) {
 
     // Site tabs
     var ul = $('<ul/>');
-    var firstTab;
 
     $.each(config.site, function() {
         var configSite = this;
@@ -394,11 +393,6 @@ function afterLogin(config, role) {
         var a = $('<a/>', {id: 'A_' + configSite.siteName, text: configSite.siteName, href: '#' + configSite.siteName});
         siteLi.append(a);
         ul.append(siteLi);
-
-        // First Tab
-        if (!firstTab) {
-            firstTab = a;
-        }
 
         // If updating disabled
         if (!configSite.enabled) {
@@ -413,11 +407,6 @@ function afterLogin(config, role) {
             $('#' + configSite.siteName).prepend(siteTab(configSite, role, ul));
         });
     });
-
-    // Show Site
-    if (firstTab) {
-        firstTab.click();
-    }
 
     // Return
     return ul;

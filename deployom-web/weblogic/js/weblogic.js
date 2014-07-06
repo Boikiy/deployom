@@ -43,7 +43,6 @@ function afterLogin(config, role) {
 
     // Site Tabs
     var ul = $('<ul/>');
-    var firstTab;
 
     $.each(config.site, function() {
         var configSite = this;
@@ -54,11 +53,6 @@ function afterLogin(config, role) {
         var a = $('<a/>', {id: 'A_' + siteName, text: siteName, href: '#' + siteName, title: 'Click to refresh'});
         siteLi.append(a);
         ul.append(siteLi);
-
-        // First Tab
-        if (!firstTab) {
-            firstTab = a;
-        }
 
         // If updating disabled
         if (!configSite.enabled) {
@@ -98,11 +92,6 @@ function afterLogin(config, role) {
             });
         });
     });
-
-    // Show Site
-    if (firstTab) {
-        firstTab.click();
-    }
 
     // Return
     return ul;
