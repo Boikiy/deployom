@@ -926,7 +926,7 @@ function siteTab(configSite, role, ul) {
             });
         },
         error: function() {
-            jobsTd.append(LANG.submitError);
+            jobsTd.text(LANG.submitError);
         }
     });
 

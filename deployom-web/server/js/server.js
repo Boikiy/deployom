@@ -691,8 +691,16 @@ function serverTab(config, role) {
             success: function(site) {
                 siteButton.addClass('ui-state-ok');
             },
-            error: function() {
+            error: function(jqXHR) {
                 siteButton.addClass('ui-state-error');
+
+                if (jqXHR.status === 0) {
+                    notificationMessage(site.siteName + ": " + LANG.connectionError);
+                } else if (jqXHR.status === 401) {
+                    notificationMessage(site.siteName + ": " + LANG.authError);
+                } else {
+                    notificationMessage(site.siteName + ": " + LANG.submitError);
+                }
             }
         });
     });

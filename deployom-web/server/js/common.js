@@ -59,6 +59,12 @@ var LANG = {
 
 $(function() {
 
+    // Check Cookies
+    if (!$.cookie("userName") || !$.cookie("password")) {
+        loginDialog();
+        return true;
+    }
+
     // Open Config
     $.ajax({
         type: "GET",
@@ -69,7 +75,8 @@ $(function() {
                 notificationMessage(LANG.connectionError);
             } else if (jqXHR.status === 401) {
                 notificationMessage(LANG.authError);
-                location.replace("/login");
+                loginDialog();
+                return true;
             } else {
                 notificationMessage(LANG.submitError);
             }
@@ -287,6 +294,73 @@ function chartDialog(site, hostName, serviceName, commandId, title) {
     });
 
     // Return
+    return dialog;
+}
+
+function loginDialog() {
+
+    // Form
+    var form = $("<form/>");
+    form.append($("<p/>", {text: 'Please authenticate.'}).append($("<span/>", {'class': "ui-icon ui-icon-alert"})));
+    var fieldset = $("<fieldset/>", {'class': "ui-helper-reset"});
+
+    // UserName
+    fieldset.append($('<label/>', {text: 'User Name'}));
+    var loginUserName = $('<input/>', {type: 'text', name: 'UserName', id: 'loginUserName', 'class': "ui-widget-content ui-corner-all"});
+    fieldset.append(loginUserName);
+
+    // Password
+    fieldset.append($('<label/>', {text: 'Password'}));
+    var loginPassword = $('<input/>', {type: 'password', name: 'Password', id: 'loginPassword', 'class': "ui-widget-content ui-corner-all"});
+    fieldset.append(loginPassword);
+    form.append(fieldset);
+
+    // Dialog
+    var dialog = $("<div/>", {title: "Login", 'class': 'dialog'}).append(form);
+
+    dialog.dialog({
+        autoOpen: true,
+        modal: true,
+        width: 400,
+        minHeight: 260,
+        height: 260,
+        draggable: false,
+        closeOnEscape: false,
+        resizable: false,
+        dialogClass: 'login',
+        open: function() {
+            dialog.keypress(function(e) {
+                if (e.keyCode === $.ui.keyCode.ENTER) {
+                    $(this).parent().find("button").click();
+                }
+            });
+        },
+        buttons: {
+            Login: function() {
+
+                // Check User Name
+                if (loginUserName.val() === "") {
+                    alert('Please enter User Name');
+                    return false;
+                }
+
+                // Check Password
+                if (loginPassword.val() === "") {
+                    alert('Please enter Password');
+                    return false;
+                }
+
+                // Set cookie
+                $.cookie("userName", loginUserName.val(), {expires: 30, path: '/'});
+                $.cookie("password", loginPassword.val(), {expires: 30, path: '/'});
+
+                // Go to Server
+                location.reload();
+            }
+        },
+        position: "center"
+    });
+
     return dialog;
 }
 
