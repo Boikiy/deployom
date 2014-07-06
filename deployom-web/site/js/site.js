@@ -932,14 +932,21 @@ function siteTab(configSite, role, ul) {
 
     var downloadSite = $('<a/>', {text: "Download Site File"});
     setButtonIcon(downloadSite).click(function() {
-        $('#menu').hide();
-        $("#downloadSiteName").val(siteName);
-        $("#downloadSiteForm").submit();
+        var url = "/jersey/Site/downloadSite";
+
+        // If Remote Site
+        if (configSite.serverURL) {
+            url = configSite.serverURL + url;
+        }
+
+        // Download Form
+        var form = $('<form/>', {method: "post", action: url});
+        form.append($('<input/>', {name: "SiteName", value: siteName}));
+        form.submit();
     });
 
     var uploadSite = $('<a/>', {text: "Upload Site File"});
     setButtonIcon(uploadSite).click(function() {
-        $('#menu').hide();
         $("#uploadSiteName").val(siteName);
         $("#uploadSiteDialog").dialog("open");
     });
@@ -950,10 +957,17 @@ function siteTab(configSite, role, ul) {
         $("#removeSiteDialog").dialog("open");
     });
 
+    // Non-Admin
     if (role !== "admin") {
         layoutButton.button('disable');
         hostsButton.button('disable');
         discoveryButton.button('disable');
+        uploadSite.button('disable');
+        removeSiteButton.button('disable');
+    }
+
+    // If Remote
+    if (configSite.serverURL) {
         uploadSite.button('disable');
         removeSiteButton.button('disable');
     }

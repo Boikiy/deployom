@@ -172,8 +172,17 @@ function auditTab(site) {
 
     var downloadButton = $('<button/>', {text: "Download Excel Report"});
     setButtonIcon(downloadButton).click(function() {
-        $("#downloadAuditSiteName").val(siteName);
-        $("#downloadAuditForm").submit();
+        var url = "/jersey/Audit/downloadAudit";
+
+        // If Remote Site
+        if (site.serverURL) {
+            url = site.serverURL + url;
+        }
+
+        // Download Form
+        var form = $('<form/>', {method: "post", action: url});
+        form.append($('<input/>', {name: "SiteName", value: siteName}));
+        form.submit();
     });
 
     // Return

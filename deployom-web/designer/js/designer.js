@@ -2178,14 +2178,13 @@ function releaseTab(release, ul) {
 
     var downloadRelease = $('<a/>', {text: "Download Release File"});
     setButtonIcon(downloadRelease).click(function() {
-        $('#menu').hide();
-        $("#downloadReleaseName").val(releaseName);
-        $("#downloadReleaseForm").submit();
+        var form = $('<form/>', {method: "post", action: "/jersey/Release/downloadRelease"});
+        form.append($('<input/>', {name: "ReleaseName", value: releaseName}));
+        form.submit();
     });
 
     var uploadRelease = $('<a/>', {text: "Upload Release File"});
     setButtonIcon(uploadRelease).click(function() {
-        $('#menu').hide();
         $("#uploadReleaseName").val(releaseName);
         $("#uploadReleaseDialog").dialog("open");
     });
