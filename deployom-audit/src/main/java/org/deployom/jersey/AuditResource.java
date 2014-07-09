@@ -43,7 +43,7 @@ public class AuditResource {
 
     @POST
     @Path("downloadAudit")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response downloadSite(@FormParam("SiteName") String siteName) {
 
