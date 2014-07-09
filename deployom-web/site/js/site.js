@@ -959,7 +959,8 @@ function siteTab(configSite, role, ul) {
         }
 
         // Download Form
-        var form = $('<form/>', {method: "post", action: url});
+        var form = $('<form/>', {method: "post", action: url, 'class': 'hidden'});
+        div.append(form);
         form.append($('<input/>', {name: "SiteName", value: siteName}));
         form.submit();
     });

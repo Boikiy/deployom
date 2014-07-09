@@ -2178,7 +2178,8 @@ function releaseTab(release, ul) {
 
     var downloadRelease = $('<a/>', {text: "Download Release File"});
     setButtonIcon(downloadRelease).click(function() {
-        var form = $('<form/>', {method: "post", action: "/jersey/Release/downloadRelease"});
+        var form = $('<form/>', {method: "post", action: "/jersey/Release/downloadRelease", 'class': 'hidden'});
+        div.append(form);
         form.append($('<input/>', {name: "ReleaseName", value: releaseName}));
         form.submit();
     });
