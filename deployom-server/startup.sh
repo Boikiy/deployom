@@ -26,7 +26,7 @@ else
 fi
 
 # Run
-$JAVA_HOME/bin/java -cp "lib/*" -Djava.util.logging.config.file=logging.properties org.deployom.grizzly.Start >/dev/null 2>&1 &
+$JAVA_HOME/bin/java -cp "lib/*" -Djava.security.policy=lib/deployom.policy -Djava.util.logging.config.file=lib/logging.properties org.deployom.grizzly.Start >/dev/null 2>&1 &
 
 # Sleep and Show
 sleep 5

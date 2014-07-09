@@ -23,3 +23,7 @@ fi
 
 # Run
 $JAVA_HOME/bin/java -cp "lib/*" -Djava.util.logging.config.file=logging.properties org.deployom.grizzly.Stop
+
+# Sleep and Show Sockets
+sleep 5
+./sockets.sh
