@@ -107,7 +107,7 @@ public class SiteResource {
 
     @POST
     @Path("downloadSite")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response downloadSite(@FormParam("SiteName") String siteName) {
 

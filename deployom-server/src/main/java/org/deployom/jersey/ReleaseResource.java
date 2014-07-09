@@ -403,7 +403,7 @@ public class ReleaseResource {
 
     @POST
     @Path("downloadRelease")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response downloadRelease(@FormParam("ReleaseName") String releaseName) {
 
