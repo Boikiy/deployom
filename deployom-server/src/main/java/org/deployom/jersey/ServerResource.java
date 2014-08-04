@@ -26,7 +26,10 @@ package org.deployom.jersey;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import javax.servlet.ServletContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -39,14 +42,15 @@ public class ServerResource {
     @Context
     ServletContext context;
 
-    @GET
+    @POST
     @Path("getLog")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getLog() {
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public String getLog(@FormParam("LogFile") String logFile) {
 
         String serverLog = "";
         try {
-            RandomAccessFile randomFile = new RandomAccessFile("server.log", "r");
+            RandomAccessFile randomFile = new RandomAccessFile(logFile, "r");
             long startPosition = randomFile.length() - (200 * 100);
 
             // If file is small
@@ -67,7 +71,7 @@ public class ServerResource {
             randomFile.close();
 
         } catch (IOException ex) {
-            return "Server Log: " + ex;
+            return "Log File: " + ex;
         }
 
         // Return output

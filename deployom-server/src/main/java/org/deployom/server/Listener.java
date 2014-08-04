@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.deployom.servlet;
+package org.deployom.server;
 
 import java.util.ArrayList;
 import java.util.List;

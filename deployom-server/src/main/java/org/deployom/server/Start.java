@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.deployom.grizzly;
+package org.deployom.server;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,6 +43,8 @@ public class Start {
     private static final String JERSEY_CONTEXT = "/jersey";
     private static String SERVER_IP = "0.0.0.0";
     private static Integer SERVER_PORT = 8080;
+    private static Integer CORE_POOL_SIZE = 10;
+    private static Integer MAX_POOL_SIZE = 50;
     private static String STATIC_PATH = "../deployom-web";
     private static final Logger logger = Logger.getLogger(Start.class.getName());
 
@@ -85,6 +87,18 @@ public class Start {
             STATIC_PATH = System.getenv("STATIC_PATH");
         }
 
+        // Threads pool
+        if (System.getenv("CORE_POOL_SIZE") != null) {
+            CORE_POOL_SIZE = Integer.parseInt(System.getenv("CORE_POOL_SIZE"));
+        }
+        if (System.getenv("MAX_POOL_SIZE") != null) {
+            MAX_POOL_SIZE = Integer.parseInt(System.getenv("MAX_POOL_SIZE"));
+        }
+
+        // Threads pools
+        listener.getTransport().getWorkerThreadPoolConfig().setCorePoolSize(CORE_POOL_SIZE);
+        listener.getTransport().getWorkerThreadPoolConfig().setMaxPoolSize(MAX_POOL_SIZE);
+
         // Initialize Context
         WebappContext context = new WebappContext("context", JERSEY_CONTEXT);
 
@@ -94,7 +108,7 @@ public class Start {
         servletRegistration.addMapping("/*");
 
         // Add Listener
-        context.addListener(org.deployom.servlet.Listener.class);
+        context.addListener(org.deployom.server.Listener.class);
 
         // Deploy and add into Context
         context.deploy(server);
@@ -120,7 +134,7 @@ public class Start {
 
                 // If OK
                 if (response.getStatus() == 200) {
-                    logger.log(Level.INFO, "Server started, http://" + SERVER_IP + ":" + SERVER_PORT);
+                    logger.log(Level.INFO, "Server started, http://{0}:" + SERVER_PORT, SERVER_IP);
                 }
             } catch (Exception ex) {
                 logger.log(Level.WARNING, "Server failed: {0}", ex);

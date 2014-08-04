@@ -35,7 +35,7 @@ import javax.ws.rs.core.MediaType;
 import org.deployom.core.JobService;
 import org.deployom.data.Host;
 import org.deployom.data.Job;
-import org.deployom.servlet.JobThread;
+import org.deployom.server.JobThread;
 
 @Path("/Job")
 public class JobResource {

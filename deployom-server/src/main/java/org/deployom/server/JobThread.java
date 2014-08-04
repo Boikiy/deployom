@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.deployom.servlet;
+package org.deployom.server;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -73,6 +73,7 @@ public class JobThread implements Runnable {
         // If Job or Site update is not enabled
         if (!jobService.isEnabled() || !site.isEnabled()) {
             logger.log(Level.INFO, "Job {0} [{1}] skipped", new Object[]{jobName, siteName});
+            return;
         }
 
         // Started Logging

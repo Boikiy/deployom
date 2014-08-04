@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.deployom.grizzly;
+package org.deployom.server;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -61,7 +61,7 @@ public class Stop {
 
         // New client
         final Client client = ClientBuilder.newClient();
-        logger.log(Level.INFO, "Server stopping, http://" + SERVER_IP + ":" + SERVER_PORT + "/jersey/Server/stopServer");
+        logger.log(Level.INFO, "Server stopping, http://{0}:" + SERVER_PORT + "/jersey/Server/stopServer", SERVER_IP);
 
         // Stop Server
         try {

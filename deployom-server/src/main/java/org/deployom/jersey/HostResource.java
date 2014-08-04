@@ -48,7 +48,7 @@ import org.deployom.data.Chart;
 import org.deployom.data.Command;
 import org.deployom.data.Host;
 import org.deployom.data.Service;
-import org.deployom.servlet.SiteThread;
+import org.deployom.server.SiteThread;
 import org.glassfish.jersey.media.sse.SseBroadcaster;
 
 @Path("/Host")
