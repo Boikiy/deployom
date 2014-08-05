@@ -11,9 +11,9 @@ export FILE_CACHE_ENABLED=true
 # Web folder with HTML5 static
 export STATIC_PATH=web
 
-# Threads Pools (defaults, CORE_POOL=10 MAX_POOL=50)
-# export CORE_POOL=10
-# export MAX_POOL=50
+# Threads Pools (defaults, CORE_POOL=50 MAX_POOL=100)
+# export CORE_POOL=50
+# export MAX_POOL=100
 
 # Checking Java
 if $JAVA_HOME/bin/java -version 2>&1|grep '1.[678]'

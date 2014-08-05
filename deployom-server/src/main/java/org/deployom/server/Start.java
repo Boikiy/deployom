@@ -43,8 +43,8 @@ public class Start {
     private static final String JERSEY_CONTEXT = "/jersey";
     private static String SERVER_IP = "0.0.0.0";
     private static Integer SERVER_PORT = 8080;
-    private static Integer CORE_POOL_SIZE = 10;
-    private static Integer MAX_POOL_SIZE = 50;
+    private static Integer CORE_POOL_SIZE = 50;
+    private static Integer MAX_POOL_SIZE = 100;
     private static String STATIC_PATH = "../deployom-web";
     private static final Logger logger = Logger.getLogger(Start.class.getName());
 

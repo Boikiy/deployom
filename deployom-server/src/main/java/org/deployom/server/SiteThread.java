@@ -226,7 +226,7 @@ public class SiteThread implements Runnable {
                         historyService.addEvent(broadcaster, event);
 
                         // Send mail
-                        String subject = siteName + ": " + event.toString();
+                        String subject = siteName + ": " + event.toString() + "[" + host.getIP() + "]";
                         String text = event.getTitle() + "\n\n=> " + event.getExec() + "\n\n" + event.getOut();
                         mailService.sendMail(subject, text);
 
