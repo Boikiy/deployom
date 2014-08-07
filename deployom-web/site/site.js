@@ -70,8 +70,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeSiteDialog").dialog({
@@ -99,8 +98,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeHostDialog").dialog({
@@ -140,8 +138,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeEventsDialog").dialog({
@@ -180,8 +177,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateHostDialog").dialog({
@@ -225,8 +221,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#renameHostDialog").dialog({
@@ -270,8 +265,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#getHostsDialog").dialog({
@@ -350,8 +344,7 @@ $(function() {
 
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#uploadSiteDialog").dialog({
@@ -366,8 +359,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 });
 
@@ -949,7 +941,7 @@ function siteTab(configSite, role, ul) {
         }
     });
 
-    var downloadSite = $('<a/>', {text: "Download Site File"});
+    var downloadSite = $('<button/>', {text: "Download Site File"});
     setButtonIcon(downloadSite).click(function() {
         var url = "/jersey/Site/downloadSite";
 
@@ -965,7 +957,7 @@ function siteTab(configSite, role, ul) {
         form.submit();
     });
 
-    var uploadSite = $('<a/>', {text: "Upload Site File"});
+    var uploadSite = $('<button/>', {text: "Upload Site File"});
     setButtonIcon(uploadSite).click(function() {
         $("#uploadSiteName").val(siteName);
         $("#uploadSiteDialog").dialog("open");
@@ -1216,16 +1208,9 @@ function servicesTab(site) {
             service.hostName = host.hostName;
             service.ip = host.ip;
 
-            // Set button onclic
+            // Set button onclick
             setServiceIcon(serviceButton, 'ui-icon-triangle-1-s').click(function() {
-                $('#menu').empty();
-                $('#menu').append(getServiceMenu(site, service));
-                $('#menu').menu("refresh");
-                $('#menu').show().position({
-                    my: "left top",
-                    at: "left bottom",
-                    of: this
-                });
+                showMenu(getServiceMenu(site, service), this);
                 return false;
             });
 
@@ -1290,7 +1275,7 @@ function layoutTab(site) {
             var hostMenu = [];
 
             // Remove
-            var removeHost = $('<a/>', {text: "Remove Host"}).click(function() {
+            var removeHost = $('<li/>', {text: "Remove Host"}).click(function() {
                 $('#menu').hide();
                 $("#removeHostSiteName").val(site.siteName);
                 $("#removeHostServerURL").val(site.serverURL);
@@ -1298,21 +1283,21 @@ function layoutTab(site) {
                 $("#removeHostDialog").dialog("open");
             });
             removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            hostMenu.push($('<li/>').append(removeHost));
+            hostMenu.push(removeHost);
 
             // Rename
-            var renameHost = $('<a/>', {text: "Rename Host"}).click(function() {
+            var renameHost = $('<li/>', {text: "Rename Host"}).click(function() {
                 $('#menu').hide();
                 $("#renameHostSiteName").val(site.siteName);
                 $("#renameHostServerURL").val(site.serverURL);
                 $("#renameHostName").val(hostName);
                 $("#renameHostDialog").dialog("open");
             });
-            renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            hostMenu.push($('<li/>').append(renameHost));
+            renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
+            hostMenu.push(renameHost);
 
             // Update
-            var updateHost = $('<a/>', {text: "Update Host"}).click(function() {
+            var updateHost = $('<li/>', {text: "Update Host"}).click(function() {
                 $('#menu').hide();
                 $("#updateHostSiteName").val(site.siteName);
                 $("#updateHostServerURL").val(site.serverURL);
@@ -1322,16 +1307,10 @@ function layoutTab(site) {
                 $("#updateHostDialog").dialog("open");
             });
             updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            hostMenu.push($('<li/>').append(updateHost));
+            hostMenu.push(updateHost);
 
-            $('#menu').empty();
-            $('#menu').append(hostMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(hostMenu, this);
             return false;
         });
 

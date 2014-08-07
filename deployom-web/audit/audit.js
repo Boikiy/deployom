@@ -41,7 +41,7 @@ function afterLogin(config, role) {
 
         // Add Site tab
         var siteLi = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + configSite.siteName, text: configSite.siteName, href: '#' + configSite.siteName});
+        var a = $('<a/>', {id: 'A_' + configSite.siteName, text: configSite.siteName, href: '#' + configSite.siteName, title: 'Click to Refresh'});
         siteLi.append(a);
         ul.append(siteLi);
 

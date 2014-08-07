@@ -41,7 +41,7 @@ function afterLogin(config, role) {
 
         // Add Site tab
         var siteLi = $('<li/>');
-        var a = $('<a/>', {id: 'A_' + configSite.siteName, text: configSite.siteName, href: '#' + configSite.siteName});
+        var a = $('<a/>', {id: 'A_' + configSite.siteName, text: configSite.siteName, href: '#' + configSite.siteName, title: 'Click to Refresh'});
         siteLi.append(a);
         ul.append(siteLi);
 
@@ -164,13 +164,13 @@ function chartsTab(site) {
                     var title = chart.title;
 
                     // Add a button
-                    var a = $('<a/>', {text: title});
+                    var li = $('<li/>', {text: title});
 
                     // Set Service Icon
-                    setMenuImage(title, a);
+                    setMenuImage(title, li);
 
                     // Set onclick
-                    a.click(function() {
+                    li.click(function() {
                         $('#menu').hide();
 
                         // Adding Portlet
@@ -278,12 +278,11 @@ function chartsTab(site) {
                         reloadButton.click();
                     });
 
-                    chartsMenu.append($('<li/>').append(a));
+                    chartsMenu.append(li);
                 });
 
                 // Add Service Group
-                var a = $('<a/>', {text: service.serviceName + ' [' + host.hostName + ']'});
-                servicesMenu.push($('<li/>').append(a, chartsMenu));
+                servicesMenu.push($('<li/>', {text: service.serviceName + ' [' + host.hostName + ']'}).append(chartsMenu));
             });
         });
 
@@ -292,14 +291,8 @@ function chartsTab(site) {
             return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
         });
 
-        $('#menu').empty();
-        $('#menu').append(servicesMenu);
-        $('#menu').menu("refresh");
-        $('#menu').show().position({
-            my: "left top",
-            at: "left bottom",
-            of: this
-        });
+        // Menu
+        showMenu(servicesMenu, this);
         return false;
     });
 
