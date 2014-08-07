@@ -194,7 +194,7 @@ function flowsTable(site, ul) {
 
             // Add tab for Flow
             var li = $('<li/>');
-            var a = $('<a/>', {text: flowName + " [" + site.siteName + "]", href: '#' + flowName});
+            var a = $('<a/>', {text: flowName + " [" + site.siteName + "]", href: '#' + flowName, title: 'Click to Refresh'});
             var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
             span.click(function(event) {
                 li.remove();
@@ -353,14 +353,7 @@ function flowTab(flow, site, div) {
 
             // Set Service Icon
             setServiceIcon(serviceButton, 'ui-icon-triangle-1-s').click(function() {
-                $('#menu').empty();
-                $('#menu').append(getServiceMenu(site, service));
-                $('#menu').menu("refresh");
-                $('#menu').show().position({
-                    my: "left top",
-                    at: "left bottom",
-                    of: this
-                });
+                showMenu(getServiceMenu(site, service), this);
                 return false;
             });
 
