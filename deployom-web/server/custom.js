@@ -1,42 +1,42 @@
-function setMenuImage(title, a) {
+function setMenuImage(title, li) {
     if (title.match(/Online|State/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/online.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/online.png'}));
     }
     else if (title.match(/Start/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/start.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/start.png'}));
     }
     else if (title.match(/Stop/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
     }
     else if (title.match(/Console/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/web.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/web.png'}));
     }
     else if (title.match(/CSR|CSS|CRM|User/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/customer.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/customer.png'}));
     }
     else if (title.match(/Manager|OAM/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/manager.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/manager.png'}));
     }
     else if (title.match(/Security/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/security.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/security.png'}));
     }
     else if (title.match(/Usage|Statistics|Request|Order/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/charts.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/charts.png'}));
     }
     else if (title.match(/Log/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/config.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/config.png'}));
     }
     else if (title.match(/List|Display/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/list.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/list.png'}));
     }
     else if (title.match(/Trace/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/trace.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/trace.png'}));
     }
     else if (title.match(/Remove/i)) {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
     }
     else {
-        a.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
     }
 }
 

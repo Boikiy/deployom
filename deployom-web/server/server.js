@@ -44,8 +44,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addUserDialog").dialog({
@@ -85,8 +84,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateUserDialog").dialog({
@@ -120,8 +118,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeUserDialog").dialog({
@@ -149,8 +146,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateConfigDialog").dialog({
@@ -184,8 +180,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addSiteLocalDialog").dialog({
@@ -226,8 +221,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addSiteRemoteDialog").dialog({
@@ -299,8 +293,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addModuleDialog").dialog({
@@ -340,8 +333,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateModuleDialog").dialog({
@@ -375,8 +367,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeModuleDialog").dialog({
@@ -404,8 +395,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 });
 
@@ -415,7 +405,7 @@ function afterLogin(config, role) {
     var ul = $('<ul/>');
 
     // Add Server tab
-    var serverLi = $('<li/>', {'class': 'ui-state-highlight'});
+    var serverLi = $('<li/>');
     var a = $('<a/>', {text: "Server", href: '#SERVER'});
     serverLi.append(a);
     ul.append(serverLi);
@@ -514,7 +504,8 @@ function afterLogin(config, role) {
     a.click(function(event) {
         $.ajax({
             url: "/jersey/Server/getLog",
-            type: "GET",
+            type: "POST",
+            data: {LogFile: 'server.log'},
             beforeSend: function(data) {
                 $('#LOG').empty();
                 $('#LOG').prepend(LANG.loading);
@@ -867,7 +858,7 @@ function usersTab(config, role) {
             var userMenu = [];
 
             // Update User
-            var updateUser = $('<a/>', {text: "Update User"}).click(function() {
+            var updateUser = $('<li/>', {text: "Update User"}).click(function() {
                 $('#menu').hide();
                 $("#updateUserName").val(userName);
                 $("#updateUserRole").val(user.role);
@@ -876,25 +867,19 @@ function usersTab(config, role) {
                 $("#updateUserDialog").dialog("open");
             });
             updateUser.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            userMenu.push($('<li/>').append(updateUser));
+            userMenu.push(updateUser);
 
             // Remove User
-            var removeUser = $('<a/>', {text: "Remove User"}).click(function() {
+            var removeUser = $('<li/>', {text: "Remove User"}).click(function() {
                 $('#menu').hide();
                 $("#removeUserName").val(userName);
                 $("#removeUserDialog").dialog("open");
             });
             removeUser.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            userMenu.push($('<li/>').append(removeUser));
+            userMenu.push(removeUser);
 
-            $('#menu').empty();
-            $('#menu').append(userMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(userMenu, this);
             return false;
         });
         td1.append(userButton);
@@ -968,7 +953,7 @@ function modulesTab(config, role) {
             var moduleMenu = [];
 
             // Update Module
-            var updateModule = $('<a/>', {text: "Update Module"}).click(function() {
+            var updateModule = $('<li/>', {text: "Update Module"}).click(function() {
                 $('#menu').hide();
                 $("#updateModuleName").val(moduleName);
                 $("#updateModuleContext").val(module.context);
@@ -978,25 +963,19 @@ function modulesTab(config, role) {
                 $("#updateModuleDialog").dialog("open");
             });
             updateModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            moduleMenu.push($('<li/>').append(updateModule));
+            moduleMenu.push(updateModule);
 
             // Remove Module
-            var removeModule = $('<a/>', {text: "Remove Module"}).click(function() {
+            var removeModule = $('<li/>', {text: "Remove Module"}).click(function() {
                 $('#menu').hide();
                 $("#removeModuleName").val(moduleName);
                 $("#removeModuleDialog").dialog("open");
             });
             removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            moduleMenu.push($('<li/>').append(removeModule));
+            moduleMenu.push(removeModule);
 
-            $('#menu').empty();
-            $('#menu').append(moduleMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(moduleMenu, this);
             return false;
         });
         td1.append(moduleButton);

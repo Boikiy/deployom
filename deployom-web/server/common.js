@@ -151,7 +151,7 @@ function notificationMessage(message, state) {
         show: 'fade',
         hide: 'fade',
         dialogClass: 'notify',
-        position: "right bottom"
+        position: {my: "right bottom", at: "right bottom", of: window}
     }).dialog("open").parent().addClass(state);
 
     // Close after 10 seconds
@@ -243,8 +243,7 @@ function chartDialog(site, hostName, serviceName, commandId, title) {
             Close: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     // AJAX
@@ -357,8 +356,7 @@ function loginDialog() {
                 // Go to Server
                 location.reload();
             }
-        },
-        position: "center"
+        }
     });
 
     return dialog;
@@ -394,8 +392,7 @@ function commandDialog(site, hostName, serviceName, commandId, title, exec) {
             Close: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     // AJAX
@@ -471,7 +468,7 @@ function getServiceMenu(site, service) {
     $.each(service.chart, function() {
         var chart = this;
 
-        var a = $('<a/>', {text: chart.title}).click(function() {
+        var li = $('<li/>', {text: chart.title}).click(function() {
             $('#menu').hide();
 
             // Show Chart
@@ -479,10 +476,10 @@ function getServiceMenu(site, service) {
         });
 
         // Set Service Icon
-        setMenuImage(chart.title, a);
+        setMenuImage(chart.title, li);
 
         // Add into Chart menu
-        chartMenu.append($('<li/>').append(a));
+        chartMenu.append(li);
         anyChart = true;
     });
 
@@ -506,21 +503,21 @@ function getServiceMenu(site, service) {
             setMenuImage(command.title, a);
 
             // Add into GUI menu
-            guiMenu.append($('<li/>').append(a));
+            guiMenu.append($("<li/>").append(a));
             anyGui = true;
 
             return true;
         }
 
         // Command
-        var a = $('<a/>', {text: command.title}).click(function() {
+        var li = $('<li/>', {text: command.title}).click(function() {
             $('#menu').hide();
             commandDialog(site, service.hostName, serviceName, command.commandId, command.title, command.exec);
         });
 
         // Ask to confirm for Operations
         if (group && group.match(/Operations/i)) {
-            a = $('<a/>', {text: command.title}).click(function() {
+            li = $('<li/>', {text: command.title}).click(function() {
 
                 $('#menu').hide();
 
@@ -543,94 +540,90 @@ function getServiceMenu(site, service) {
                         Cancel: function() {
                             $(this).dialog("close");
                         }
-                    },
-                    position: "center"
+                    }
                 });
             });
         }
 
         // Set Menu Icon
-        setMenuImage(command.title, a);
+        setMenuImage(command.title, li);
 
         if (!group) {
-            serviceMenu.push($('<li/>').append(a));
+            serviceMenu.push(li);
         }
         else if (group.match(/Database/i)) {
-            databaseMenu.append($('<li/>').append(a));
+            databaseMenu.append(li);
             anyDatabase = true;
 
             return true;
         }
         else if (group.match(/Operations/i)) {
-            operationsMenu.append($('<li/>').append(a));
+            operationsMenu.append(li);
             anyOperation = true;
 
             return true;
         }
         else if (group.match(/Configuration/i)) {
-            configurationMenu.append($('<li/>').append(a));
+            configurationMenu.append(li);
             anyConfiguration = true;
 
             return true;
         }
         else if (group.match(/Reports/i)) {
-            reportsMenu.append($('<li/>').append(a));
+            reportsMenu.append(li);
             anyReport = true;
 
             return true;
         }
         else {
-            serviceMenu.push($('<li/>').append(a));
+            serviceMenu.push(li);
         }
     });
 
     // If Chart found
     if (anyChart) {
-        var a = $('<a/>', {text: 'Chart'});
-        serviceMenu.push($('<li/>').append(a, chartMenu));
+        serviceMenu.push($('<li/>', {text: 'Chart'}).append(chartMenu));
     }
 
     // If configuration found
     if (anyConfiguration) {
-        var a = $('<a/>', {text: 'Configuration'});
-        serviceMenu.push($('<li/>').append(a, configurationMenu));
+        serviceMenu.push($('<li/>', {text: 'Configuration'}).append(configurationMenu));
     }
 
     // If database found
     if (anyDatabase) {
-        var a = $('<a/>', {text: 'Database'});
-        serviceMenu.push($('<li/>').append(a, databaseMenu));
+        serviceMenu.push($('<li/>', {text: 'Database'}).append(databaseMenu));
     }
 
     // If gui found
     if (anyGui) {
-        var a = $('<a/>', {text: 'GUI'});
-        serviceMenu.push($('<li/>').append(a, guiMenu));
+        serviceMenu.push($('<li/>', {text: 'GUI'}).append(guiMenu));
     }
 
     // If operations found
     if (anyOperation) {
-        var a = $('<a/>', {text: 'Operations'});
-        serviceMenu.push($('<li/>').append(a, operationsMenu));
+        serviceMenu.push($('<li/>', {text: 'Operations'}).append(operationsMenu));
     }
 
     if (anyReport) {
-        var a = $('<a/>', {text: 'Reports'});
-        serviceMenu.push($('<li/>').append(a, reportsMenu));
+        serviceMenu.push($('<li/>', {text: 'Reports'}).append(reportsMenu));
     }
 
     // Return
     return serviceMenu;
 }
 
+function showMenu(menu, button) {
+    $('#menu').empty();
+    $('#menu').append(menu);
+    $('#menu').menu("refresh");
+    $('#menu').show().position({my: "left top", at: "left bottom", of: button});
+}
+
 function drawServiceConnections(canvas, connections, table, startButton) {
 
     // Set position and dimension
-    canvas.position({
-        my: "left top",
-        at: "left top",
-        of: table
-    });
+    canvas.position({my: "left top", at: "left top", of: table});
 
     // Define context
     var ctx = canvas[0].getContext("2d");
