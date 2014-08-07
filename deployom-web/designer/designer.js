@@ -54,8 +54,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeReleaseDialog").dialog({
@@ -83,8 +82,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#uploadReleaseDialog").dialog({
@@ -132,8 +130,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeFlowDialog").dialog({
@@ -161,8 +158,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeJobDialog").dialog({
@@ -190,8 +186,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeConnectionDialog").dialog({
@@ -219,8 +214,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addJobDialog").dialog({
@@ -253,8 +247,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addConnectionDialog").dialog({
@@ -287,8 +280,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addFlowHostDialog").dialog({
@@ -316,8 +308,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addSiteHostDialog").dialog({
@@ -345,8 +336,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateFlowHostDialog").dialog({
@@ -374,8 +364,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#renameFlowHostDialog").dialog({
@@ -403,8 +392,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateSiteHostDialog").dialog({
@@ -432,8 +420,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateJobHostDialog").dialog({
@@ -461,8 +448,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addJobHostDialog").dialog({
@@ -490,8 +476,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addFlowServiceDialog").dialog({
@@ -519,8 +504,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addSiteServiceDialog").dialog({
@@ -548,8 +532,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeFlowServiceDialog").dialog({
@@ -577,8 +560,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeSiteServiceDialog").dialog({
@@ -606,8 +588,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addJobServiceDialog").dialog({
@@ -635,8 +616,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeJobServiceDialog").dialog({
@@ -664,8 +644,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addJobCommandDialog").dialog({
@@ -693,8 +672,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeJobCommandDialog").dialog({
@@ -722,8 +700,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeFlowHostDialog").dialog({
@@ -751,8 +728,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeSiteHostDialog").dialog({
@@ -780,8 +756,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeJobHostDialog").dialog({
@@ -809,8 +784,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateJobDialog").dialog({
@@ -838,8 +812,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateFlowDialog").dialog({
@@ -867,8 +840,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#renameFlowDialog").dialog({
@@ -896,8 +868,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateConnectionDialog").dialog({
@@ -925,8 +896,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addHostDialog").dialog({
@@ -967,8 +937,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateServicePasswordDialog").dialog({
@@ -1010,8 +979,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateCommandPasswordDialog").dialog({
@@ -1053,8 +1021,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeHostDialog").dialog({
@@ -1082,8 +1049,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#renameHostDialog").dialog({
@@ -1116,8 +1082,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addServiceDialog").dialog({
@@ -1145,8 +1110,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateServiceDialog").dialog({
@@ -1179,8 +1143,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#replaceServiceCommandsDialog").dialog({
@@ -1218,8 +1181,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#transferServiceDialog").dialog({
@@ -1252,8 +1214,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#copyServiceDialog").dialog({
@@ -1291,8 +1252,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#renameServiceDialog").dialog({
@@ -1325,8 +1285,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addServiceLinkDialog").dialog({
@@ -1354,8 +1313,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeServiceDialog").dialog({
@@ -1383,8 +1341,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addCommandDialog").dialog({
@@ -1422,8 +1379,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addChartDialog").dialog({
@@ -1461,8 +1417,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#addModuleDialog").dialog({
@@ -1495,8 +1450,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateCommandDialog").dialog({
@@ -1524,8 +1478,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateChartDialog").dialog({
@@ -1553,8 +1506,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#updateModuleDialog").dialog({
@@ -1582,8 +1534,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeCommandDialog").dialog({
@@ -1611,8 +1562,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeChartDialog").dialog({
@@ -1640,8 +1590,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 
     $("#removeModuleDialog").dialog({
@@ -1669,8 +1618,7 @@ $(function() {
             Cancel: function() {
                 $(this).dialog("close");
             }
-        },
-        position: "center"
+        }
     });
 });
 
@@ -2176,7 +2124,7 @@ function releaseTab(release, ul) {
         }
     });
 
-    var downloadRelease = $('<a/>', {text: "Download Release File"});
+    var downloadRelease = $('<button/>', {text: "Download Release File"});
     setButtonIcon(downloadRelease).click(function() {
         var form = $('<form/>', {method: "post", action: "/jersey/Release/downloadRelease", 'class': 'hidden'});
         div.append(form);
@@ -2184,7 +2132,7 @@ function releaseTab(release, ul) {
         form.submit();
     });
 
-    var uploadRelease = $('<a/>', {text: "Upload Release File"});
+    var uploadRelease = $('<button/>', {text: "Upload Release File"});
     setButtonIcon(uploadRelease).click(function() {
         $("#uploadReleaseName").val(releaseName);
         $("#uploadReleaseDialog").dialog("open");
@@ -2246,25 +2194,25 @@ function flowsTab(release) {
             // Create Button Menu
             var flowMenu = [];
 
-            var removeFlow = $('<a/>', {text: "Remove Flow"}).click(function() {
+            var removeFlow = $('<li/>', {text: "Remove Flow"}).click(function() {
                 $('#menu').hide();
                 $('#removeFlowReleaseName').val(releaseName);
                 $('#removeFlowName').val(flowName);
                 $("#removeFlowDialog").dialog("open");
             });
             removeFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            flowMenu.push($('<li/>').append(removeFlow));
+            flowMenu.push(removeFlow);
 
-            var renameFlow = $('<a/>', {text: "Rename Flow"}).click(function() {
+            var renameFlow = $('<li/>', {text: "Rename Flow"}).click(function() {
                 $('#menu').hide();
                 $('#renameFlowReleaseName').val(releaseName);
                 $("#renameFlowName").val(flowName);
                 $("#renameFlowDialog").dialog("open");
             });
-            renameFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            flowMenu.push($('<li/>').append(renameFlow));
+            renameFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
+            flowMenu.push(renameFlow);
 
-            var updateFlow = $('<a/>', {text: "Update Flow"}).click(function() {
+            var updateFlow = $('<li/>', {text: "Update Flow"}).click(function() {
                 $('#menu').hide();
                 $('#updateFlowReleaseName').val(releaseName);
                 $("#updateFlowName").val(flowName);
@@ -2272,16 +2220,10 @@ function flowsTab(release) {
                 $("#updateFlowDialog").dialog("open");
             });
             updateFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            flowMenu.push($('<li/>').append(updateFlow));
+            flowMenu.push(updateFlow);
 
-            $('#menu').empty();
-            $('#menu').append(flowMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(flowMenu, this);
             return false;
         });
 
@@ -2321,7 +2263,7 @@ function flowsTab(release) {
                 // Create Button Menu
                 var hostMenu = [];
 
-                var addService = $('<a/>', {text: "Add Service"}).click(function() {
+                var addService = $('<li/>', {text: "Add Service"}).click(function() {
                     $('#menu').hide();
                     $('#addFlowServiceReleaseName').val(releaseName);
                     $('#addFlowServiceFlowName').val(flowName);
@@ -2329,9 +2271,9 @@ function flowsTab(release) {
                     $("#addFlowServiceDialog").dialog("open");
                 });
                 addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                hostMenu.push($('<li/>').append(addService));
+                hostMenu.push(addService);
 
-                var removeHost = $('<a/>', {text: "Remove Group"}).click(function() {
+                var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                     $('#menu').hide();
                     $('#removeFlowHostReleaseName').val(releaseName);
                     $('#removeFlowHostFlowName').val(flowName);
@@ -2339,19 +2281,19 @@ function flowsTab(release) {
                     $("#removeFlowHostDialog").dialog("open");
                 });
                 removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                hostMenu.push($('<li/>').append(removeHost));
+                hostMenu.push(removeHost);
 
-                var renameHost = $('<a/>', {text: "Rename Group"}).click(function() {
+                var renameHost = $('<li/>', {text: "Rename Group"}).click(function() {
                     $('#menu').hide();
                     $('#renameFlowHostReleaseName').val(releaseName);
                     $('#renameFlowHostFlowName').val(flowName);
                     $('#renameFlowHostName').val(hostName);
                     $("#renameFlowHostDialog").dialog("open");
                 });
-                renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                hostMenu.push($('<li/>').append(renameHost));
+                renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
+                hostMenu.push(renameHost);
 
-                var updateHost = $('<a/>', {text: "Update Group"}).click(function() {
+                var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                     $('#menu').hide();
                     $('#updateFlowHostReleaseName').val(releaseName);
                     $('#updateFlowHostFlowName').val(flowName);
@@ -2360,16 +2302,10 @@ function flowsTab(release) {
                     $("#updateFlowHostDialog").dialog("open");
                 });
                 updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                hostMenu.push($('<li/>').append(updateHost));
+                hostMenu.push(updateHost);
 
-                $('#menu').empty();
-                $('#menu').append(hostMenu);
-                $('#menu').menu("refresh");
-                $('#menu').show().position({
-                    my: "left top",
-                    at: "left bottom",
-                    of: this
-                });
+                // Menu
+                showMenu(hostMenu, this);
                 return false;
             });
             flowTd1.append(hostButton);
@@ -2449,16 +2385,16 @@ function siteTab(release) {
 
             // Create Button Menu
             var hostMenu = [];
-            var addService = $('<a/>', {text: "Add Service"}).click(function() {
+            var addService = $('<li/>', {text: "Add Service"}).click(function() {
                 $('#menu').hide();
                 $('#addSiteServiceReleaseName').val(release.releaseName);
                 $('#addSiteServiceHostName').val(hostName);
                 $("#addSiteServiceDialog").dialog("open");
             });
             addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-            hostMenu.push($('<li/>').append(addService));
+            hostMenu.push(addService);
 
-            var updateHost = $('<a/>', {text: "Update Group"}).click(function() {
+            var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                 $('#menu').hide();
                 $('#updateSiteHostReleaseName').val(release.releaseName);
                 $('#updateSiteHostName').val(hostName);
@@ -2466,25 +2402,19 @@ function siteTab(release) {
                 $("#updateSiteHostDialog").dialog("open");
             });
             updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            hostMenu.push($('<li/>').append(updateHost));
+            hostMenu.push(updateHost);
 
-            var removeHost = $('<a/>', {text: "Remove Group"}).click(function() {
+            var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                 $('#menu').hide();
                 $('#removeSiteHostReleaseName').val(release.releaseName);
                 $('#removeSiteHostName').val(hostName);
                 $("#removeSiteHostDialog").dialog("open");
             });
             removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            hostMenu.push($('<li/>').append(removeHost));
+            hostMenu.push(removeHost);
 
-            $('#menu').empty();
-            $('#menu').append(hostMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(hostMenu, this);
             return false;
         });
         siteTd1.append(hostButton);
@@ -2578,7 +2508,7 @@ function jobsTab(release) {
 
             // Create Button Menu
             var jobMenu = [];
-            var updateJob = $('<a/>', {text: "Update Job"}).click(function() {
+            var updateJob = $('<li/>', {text: "Update Job"}).click(function() {
                 $('#menu').hide();
                 $('#updateJobReleaseName').val(releaseName);
                 $("#updateJobName").val(jobName);
@@ -2587,25 +2517,19 @@ function jobsTab(release) {
                 $("#updateJobDialog").dialog("open");
             });
             updateJob.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            jobMenu.push($('<li/>').append(updateJob));
+            jobMenu.push(updateJob);
 
-            var removeJob = $('<a/>', {text: "Remove Job"}).click(function() {
+            var removeJob = $('<li/>', {text: "Remove Job"}).click(function() {
                 $('#menu').hide();
                 $('#removeJobReleaseName').val(releaseName);
                 $('#removeJobName').val(jobName);
                 $("#removeJobDialog").dialog("open");
             });
             removeJob.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            jobMenu.push($('<li/>').append(removeJob));
+            jobMenu.push(removeJob);
 
-            $('#menu').empty();
-            $('#menu').append(jobMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(jobMenu, this);
             return false;
         });
 
@@ -2664,7 +2588,7 @@ function jobsTab(release) {
 
                 // Create Button Menu
                 var hostMenu = [];
-                var addService = $('<a/>', {text: "Add Service"}).click(function() {
+                var addService = $('<li/>', {text: "Add Service"}).click(function() {
                     $('#menu').hide();
                     $('#addJobServiceReleaseName').val(releaseName);
                     $('#addJobServiceJobName').val(jobName);
@@ -2672,9 +2596,9 @@ function jobsTab(release) {
                     $("#addJobServiceDialog").dialog("open");
                 });
                 addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                hostMenu.push($('<li/>').append(addService));
+                hostMenu.push(addService);
 
-                var updateHost = $('<a/>', {text: "Update Group"}).click(function() {
+                var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                     $('#menu').hide();
                     $('#updateJobHostReleaseName').val(releaseName);
                     $('#updateJobHostJobName').val(jobName);
@@ -2683,9 +2607,9 @@ function jobsTab(release) {
                     $("#updateJobHostDialog").dialog("open");
                 });
                 updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                hostMenu.push($('<li/>').append(updateHost));
+                hostMenu.push(updateHost);
 
-                var removeHost = $('<a/>', {text: "Remove Group"}).click(function() {
+                var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                     $('#menu').hide();
                     $('#removeJobHostReleaseName').val(releaseName);
                     $('#removeJobHostJobName').val(jobName);
@@ -2693,16 +2617,10 @@ function jobsTab(release) {
                     $("#removeJobHostDialog").dialog("open");
                 });
                 removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                hostMenu.push($('<li/>').append(removeHost));
+                hostMenu.push(removeHost);
 
-                $('#menu').empty();
-                $('#menu').append(hostMenu);
-                $('#menu').menu("refresh");
-                $('#menu').show().position({
-                    my: "left top",
-                    at: "left bottom",
-                    of: this
-                });
+                // Menu
+                showMenu(hostMenu, this);
                 return false;
             });
             td1.append(hostButton);
@@ -2844,7 +2762,7 @@ function connectionsTab(release, div) {
 
             // Create Button Menu
             var connectionMenu = [];
-            var updateConnection = $('<a/>', {text: "Update Connection"}).click(function() {
+            var updateConnection = $('<li/>', {text: "Update Connection"}).click(function() {
                 $('#menu').hide();
                 $('#updateConnectionReleaseName').val(release.releaseName);
                 $("#updateConnectionName").val(connection.connectionName);
@@ -2855,25 +2773,19 @@ function connectionsTab(release, div) {
                 $("#updateConnectionDialog").dialog("open");
             });
             updateConnection.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            connectionMenu.push($('<li/>').append(updateConnection));
+            connectionMenu.push(updateConnection);
 
-            var removeConnection = $('<a/>', {text: "Remove Connection"}).click(function() {
+            var removeConnection = $('<li/>', {text: "Remove Connection"}).click(function() {
                 $('#menu').hide();
                 $('#removeConnectionReleaseName').val(release.releaseName);
                 $('#removeConnectionName').val(connection.connectionName);
                 $("#removeConnectionDialog").dialog("open");
             });
             removeConnection.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            connectionMenu.push($('<li/>').append(removeConnection));
+            connectionMenu.push(removeConnection);
 
-            $('#menu').empty();
-            $('#menu').append(connectionMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(connectionMenu, this);
             return false;
         });
 
@@ -2886,11 +2798,7 @@ function connectionsTab(release, div) {
         startButton.mouseover(function() {
 
             // Set position and dimension
-            canvas.position({
-                my: "left top",
-                at: "left top",
-                of: table
-            });
+            canvas.position({my: "left top", at: "left top", of: table});
 
             // Define context
             var ctx = canvas[0].getContext("2d");
@@ -3016,7 +2924,7 @@ function modulesTab(release) {
 
                     // Create Button Menu
                     var serviceMenu = [];
-                    var removeModule = $('<a/>', {text: "Remove Module"}).click(function() {
+                    var removeModule = $('<li/>', {text: "Remove Module"}).click(function() {
                         $('#menu').hide();
                         $("#removeModuleReleaseName").val(release.releaseName);
                         $("#removeModuleHostType").val(host.hostType);
@@ -3025,9 +2933,9 @@ function modulesTab(release) {
                         $("#removeModuleDialog").dialog("open");
                     });
                     removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                    serviceMenu.push($('<li/>').append(removeModule));
+                    serviceMenu.push(removeModule);
 
-                    var updateModule = $('<a/>', {text: "Update Module"}).click(function() {
+                    var updateModule = $('<li/>', {text: "Update Module"}).click(function() {
                         $('#menu').hide();
                         $("#updateModuleReleaseName").val(release.releaseName);
                         $("#updateModuleHostType").val(host.hostType);
@@ -3039,16 +2947,10 @@ function modulesTab(release) {
                         $("#updateModuleDialog").dialog("open");
                     });
                     updateModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                    serviceMenu.push($('<li/>').append(updateModule));
+                    serviceMenu.push(updateModule);
 
-                    $('#menu').empty();
-                    $('#menu').append(serviceMenu);
-                    $('#menu').menu("refresh");
-                    $('#menu').show().position({
-                        my: "left top",
-                        at: "left bottom",
-                        of: this
-                    });
+                    // Menu
+                    showMenu(serviceMenu, this);
                     return false;
                 });
 
@@ -3164,7 +3066,7 @@ function chartsTab(release) {
 
                     // Create Button Menu
                     var serviceMenu = [];
-                    var removeChart = $('<a/>', {text: "Remove Chart"}).click(function() {
+                    var removeChart = $('<li/>', {text: "Remove Chart"}).click(function() {
                         $('#menu').hide();
                         $("#removeChartReleaseName").val(release.releaseName);
                         $("#removeChartHostType").val(host.hostType);
@@ -3173,9 +3075,9 @@ function chartsTab(release) {
                         $("#removeChartDialog").dialog("open");
                     });
                     removeChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                    serviceMenu.push($('<li/>').append(removeChart));
+                    serviceMenu.push(removeChart);
 
-                    var updateChart = $('<a/>', {text: "Update Chart"}).click(function() {
+                    var updateChart = $('<li/>', {text: "Update Chart"}).click(function() {
                         $('#menu').hide();
                         $("#updateChartReleaseName").val(release.releaseName);
                         $("#updateChartHostType").val(host.hostType);
@@ -3188,16 +3090,10 @@ function chartsTab(release) {
                         $("#updateChartDialog").dialog("open");
                     });
                     updateChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                    serviceMenu.push($('<li/>').append(updateChart));
+                    serviceMenu.push(updateChart);
 
-                    $('#menu').empty();
-                    $('#menu').append(serviceMenu);
-                    $('#menu').menu("refresh");
-                    $('#menu').show().position({
-                        my: "left top",
-                        at: "left bottom",
-                        of: this
-                    });
+                    // Menu
+                    showMenu(serviceMenu, this);
                     return false;
                 });
 
@@ -3336,7 +3232,7 @@ function commandsTab(release, host, li) {
             // Create Button Menu
             var serviceMenu = [];
 
-            var addCommand = $('<a/>', {text: "Add Command"}).click(function() {
+            var addCommand = $('<li/>', {text: "Add Command"}).click(function() {
                 $('#menu').hide();
                 $("#addCommandReleaseName").val(releaseName);
                 $("#addCommandHostType").val(hostType);
@@ -3344,9 +3240,9 @@ function commandsTab(release, host, li) {
                 $("#addCommandDialog").dialog("open");
             });
             addCommand.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-            serviceMenu.push($('<li/>').append(addCommand));
+            serviceMenu.push(addCommand);
 
-            var copyService = $('<a/>', {text: "Copy Service"}).click(function() {
+            var copyService = $('<li/>', {text: "Copy Service"}).click(function() {
                 $('#menu').hide();
                 $("#copyServiceReleaseName").val(releaseName);
                 $("#copyServiceNewReleaseName").val(releaseName).change();
@@ -3355,9 +3251,9 @@ function commandsTab(release, host, li) {
                 $("#copyServiceDialog").dialog("open");
             });
             copyService.prepend($('<img/>', {'class': 'menu', src: '/server/img/config.png'}));
-            serviceMenu.push($('<li/>').append(copyService));
+            serviceMenu.push(copyService);
 
-            var removeService = $('<a/>', {text: "Remove Service"}).click(function() {
+            var removeService = $('<li/>', {text: "Remove Service"}).click(function() {
                 $('#menu').hide();
                 $("#removeServiceReleaseName").val(releaseName);
                 $("#removeServiceHostType").val(hostType);
@@ -3365,19 +3261,19 @@ function commandsTab(release, host, li) {
                 $("#removeServiceDialog").dialog("open");
             });
             removeService.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            serviceMenu.push($('<li/>').append(removeService));
+            serviceMenu.push(removeService);
 
-            var renameService = $('<a/>', {text: "Rename Service"}).click(function() {
+            var renameService = $('<li/>', {text: "Rename Service"}).click(function() {
                 $('#menu').hide();
                 $("#renameServiceReleaseName").val(releaseName);
                 $("#renameServiceHostType").val(hostType);
                 $("#renameServiceName").val(serviceName);
                 $("#renameServiceDialog").dialog("open");
             });
-            renameService.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
-            serviceMenu.push($('<li/>').append(renameService));
+            renameService.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
+            serviceMenu.push(renameService);
 
-            var replaceServiceCommands = $('<a/>', {text: "Replace Commands Executable"}).click(function() {
+            var replaceServiceCommands = $('<li/>', {text: "Replace Commands Executable"}).click(function() {
                 $('#menu').hide();
                 $("#replaceServiceCommandsReleaseName").val(releaseName);
                 $("#replaceServiceCommandsHostType").val(hostType);
@@ -3385,9 +3281,9 @@ function commandsTab(release, host, li) {
                 $("#replaceServiceCommandsDialog").dialog("open");
             });
             replaceServiceCommands.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
-            serviceMenu.push($('<li/>').append(replaceServiceCommands));
+            serviceMenu.push(replaceServiceCommands);
 
-            var transferService = $('<a/>', {text: "Transfer Service"}).click(function() {
+            var transferService = $('<li/>', {text: "Transfer Service"}).click(function() {
                 $('#menu').hide();
                 $("#transferServiceReleaseName").val(releaseName);
                 $("#transferServiceHostType").val(hostType);
@@ -3395,9 +3291,9 @@ function commandsTab(release, host, li) {
                 $("#transferServiceDialog").dialog("open");
             });
             transferService.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-            serviceMenu.push($('<li/>').append(transferService));
+            serviceMenu.push(transferService);
 
-            var updateService = $('<a/>', {text: "Update Service"}).click(function() {
+            var updateService = $('<li/>', {text: "Update Service"}).click(function() {
                 $('#menu').hide();
                 $("#updateServiceReleaseName").val(releaseName);
                 $("#updateServiceHostType").val(hostType);
@@ -3407,16 +3303,10 @@ function commandsTab(release, host, li) {
                 $("#updateServiceDialog").dialog("open");
             });
             updateService.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            serviceMenu.push($('<li/>').append(updateService));
+            serviceMenu.push(updateService);
 
-            $('#menu').empty();
-            $('#menu').append(serviceMenu);
-            $('#menu').menu("refresh");
-            $('#menu').show().position({
-                my: "left top",
-                at: "left bottom",
-                of: this
-            });
+            // Menu
+            showMenu(serviceMenu, this);
             return false;
         });
 
@@ -3468,7 +3358,7 @@ function commandsTab(release, host, li) {
 
                 // Charts for Reports with Match only
                 if (command.match && command.group === 'Reports') {
-                    var addChart = $('<a/>', {text: "Add Chart"}).click(function() {
+                    var addChart = $('<li/>', {text: "Add Chart"}).click(function() {
                         $('#menu').hide();
                         $("#addChartReleaseName").val(releaseName);
                         $("#addChartHostType").val(host.hostType);
@@ -3477,10 +3367,10 @@ function commandsTab(release, host, li) {
                         $("#addChartDialog").dialog("open");
                     });
                     addChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                    serviceMenu.push($('<li/>').append(addChart));
+                    serviceMenu.push(addChart);
                 }
 
-                var removeModule = $('<a/>', {text: "Remove Command"}).click(function() {
+                var removeModule = $('<li/>', {text: "Remove Command"}).click(function() {
                     $('#menu').hide();
                     $("#removeCommandReleaseName").val(releaseName);
                     $("#removeCommandHostType").val(hostType);
@@ -3489,9 +3379,9 @@ function commandsTab(release, host, li) {
                     $("#removeCommandDialog").dialog("open");
                 });
                 removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                serviceMenu.push($('<li/>').append(removeModule));
+                serviceMenu.push(removeModule);
 
-                var updateCommand = $('<a/>', {text: "Update Command"}).click(function() {
+                var updateCommand = $('<li/>', {text: "Update Command"}).click(function() {
                     $('#menu').hide();
                     $("#updateCommandReleaseName").val(releaseName);
                     $("#updateCommandHostType").val(hostType);
@@ -3507,16 +3397,10 @@ function commandsTab(release, host, li) {
                     $("#updateCommandDialog").dialog("open");
                 });
                 updateCommand.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                serviceMenu.push($('<li/>').append(updateCommand));
+                serviceMenu.push(updateCommand);
 
-                $('#menu').empty();
-                $('#menu').append(serviceMenu);
-                $('#menu').menu("refresh");
-                $('#menu').show().position({
-                    my: "left top",
-                    at: "left bottom",
-                    of: this
-                });
+                // Menu
+                showMenu(serviceMenu, this);
                 return false;
             });
 
