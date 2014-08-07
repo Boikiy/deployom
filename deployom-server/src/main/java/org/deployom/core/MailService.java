@@ -102,7 +102,7 @@ public class MailService {
                 }
 
                 // Add recipient
-                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             }
 
             // Set Subject and Text
