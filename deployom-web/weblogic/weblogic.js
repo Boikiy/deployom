@@ -149,8 +149,7 @@ function weblogicTab(site, ul) {
                     // Add Site tab
                     var moduleLi = $('<li/>');
                     var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId,
-                        text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
+                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
                     var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
                     span.click(function(event) {
                         moduleLi.remove();
@@ -206,8 +205,7 @@ function weblogicTab(site, ul) {
                     // Add Site tab
                     var moduleLi = $('<li/>');
                     var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId,
-                        text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
+                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
                     var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
                     span.click(function(event) {
                         moduleLi.remove();
