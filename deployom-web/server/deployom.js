@@ -25,6 +25,7 @@ var LANG = {
     ok: "Ok",
     error: "Error",
     authError: "For Authorized personnel use ONLY. Please Authenticate",
+    remoteAuthError: "Please Authenticate on Remote Site before Adding",
     authAdmin: "You have to login as Admin",
     accessDenied: "Access denied",
     siteDisabled: "Updating is Disabled",
@@ -479,7 +480,7 @@ function getServiceMenu(site, service) {
         });
 
         // Set Service Icon
-        setMenuImage(chart.title, li);
+        setServiceImage(chart.title, li);
 
         // Add into Chart menu
         chartMenu.append(li);
@@ -503,7 +504,7 @@ function getServiceMenu(site, service) {
             var a = $('<a/>', {text: command.title, target: '_blank', href: command.exec.replace('$IP', service.ip)});
 
             // Set Menu Icon
-            setMenuImage(command.title, a);
+            setServiceImage(command.title, a);
 
             // Add into GUI menu
             guiMenu.append($("<li/>").append(a));
@@ -549,7 +550,7 @@ function getServiceMenu(site, service) {
         }
 
         // Set Menu Icon
-        setMenuImage(command.title, li);
+        setServiceImage(command.title, li);
 
         if (!group) {
             serviceMenu.push(li);

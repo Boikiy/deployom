@@ -1,4 +1,4 @@
-function setMenuImage(title, li) {
+function setServiceImage(title, li) {
     if (title.match(/Online|State/i)) {
         li.prepend($('<img/>', {'class': 'menu', src: '/server/img/online.png'}));
     }
@@ -32,12 +32,42 @@ function setMenuImage(title, li) {
     else if (title.match(/Trace/i)) {
         li.prepend($('<img/>', {'class': 'menu', src: '/server/img/trace.png'}));
     }
+    else {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
+    }
+}
+
+function setMenuImage(li) {
+
+    // Get Title
+    var title = li.text();
+
+    if (title.match(/Update/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
+    }
     else if (title.match(/Remove/i)) {
         li.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
+    }
+    else if (title.match(/Add/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
+    }
+    else if (title.match(/Copy/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/config.png'}));
+    }
+    else if (title.match(/Replace/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
+    }
+    else if (title.match(/Transfer/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/virtual.png'}));
+    }
+    else if (title.match(/Rename/i)) {
+        li.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
     }
     else {
         li.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
     }
+    
+    return li;
 }
 
 function setHostIcon(button, secondary) {
@@ -322,11 +352,17 @@ function setModuleImage(button) {
     if (name.match(/audit/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/billing.png'}));
     }
-    else if (name.match(/dashboard/i)) {
+    else if (name.match(/discovery/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/discovery.png'}));
+    }
+    else if (name.match(/dashboard|config/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/dashboard.png'}));
     }
     else if (name.match(/charts/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/charts.png'}));
+    }
+    else if (name.match(/layout/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/manager.png'}));
     }
     else if (name.match(/designer/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/designer.png'}));
@@ -346,7 +382,7 @@ function setModuleImage(button) {
     else if (name.match(/add|new/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/add.png'}));
     }
-    else if (name.match(/remote/i)) {
+    else if (name.match(/remote|map/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/virtual.png'}));
     }
     else if (name.match(/purge/i)) {
@@ -358,8 +394,20 @@ function setModuleImage(button) {
     else if (name.match(/weblogic/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/web.png'}));
     }
+    else if (name.match(/event/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/disabled.png'}));
+    }
     else if (name.match(/oracle/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/database.png'}));
+    }
+    else if (name.match(/job/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/workflow.png'}));
+    }
+    else if (name.match(/connection/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/connection.png'}));
+    }
+    else if (name.match(/flow/i)) {
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/flow.png'}));
     }
     else {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/module.png'}));

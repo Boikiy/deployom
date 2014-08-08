@@ -1748,8 +1748,8 @@ function releaseTab(release, ul) {
     div.append(hostsTable);
 
     // Add Custom Jobs Button
-    var jobsButton = $('<button/>', {"class": "flow",
-        text: 'Custom Jobs', 'title': 'Custom Jobs for periodic Commands execution'}).button().click(function() {
+    var jobsButton = $('<button/>', {"class": "flow", text: 'Custom Jobs', 'title': 'Custom Jobs for periodic Commands execution'});
+    setModuleImage(jobsButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_JOBS', text: 'Custom Jobs [' + releaseName + ']', href: '#' + releaseName + '_JOBS', title: 'Click to refresh'});
@@ -1789,12 +1789,11 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    jobsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/workflow.png'}));
     releaseTd.append(jobsButton);
 
     // Add Charts Button
-    var chartsButton = $('<button/>', {"class": "flow",
-        text: 'Service Charts', 'title': 'Charts for Commands'}).button().click(function() {
+    var chartsButton = $('<button/>', {"class": "flow", text: 'Service Charts', 'title': 'Charts for Commands'});
+    setModuleImage(chartsButton).click(function() {
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_CHARTS', text: 'Service Charts [' + releaseName + ']', href: '#' + releaseName + '_CHARTS', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
@@ -1833,12 +1832,11 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    chartsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/charts.png'}));
     releaseTd.append(chartsButton);
 
     // Add Service Connections Button
-    var connectionsButton = $('<button/>', {"class": "flow",
-        text: 'Service Connections', 'title': 'Connections between Services'}).button().click(function() {
+    var connectionsButton = $('<button/>', {"class": "flow", text: 'Service Connections', 'title': 'Connections between Services'});
+    setModuleImage(connectionsButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_CONNECTIONS', text: 'Service Connections [' + releaseName + ']', href: '#' + releaseName + '_CONNECTIONS', title: 'Click to refresh'});
@@ -1884,12 +1882,11 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    connectionsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/connection.png'}));
     releaseTd.append(connectionsButton);
 
     // Add Service Flows Button
-    var flowsButton = $('<button/>', {"class": "flow",
-        text: 'Service Flows', 'title': 'Grouping Services in Flows'}).button().click(function() {
+    var flowsButton = $('<button/>', {"class": "flow", text: 'Service Flows', 'title': 'Grouping Services in Flows'});
+    setModuleImage(flowsButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_FLOWS', text: 'Service Flows [' + releaseName + ']', href: '#' + releaseName + '_FLOWS', title: 'Click to refresh'});
@@ -1931,12 +1928,11 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    flowsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/flow.png'}));
     releaseTd.append(flowsButton);
 
     // Add Modules Button
-    var modulesButton = $('<button/>', {"class": "flow",
-        text: 'Service Modules', 'title': 'Adding Modules for Services'}).button().click(function() {
+    var modulesButton = $('<button/>', {"class": "flow", text: 'Service Modules', 'title': 'Adding Modules for Services'});
+    setModuleImage(modulesButton).click(function() {
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_MODULES', text: 'Service Modules [' + releaseName + ']', href: '#' + releaseName + '_MODULES', title: 'Click to refresh'});
         var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
@@ -1975,12 +1971,11 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    modulesButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/module.png'}));
     releaseTd.append(modulesButton);
 
     // Site Button
-    var siteButton = $('<button/>', {"class": "flow",
-        text: 'Site Map', 'title': 'Mapping Services in Site Configuration'}).button().click(function() {
+    var siteButton = $('<button/>', {"class": "flow", text: 'Site Map', 'title': 'Mapping Services in Site Configuration'});
+    setModuleImage(siteButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + releaseName + '_SITE', text: 'Site Map [' + releaseName + ']', href: '#' + releaseName + '_SITE', title: 'Click to refresh'});
@@ -2020,7 +2015,6 @@ function releaseTab(release, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    siteButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/virtual.png'}));
     releaseTd.append(siteButton);
 
     // Open Release
@@ -2200,8 +2194,7 @@ function flowsTab(release) {
                 $('#removeFlowName').val(flowName);
                 $("#removeFlowDialog").dialog("open");
             });
-            removeFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            flowMenu.push(removeFlow);
+            flowMenu.push(setMenuImage(removeFlow));
 
             var renameFlow = $('<li/>', {text: "Rename Flow"}).click(function() {
                 $('#menu').hide();
@@ -2209,8 +2202,7 @@ function flowsTab(release) {
                 $("#renameFlowName").val(flowName);
                 $("#renameFlowDialog").dialog("open");
             });
-            renameFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-            flowMenu.push(renameFlow);
+            flowMenu.push(setMenuImage(renameFlow));
 
             var updateFlow = $('<li/>', {text: "Update Flow"}).click(function() {
                 $('#menu').hide();
@@ -2219,8 +2211,7 @@ function flowsTab(release) {
                 $("#updateFlowFilter").val(flow.filter);
                 $("#updateFlowDialog").dialog("open");
             });
-            updateFlow.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            flowMenu.push(updateFlow);
+            flowMenu.push(setMenuImage(updateFlow));
 
             // Menu
             showMenu(flowMenu, this);
@@ -2254,8 +2245,7 @@ function flowsTab(release) {
             flowTable.append($('<tr/>').append(flowTd1, flowTd2));
 
             // Create Host Button
-            var hostButton = $('<button/>', {"class": "hostname",
-                text: hostName + ' [' + host.hostType + ']'});
+            var hostButton = $('<button/>', {"class": "hostname", text: hostName + ' [' + host.hostType + ']'});
 
             // Set Host Icon
             setHostIcon(hostButton, 'ui-icon-triangle-1-s').click(function() {
@@ -2270,8 +2260,7 @@ function flowsTab(release) {
                     $('#addFlowServiceHostName').val(hostName);
                     $("#addFlowServiceDialog").dialog("open");
                 });
-                addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                hostMenu.push(addService);
+                hostMenu.push(setMenuImage(addService));
 
                 var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                     $('#menu').hide();
@@ -2280,8 +2269,7 @@ function flowsTab(release) {
                     $('#removeFlowHostName').val(hostName);
                     $("#removeFlowHostDialog").dialog("open");
                 });
-                removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                hostMenu.push(removeHost);
+                hostMenu.push(setMenuImage(removeHost));
 
                 var renameHost = $('<li/>', {text: "Rename Group"}).click(function() {
                     $('#menu').hide();
@@ -2290,8 +2278,7 @@ function flowsTab(release) {
                     $('#renameFlowHostName').val(hostName);
                     $("#renameFlowHostDialog").dialog("open");
                 });
-                renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-                hostMenu.push(renameHost);
+                hostMenu.push(setMenuImage(renameHost));
 
                 var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                     $('#menu').hide();
@@ -2301,8 +2288,7 @@ function flowsTab(release) {
                     $('#updateFlowHostType').val(host.hostType);
                     $("#updateFlowHostDialog").dialog("open");
                 });
-                updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                hostMenu.push(updateHost);
+                hostMenu.push(setMenuImage(updateHost));
 
                 // Menu
                 showMenu(hostMenu, this);
@@ -2391,8 +2377,7 @@ function siteTab(release) {
                 $('#addSiteServiceHostName').val(hostName);
                 $("#addSiteServiceDialog").dialog("open");
             });
-            addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-            hostMenu.push(addService);
+            hostMenu.push(setMenuImage(addService));
 
             var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                 $('#menu').hide();
@@ -2401,8 +2386,7 @@ function siteTab(release) {
                 $('#updateSiteHostType').val(hostType);
                 $("#updateSiteHostDialog").dialog("open");
             });
-            updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            hostMenu.push(updateHost);
+            hostMenu.push(setMenuImage(updateHost));
 
             var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                 $('#menu').hide();
@@ -2410,8 +2394,7 @@ function siteTab(release) {
                 $('#removeSiteHostName').val(hostName);
                 $("#removeSiteHostDialog").dialog("open");
             });
-            removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            hostMenu.push(removeHost);
+            hostMenu.push(setMenuImage(removeHost));
 
             // Menu
             showMenu(hostMenu, this);
@@ -2516,8 +2499,7 @@ function jobsTab(release) {
                 $("#updateJobPeriod").val(job.period);
                 $("#updateJobDialog").dialog("open");
             });
-            updateJob.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            jobMenu.push(updateJob);
+            jobMenu.push(setMenuImage(updateJob));
 
             var removeJob = $('<li/>', {text: "Remove Job"}).click(function() {
                 $('#menu').hide();
@@ -2525,8 +2507,7 @@ function jobsTab(release) {
                 $('#removeJobName').val(jobName);
                 $("#removeJobDialog").dialog("open");
             });
-            removeJob.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            jobMenu.push(removeJob);
+            jobMenu.push(setMenuImage(removeJob));
 
             // Menu
             showMenu(jobMenu, this);
@@ -2595,8 +2576,7 @@ function jobsTab(release) {
                     $('#addJobServiceHostName').val(hostName);
                     $("#addJobServiceDialog").dialog("open");
                 });
-                addService.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                hostMenu.push(addService);
+                hostMenu.push(setMenuImage(addService));
 
                 var updateHost = $('<li/>', {text: "Update Group"}).click(function() {
                     $('#menu').hide();
@@ -2606,8 +2586,7 @@ function jobsTab(release) {
                     $('#updateJobHostType').val(hostType);
                     $("#updateJobHostDialog").dialog("open");
                 });
-                updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                hostMenu.push(updateHost);
+                hostMenu.push(setMenuImage(updateHost));
 
                 var removeHost = $('<li/>', {text: "Remove Group"}).click(function() {
                     $('#menu').hide();
@@ -2616,8 +2595,7 @@ function jobsTab(release) {
                     $('#removeJobHostName').val(hostName);
                     $("#removeJobHostDialog").dialog("open");
                 });
-                removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                hostMenu.push(removeHost);
+                hostMenu.push(setMenuImage(removeHost));
 
                 // Menu
                 showMenu(hostMenu, this);
@@ -2772,8 +2750,7 @@ function connectionsTab(release, div) {
                 $("#updateConnectionEndHostName").val(endHostName);
                 $("#updateConnectionDialog").dialog("open");
             });
-            updateConnection.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            connectionMenu.push(updateConnection);
+            connectionMenu.push(setMenuImage(updateConnection));
 
             var removeConnection = $('<li/>', {text: "Remove Connection"}).click(function() {
                 $('#menu').hide();
@@ -2781,8 +2758,7 @@ function connectionsTab(release, div) {
                 $('#removeConnectionName').val(connection.connectionName);
                 $("#removeConnectionDialog").dialog("open");
             });
-            removeConnection.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            connectionMenu.push(removeConnection);
+            connectionMenu.push(setMenuImage(removeConnection));
 
             // Menu
             showMenu(connectionMenu, this);
@@ -2932,8 +2908,7 @@ function modulesTab(release) {
                         $("#removeModuleName").val(module.moduleName);
                         $("#removeModuleDialog").dialog("open");
                     });
-                    removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                    serviceMenu.push(removeModule);
+                    serviceMenu.push(setMenuImage(removeModule));
 
                     var updateModule = $('<li/>', {text: "Update Module"}).click(function() {
                         $('#menu').hide();
@@ -2946,8 +2921,7 @@ function modulesTab(release) {
                         $("#updateModulePort").val(module.port);
                         $("#updateModuleDialog").dialog("open");
                     });
-                    updateModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                    serviceMenu.push(updateModule);
+                    serviceMenu.push(setMenuImage(updateModule));
 
                     // Menu
                     showMenu(serviceMenu, this);
@@ -3074,8 +3048,7 @@ function chartsTab(release) {
                         $("#removeChartId").val(chart.chartId);
                         $("#removeChartDialog").dialog("open");
                     });
-                    removeChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                    serviceMenu.push(removeChart);
+                    serviceMenu.push(setMenuImage(removeChart));
 
                     var updateChart = $('<li/>', {text: "Update Chart"}).click(function() {
                         $('#menu').hide();
@@ -3089,8 +3062,7 @@ function chartsTab(release) {
                         $("#updateChartLabel3").val(chart.label3);
                         $("#updateChartDialog").dialog("open");
                     });
-                    updateChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                    serviceMenu.push(updateChart);
+                    serviceMenu.push(setMenuImage(updateChart));
 
                     // Menu
                     showMenu(serviceMenu, this);
@@ -3239,8 +3211,7 @@ function commandsTab(release, host, li) {
                 $("#addCommandServiceName").val(serviceName);
                 $("#addCommandDialog").dialog("open");
             });
-            addCommand.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-            serviceMenu.push(addCommand);
+            serviceMenu.push(setMenuImage(addCommand));
 
             var copyService = $('<li/>', {text: "Copy Service"}).click(function() {
                 $('#menu').hide();
@@ -3250,8 +3221,7 @@ function commandsTab(release, host, li) {
                 $("#copyServiceName").val(serviceName);
                 $("#copyServiceDialog").dialog("open");
             });
-            copyService.prepend($('<img/>', {'class': 'menu', src: '/server/img/config.png'}));
-            serviceMenu.push(copyService);
+            serviceMenu.push(setMenuImage(copyService));
 
             var removeService = $('<li/>', {text: "Remove Service"}).click(function() {
                 $('#menu').hide();
@@ -3260,8 +3230,7 @@ function commandsTab(release, host, li) {
                 $("#removeServiceName").val(serviceName);
                 $("#removeServiceDialog").dialog("open");
             });
-            removeService.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            serviceMenu.push(removeService);
+            serviceMenu.push(setMenuImage(removeService));
 
             var renameService = $('<li/>', {text: "Rename Service"}).click(function() {
                 $('#menu').hide();
@@ -3270,8 +3239,7 @@ function commandsTab(release, host, li) {
                 $("#renameServiceName").val(serviceName);
                 $("#renameServiceDialog").dialog("open");
             });
-            renameService.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-            serviceMenu.push(renameService);
+            serviceMenu.push(setMenuImage(renameService));
 
             var replaceServiceCommands = $('<li/>', {text: "Replace Commands Executable"}).click(function() {
                 $('#menu').hide();
@@ -3280,8 +3248,7 @@ function commandsTab(release, host, li) {
                 $("#replaceServiceCommandsServiceName").val(serviceName);
                 $("#replaceServiceCommandsDialog").dialog("open");
             });
-            replaceServiceCommands.prepend($('<img/>', {'class': 'menu', src: '/server/img/other.png'}));
-            serviceMenu.push(replaceServiceCommands);
+            serviceMenu.push(setMenuImage(replaceServiceCommands));
 
             var transferService = $('<li/>', {text: "Transfer Service"}).click(function() {
                 $('#menu').hide();
@@ -3290,8 +3257,7 @@ function commandsTab(release, host, li) {
                 $("#transferServiceName").val(serviceName);
                 $("#transferServiceDialog").dialog("open");
             });
-            transferService.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-            serviceMenu.push(transferService);
+            serviceMenu.push(setMenuImage(transferService));
 
             var updateService = $('<li/>', {text: "Update Service"}).click(function() {
                 $('#menu').hide();
@@ -3302,8 +3268,7 @@ function commandsTab(release, host, li) {
                 $("#updateServiceLogin").val(service.login);
                 $("#updateServiceDialog").dialog("open");
             });
-            updateService.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            serviceMenu.push(updateService);
+            serviceMenu.push(setMenuImage(updateService));
 
             // Menu
             showMenu(serviceMenu, this);
@@ -3366,11 +3331,10 @@ function commandsTab(release, host, li) {
                         $("#addChartId").val(command.commandId);
                         $("#addChartDialog").dialog("open");
                     });
-                    addChart.prepend($('<img/>', {'class': 'menu', src: '/server/img/add.png'}));
-                    serviceMenu.push(addChart);
+                    serviceMenu.push(setMenuImage(addChart));
                 }
 
-                var removeModule = $('<li/>', {text: "Remove Command"}).click(function() {
+                var removeCommand = $('<li/>', {text: "Remove Command"}).click(function() {
                     $('#menu').hide();
                     $("#removeCommandReleaseName").val(releaseName);
                     $("#removeCommandHostType").val(hostType);
@@ -3378,8 +3342,7 @@ function commandsTab(release, host, li) {
                     $("#removeCommandId").val(command.commandId);
                     $("#removeCommandDialog").dialog("open");
                 });
-                removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-                serviceMenu.push(removeModule);
+                serviceMenu.push(setMenuImage(removeCommand));
 
                 var updateCommand = $('<li/>', {text: "Update Command"}).click(function() {
                     $('#menu').hide();
@@ -3396,8 +3359,7 @@ function commandsTab(release, host, li) {
                     $("#updateCommandNotMatch2").val(command.notMatch2);
                     $("#updateCommandDialog").dialog("open");
                 });
-                updateCommand.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-                serviceMenu.push(updateCommand);
+                serviceMenu.push(setMenuImage(updateCommand));
 
                 // Menu
                 showMenu(serviceMenu, this);

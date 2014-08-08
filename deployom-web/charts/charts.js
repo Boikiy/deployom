@@ -167,7 +167,7 @@ function chartsTab(site) {
                     var li = $('<li/>', {text: title});
 
                     // Set Service Icon
-                    setMenuImage(title, li);
+                    setServiceImage(title, li);
 
                     // Set onclick
                     li.click(function() {

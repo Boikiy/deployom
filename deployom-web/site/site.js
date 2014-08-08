@@ -437,8 +437,8 @@ function siteTab(configSite, role, ul) {
     div.append(jobsTable);
 
     // Add Hosts tab
-    var hostsButton = $('<button/>', {"class": "flow",
-        text: 'Add Hosts', 'title': 'Adding multiple Hosts from File'}).button().click(function() {
+    var hostsButton = $('<button/>', {"class": "flow", text: 'Add Hosts', 'title': 'Adding multiple Hosts from File'});
+    setModuleImage(hostsButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_HOSTS', text: 'Add Hosts [' + siteName + ']', href: '#' + siteName + '_HOSTS'});
@@ -498,12 +498,11 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    hostsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/add.png'}));
     siteTd.append(hostsButton);
 
     // Add Change Layout tab
-    var layoutButton = $('<button/>', {"class": "flow",
-        text: 'Change Layout', 'title': 'Adding and Removing Services manually'}).button().click(function() {
+    var layoutButton = $('<button/>', {"class": "flow", text: 'Change Layout', 'title': 'Adding and Removing Services manually'});
+    setModuleImage(layoutButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_LAYOUT', text: 'Change Layout [' + siteName + ']', href: '#' + siteName + '_LAYOUT'});
@@ -583,12 +582,11 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    layoutButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/manager.png'}));
     siteTd.append(layoutButton);
 
     // Add Services Button
-    var servicesButton = $('<button/>', {"class": "flow",
-        text: 'Configured Services', 'title': 'All Configured Service with Commands'}).button().click(function() {
+    var servicesButton = $('<button/>', {"class": "flow", text: 'Configured Services', 'title': 'All Configured Service with Commands'});
+    setModuleImage(servicesButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_SERVICES', text: 'Configured Services [' + siteName + ']', href: '#' + siteName + '_SERVICES'});
@@ -640,12 +638,11 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    servicesButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/config.png'}));
     siteTd.append(servicesButton);
 
     // Add Events Button
-    var eventsButton = $('<button/>', {"class": "flow",
-        text: 'Registered Events', 'title': 'All Registered Events'}).button().click(function() {
+    var eventsButton = $('<button/>', {"class": "flow", text: 'Registered Events', 'title': 'All Registered Events'});
+    setModuleImage(eventsButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_EVENTS', text: 'Registered Events [' + siteName + ']', href: '#' + siteName + '_EVENTS'});
@@ -697,12 +694,11 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    eventsButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/disabled.png'}));
     siteTd.append(eventsButton);
 
     // Add Service Discovery
-    var discoveryButton = $('<button/>', {"class": "flow",
-        text: 'Service Discovery', 'title': 'Automatic Service Discovery'}).button().click(function() {
+    var discoveryButton = $('<button/>', {"class": "flow", text: 'Service Discovery', 'title': 'Automatic Service Discovery'});
+    setModuleImage(discoveryButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_DISCOVERY', text: 'Service Discovery [' + siteName + ']', href: '#' + siteName + '_DISCOVERY'});
@@ -753,12 +749,11 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    discoveryButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/discovery.png'}));
     siteTd.append(discoveryButton);
 
     // Add Site Map Button
-    var siteMapButton = $('<button/>', {"class": "flow",
-        text: 'Site Map', 'title': 'Grouped Site Services'}).button().click(function() {
+    var siteMapButton = $('<button/>', {"class": "flow", text: 'Site Map', 'title': 'Grouped Site Services'});
+    setModuleImage(siteMapButton).click(function() {
 
         var li = $('<li/>');
         var a = $('<a/>', {id: 'A_' + siteName + '_MAP', text: 'Site Map [' + siteName + ']', href: '#' + siteName + '_MAP'});
@@ -810,7 +805,6 @@ function siteTab(configSite, role, ul) {
         $("#tabsDiv").tabs('refresh');
         $("#tabsDiv").tabs({active: -1});
     });
-    siteMapButton.prepend($('<img/>', {'class': 'flow', src: '/server/img/virtual.png'}));
     siteTd.append(siteMapButton);
 
     var jobsUrl = "/jersey/Site/getJobs";
@@ -1282,8 +1276,7 @@ function layoutTab(site) {
                 $("#removeHostName").val(hostName);
                 $("#removeHostDialog").dialog("open");
             });
-            removeHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            hostMenu.push(removeHost);
+            hostMenu.push(setMenuImage(removeHost));
 
             // Rename
             var renameHost = $('<li/>', {text: "Rename Host"}).click(function() {
@@ -1293,8 +1286,7 @@ function layoutTab(site) {
                 $("#renameHostName").val(hostName);
                 $("#renameHostDialog").dialog("open");
             });
-            renameHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/flow.png'}));
-            hostMenu.push(renameHost);
+            hostMenu.push(setMenuImage(renameHost));
 
             // Update
             var updateHost = $('<li/>', {text: "Update Host"}).click(function() {
@@ -1306,8 +1298,7 @@ function layoutTab(site) {
                 $("#updateHostType").val(host.hostType).attr('selected', true);
                 $("#updateHostDialog").dialog("open");
             });
-            updateHost.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            hostMenu.push(updateHost);
+            hostMenu.push(setMenuImage(updateHost));
 
             // Menu
             showMenu(hostMenu, this);

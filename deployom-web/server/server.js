@@ -248,8 +248,14 @@ $(function() {
                     xhrFields: {
                         withCredentials: true
                     },
-                    error: function() {
-                        notificationMessage(LANG.submitError);
+                    error: function(jqXHR) {
+                        if (jqXHR.status === 0) {
+                            notificationMessage(LANG.connectionError);
+                        } else if (jqXHR.status === 401) {
+                            notificationMessage(LANG.remoteAuthError);
+                        } else {
+                            notificationMessage(LANG.submitError);
+                        }
                     },
                     success: function(config) {
                         // Show Select for Sites
@@ -866,8 +872,7 @@ function usersTab(config, role) {
                 $("#updateUserInfo").val(user.info);
                 $("#updateUserDialog").dialog("open");
             });
-            updateUser.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            userMenu.push(updateUser);
+            userMenu.push(setMenuImage(updateUser));
 
             // Remove User
             var removeUser = $('<li/>', {text: "Remove User"}).click(function() {
@@ -875,8 +880,7 @@ function usersTab(config, role) {
                 $("#removeUserName").val(userName);
                 $("#removeUserDialog").dialog("open");
             });
-            removeUser.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            userMenu.push(removeUser);
+            userMenu.push(setMenuImage(removeUser));
 
             // Menu
             showMenu(userMenu, this);
@@ -962,8 +966,7 @@ function modulesTab(config, role) {
                 $("#updateModulePort").val(module.port);
                 $("#updateModuleDialog").dialog("open");
             });
-            updateModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/change.png'}));
-            moduleMenu.push(updateModule);
+            moduleMenu.push(setMenuImage(updateModule));
 
             // Remove Module
             var removeModule = $('<li/>', {text: "Remove Module"}).click(function() {
@@ -971,8 +974,7 @@ function modulesTab(config, role) {
                 $("#removeModuleName").val(moduleName);
                 $("#removeModuleDialog").dialog("open");
             });
-            removeModule.prepend($('<img/>', {'class': 'menu', src: '/server/img/alert.png'}));
-            moduleMenu.push(removeModule);
+            moduleMenu.push(setMenuImage(removeModule));
 
             // Menu
             showMenu(moduleMenu, this);
