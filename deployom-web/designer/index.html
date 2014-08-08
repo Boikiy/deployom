@@ -1,31 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="-1" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-        <script type="text/javascript" src="/3p/jquery.js"></script>
-        <script type="text/javascript" src="/3p/jquery-ui.js"></script>
-        <script type="text/javascript" src="/3p/jquery.cookie.js"></script>
-        <link type="text/css" rel="stylesheet" href="/3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="../3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="../server/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="../server/deployom.css"/>
 
-        <script type="text/javascript" src="/server/common.js"></script>
-        <script type="text/javascript" src="/server/custom.js"></script>
-        <script type="text/javascript" src="/designer/designer.js"></script>
-        <link type="text/css" rel="stylesheet" href="/server/common.css"/>
-        <link type="text/css" rel="stylesheet" href="/server/custom.css"/>
+        <script type="text/javascript" src="../3p/jquery.js"></script>
+        <script type="text/javascript" src="../3p/jquery-ui.js"></script>
+        <script type="text/javascript" src="../3p/jquery.cookie.js"></script>
+        <script type="text/javascript" src="../designer/designer.js"></script>
+        <script type="text/javascript" src="../server/custom.js"></script>
+        <script type="text/javascript" src="../server/deployom.js"></script>
 
         <title>Designer</title>
     </head>
     <body>
 
         <table id='header' class="hidden">
-            <tr><td width="95%"><h1 id="envName">Local</h1></td>
-                <td width="1%" class="head">
+            <tr><td ><h1 id="envName">Local</h1></td>
+                <td class="head">
                     <div id="headSelect">
                         <input type="radio" id="designer" name="menuSelect" checked="checked"/><label for="designer">DESIGNER</label>
                         <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
@@ -689,12 +685,12 @@
                     <input type="text" name="Title" id="addCommandTitle" class="ui-widget-content ui-corner-all" />
                     <label>Group</label>
                     <select name="Group" id="addCommandGroup" class="ui-widget-content ui-corner-all">
-                        <option id=""></option>
-                        <option id="Configuration">Configuration</option>
-                        <option id="Database">Database</option>
-                        <option id="GUI">GUI</option>
-                        <option id="Operations">Operations</option>
-                        <option id="Reports">Reports</option>
+                        <option></option>
+                        <option>Configuration</option>
+                        <option>Database</option>
+                        <option>GUI</option>
+                        <option>Operations</option>
+                        <option>Reports</option>
                     </select>
                     <label>Match</label>
                     <input type="text" name="Match" id="addCommandMAtch" class="ui-widget-content ui-corner-all" />
@@ -765,12 +761,12 @@
                     <input type="text" name="Title" id="updateCommandTitle" class="ui-widget-content ui-corner-all" />
                     <label>Group</label>
                     <select name="Group" id="updateCommandGroup" class="ui-widget-content ui-corner-all">
-                        <option id=""></option>
-                        <option id="Configuration">Configuration</option>
-                        <option id="Database">Database</option>
-                        <option id="GUI">GUI</option>
-                        <option id="Operations">Operations</option>
-                        <option id="Reports">Reports</option>
+                        <option></option>
+                        <option>Configuration</option>
+                        <option>Database</option>
+                        <option>GUI</option>
+                        <option>Operations</option>
+                        <option>Reports</option>
                     </select>
                     <label>Match</label>
                     <input type="text" name="Match" id="updateCommandMatch" class="ui-widget-content ui-corner-all" />
@@ -878,14 +874,14 @@
         <div id="tabsDiv"></div>
 
         <table id='footer' class="hidden">
-            <tr><td align="left" id="now">Loaded on </td>
-                <td align="right" id="title"></td>
+            <tr><td id="now">Loaded on </td>
+                <td id="title"></td>
             </tr>
             <tr class="bold">
-                <td align="left"><span id="version">DeployOM, version </span></td>
+                <td id="version" colspan="2">DeployOM, version </td>
             </tr>
             <tr class="bold">
-                <td align="left" colspan="2"><ul id="menu"></ul></td>
+                <td class="left" colspan="2"><ul id="menu"></ul></td>
             </tr>
         </table>
     </body>

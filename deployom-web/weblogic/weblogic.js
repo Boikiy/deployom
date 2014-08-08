@@ -139,119 +139,109 @@ function weblogicTab(site, ul) {
                 var td2 = $('<td/>', {'class': 'ui'});
                 table.append($('<tr/>').append(td1, td2));
 
-                // Create buttons
+                // Servers
                 var serversButton = $('<button/>', {"class": "flowService", text: 'Servers Information'});
-                var jdbcButton = $('<button/>', {"class": "flowService", text: 'JDBC Data Sources'});
-
-                // On Click
                 setServiceIcon(serversButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Weblogic/getServers";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(servers) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(serversTab(servers, ul));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Servers Information [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Weblogic/getServers";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(servers) {
+                            dialog.empty();
+                            dialog.prepend(serversDiv(servers));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(serversButton);
 
-                // On Click
+                // JDBC
+                var jdbcButton = $('<button/>', {"class": "flowService", text: 'JDBC Data Sources'});
                 setServiceIcon(jdbcButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Weblogic/getJDBC";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request JDBC
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(servers) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(jdbcTab(servers, ul));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Servers Information [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Weblogic/getJDBC";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request JDBC
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(servers) {
+                            dialog.empty();
+                            dialog.prepend(jdbcDiv(servers));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(jdbcButton);
 
@@ -275,11 +265,11 @@ function weblogicTab(site, ul) {
     return div;
 }
 
-function serversTab(servers) {
+function serversDiv(servers) {
     var div = $('<div/>');
 
     // Create a Server table
-    var serverTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var serverTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Server'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'State'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Uptime'});
@@ -289,7 +279,7 @@ function serversTab(servers) {
 
     // Create a Heap table
     var h2 = $('<h2/>', {'class': "center", text: 'Heap'});
-    var heapTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var heapTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Server'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Free', title: 'The current amount of free memory, in Mb, that is in the WebLogic server Java Virtual Machine (JVM) heap'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Current'});
@@ -299,7 +289,7 @@ function serversTab(servers) {
 
     // Create a Thread table
     var h2 = $('<h2/>', {'class': "center", text: 'Threads'});
-    var threadTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var threadTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Server'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Idle', title: 'The number of threads in the server execution queue that are idle or which are not being used to process data'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Total'});
@@ -311,7 +301,7 @@ function serversTab(servers) {
 
     // Create a JTA table
     var h2 = $('<h2/>', {'class': "center", text: 'Transactions'});
-    var jtaTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var jtaTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Server'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Active'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Total'});
@@ -389,11 +379,11 @@ function serversTab(servers) {
     return div;
 }
 
-function jdbcTab(servers) {
+function jdbcDiv(servers) {
     var div = $('<div/>');
 
     // Create a Server table
-    var serverTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var serverTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Server'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'State'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Open Sockets', title: 'The current number sockets on the server that are open and receiving requests'});
@@ -423,7 +413,7 @@ function jdbcTab(servers) {
         div.append(h2);
 
         // Create a JDBC table
-        var jdbcTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+        var jdbcTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
         var td1 = $('<td/>', {'class': 'ui hostname', text: 'Name'});
         var td2 = $('<td/>', {'class': 'ui center', text: 'Current', title: 'The current number of active connections in a JDBC connection pool'});
         var td3 = $('<td/>', {'class': 'ui center', text: 'High', title: 'The highest number of active connections in a JDBC connection pool'});

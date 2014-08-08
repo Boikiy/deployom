@@ -65,6 +65,9 @@ $(function() {
         return true;
     }
 
+    // Disable ajax caching
+    $.ajaxSetup({cache: false});
+
     // Open Config
     $.ajax({
         type: "GET",

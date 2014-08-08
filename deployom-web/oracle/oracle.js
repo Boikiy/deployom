@@ -139,290 +139,268 @@ function oracleTab(site, ul) {
                 var td2 = $('<td/>', {'class': 'ui'});
                 table.append($('<tr/>').append(td1, td2));
 
-                // Create buttons
+                // Sessions
                 var sessionsButton = $('<button/>', {"class": "flowService", text: 'Active Sessions'});
-                var dataFilesButton = $('<button/>', {"class": "flowService", text: 'Data Files'});
-                var analyzedButton = $('<button/>', {"class": "flowService", text: 'Last Analyzed'});
-                var longRunButton = $('<button/>', {"class": "flowService", text: 'Long Running'});
-                var tablespacesButton = $('<button/>', {"class": "flowService", text: 'Tablespace Usage'});
-
-                // On Click
                 setServiceIcon(sessionsButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Oracle/getSessions";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(database) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(sessionsTab(database, ul));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Active Sessions [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Oracle/getSessions";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(database) {
+                            dialog.empty();
+                            dialog.prepend(sessionsDiv(database));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(sessionsButton);
 
-                // On Click
+                // Long Run
+                var longRunButton = $('<button/>', {"class": "flowService", text: 'Long Running'});
                 setServiceIcon(longRunButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Oracle/getLongRunning";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(database) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(longRunningTab(database, ul));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Long Running [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Oracle/getLongRunning";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(database) {
+                            dialog.empty();
+                            dialog.prepend(longRunningDiv(database));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(longRunButton);
 
-                // On Click
+                // Analyzed
+                var analyzedButton = $('<button/>', {"class": "flowService", text: 'Last Analyzed'});
                 setServiceIcon(analyzedButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Oracle/getLastAnalyzed";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(database) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(lastAnalyzedTab(database, ul));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Last Analyzed [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Oracle/getLastAnalyzed";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(database) {
+                            dialog.empty();
+                            dialog.prepend(lastAnalyzedDiv(database));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(analyzedButton);
 
-                // On Click
+                // Data Files
+                var dataFilesButton = $('<button/>', {"class": "flowService", text: 'Data Files'});
                 setServiceIcon(dataFilesButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Oracle/getDataFiles";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(database) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(datafilesTab(site, host, service, module, database));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Data Files [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Oracle/getDataFiles";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(database) {
+                            dialog.empty();
+                            dialog.prepend(datafilesDiv(database));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(dataFilesButton);
 
-                // On Click
+                // Tablespaces
+                var tablespacesButton = $('<button/>', {"class": "flowService", text: 'Tablespace Usage'});
                 setServiceIcon(tablespacesButton, 'ui-icon-extlink').click(function() {
 
-                    // Add Site tab
-                    var moduleLi = $('<li/>');
-                    var tabId = site.siteName + '_' + service.serviceName;
-                    var a = $('<a/>', {id: 'A_' + tabId, text: service.serviceName + ' [' + site.siteName + ']', href: '#' + tabId, title: 'Click to refresh'});
-                    var span = $('<span/>', {'class': "ui-icon ui-icon-close", role: "presentation", text: "Remove Tab"});
-                    span.click(function(event) {
-                        moduleLi.remove();
-                        $('#A_' + site.siteName).click();
-                    });
-                    moduleLi.append(a, span);
-                    ul.append(moduleLi);
+                    // Set Div
+                    var dialog = $("<div/>");
 
-                    $("#tabsDiv").append($('<div/>', {id: tabId}));
-
-                    a.click(function() {
-                        var url = "/jersey/Oracle/getTablespaces";
-                        if (site.serverURL) {
-                            url = site.serverURL + url;
-                        }
-
-                        // Request Servers
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {SiteName: site.siteName,
-                                HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
-                            dataType: "json",
-                            xhrFields: {
-                                withCredentials: true
-                            },
-                            beforeSend: function(data) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.loading);
-                            },
-                            success: function(database) {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(tablespacesTab(site, host, service, module, database));
-                            },
-                            error: function() {
-                                $('#' + tabId).empty();
-                                $('#' + tabId).prepend(LANG.submitError);
+                    // Create Dialog
+                    dialog.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        height: 620,
+                        width: 830,
+                        title: 'Tablespace Usage [' + service.serviceName + ']',
+                        buttons: {
+                            Close: function() {
+                                $(this).dialog("close");
                             }
-                        });
+                        }
                     });
 
-                    // Show
-                    a.click();
+                    var url = "/jersey/Oracle/getTablespaces";
+                    if (site.serverURL) {
+                        url = site.serverURL + url;
+                    }
 
-                    $("#tabsDiv").tabs('refresh');
-                    $("#tabsDiv").tabs({active: -1});
+                    // Request Servers
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {SiteName: site.siteName,
+                            HostName: host.hostName, ServiceName: service.serviceName, ModuleName: module.moduleName},
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        beforeSend: function(data) {
+                            dialog.empty();
+                            dialog.prepend(LANG.loading);
+                        },
+                        success: function(database) {
+                            dialog.empty();
+                            dialog.prepend(tablespacesDiv(site, host, service, module, database));
+                        },
+                        error: function() {
+                            dialog.empty();
+                            dialog.prepend(LANG.submitError);
+                        }
+                    });
                 });
                 td2.append(tablespacesButton);
 
@@ -449,7 +427,7 @@ function oracleTab(site, ul) {
     return div;
 }
 
-function sessionsTab(database) {
+function sessionsDiv(database) {
     var div = $('<div/>');
 
     // Create a Database table
@@ -464,7 +442,7 @@ function sessionsTab(database) {
 
     // Create a Limits table
     var h2 = $('<h2/>', {'class': "center", text: 'Limits'});
-    var limitsTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var limitsTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Resource Name'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Current Utilization'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Max Utilization'});
@@ -475,7 +453,7 @@ function sessionsTab(database) {
 
     // Create a Sessions table
     var h2 = $('<h2/>', {'class': "center", text: 'Sessions'});
-    var sessionsTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var sessionsTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui center', text: 'Count'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Status'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'OS User'});
@@ -548,7 +526,7 @@ function sessionsTab(database) {
     return div;
 }
 
-function longRunningTab(database) {
+function longRunningDiv(database) {
     var div = $('<div/>');
 
     // Create a Database table
@@ -563,7 +541,7 @@ function longRunningTab(database) {
 
     // Create a Sessions table
     var h2 = $('<h2/>', {'class': "center", text: 'Long Running'});
-    var sessionsTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var sessionsTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui center', text: 'Sid'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Machine'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Message'});
@@ -623,7 +601,7 @@ function longRunningTab(database) {
     return div;
 }
 
-function lastAnalyzedTab(database) {
+function lastAnalyzedDiv(database) {
     var div = $('<div/>');
 
     // Create a Database table
@@ -638,7 +616,7 @@ function lastAnalyzedTab(database) {
 
     // Create a Analyzed table
     var h2 = $('<h2/>', {'class': "center", text: 'Last Analyzed'});
-    var analyzedTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var analyzedTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Last Analyzed'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Count'});
     analyzedTable.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2));
@@ -684,7 +662,7 @@ function lastAnalyzedTab(database) {
     return div;
 }
 
-function tablespacesTab(site, host, service, module, database) {
+function tablespacesDiv(site, host, service, module, database) {
     var div = $('<div/>');
 
     // Create a Database table
@@ -699,7 +677,7 @@ function tablespacesTab(site, host, service, module, database) {
 
     // Create a Tablespace table
     var h2 = $('<h2/>', {'class': "center", text: 'Tablespaces'});
-    var tablespacesTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var tablespacesTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Tablespace Name'});
     var td2 = $('<td/>', {'class': 'ui center', text: 'Current, Mb'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Max, Mb'});
@@ -825,7 +803,7 @@ function tablespacesTab(site, host, service, module, database) {
     return div;
 }
 
-function datafilesTab(site, host, service, module, database) {
+function datafilesDiv(database) {
     var div = $('<div/>');
 
     // Create a Database table
@@ -840,7 +818,7 @@ function datafilesTab(site, host, service, module, database) {
 
     // Create a Tablespace table
     var h2 = $('<h2/>', {'class': "center", text: 'Data Files'});
-    var datafilesTable = $('<table/>', {'class': "ui-widget ui-widget-content width50"});
+    var datafilesTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var td1 = $('<td/>', {'class': 'ui hostname', text: 'Tablespace Name'});
     var td2 = $('<td/>', {'class': 'ui hostname', text: 'File Name'});
     var td3 = $('<td/>', {'class': 'ui center', text: 'Current, Mb'});

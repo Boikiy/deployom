@@ -1,24 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="-1" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-        <script type="text/javascript" src="/3p/jquery.js"></script>
-        <script type="text/javascript" src="/3p/jquery-ui.js"></script>
-        <script type="text/javascript" src="/3p/jquery.cookie.js"></script>
-        <link type="text/css" rel="stylesheet" href="/3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="server/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="server/deployom.css"/>
 
-        <script type="text/javascript" src="/server/common.js"></script>
-        <script type="text/javascript" src="/server/server.js"></script>
-        <script type="text/javascript" src="/server/custom.js"></script>
-        <link type="text/css" rel="stylesheet" href="/server/custom.css"/>
-        <link type="text/css" rel="stylesheet" href="/server/common.css"/>
+        <script type="text/javascript" src="3p/jquery.js"></script>
+        <script type="text/javascript" src="3p/jquery-ui.js"></script>
+        <script type="text/javascript" src="3p/jquery.cookie.js"></script>
+        <script type="text/javascript" src="server/server.js"></script>
+        <script type="text/javascript" src="server/custom.js"></script>
+        <script type="text/javascript" src="server/deployom.js"></script>
 
         <title>Server</title>
     </head>
@@ -27,7 +22,7 @@
         <table id='header' class="hidden">
             <tr><td width="95%"><h1 id="envName">Local</h1></td>
                 <td width="1%" class="head hidden">
-                    <div id="siteSelect"/>
+                    <div id="siteSelect"></div>
                 </td>
                 <td width="1%" class="head">
                     <div id="headSelect">
@@ -63,9 +58,9 @@
                     <input type="password" name="Password" id="addUserPassword" class="ui-widget-content ui-corner-all" />
                     <label>Role</label>
                     <select name="Role" id="addUserRole" class="ui-widget-content ui-corner-all">
-                        <option id="admin">admin</option>
-                        <option id="customer">customer</option>
-                        <option id="support">support</option>
+                        <option>admin</option>
+                        <option>customer</option>
+                        <option>support</option>
                     </select>
                     <label>Email (for Events/Notification)</label>
                     <input type="email" name="Email" id="addUserEmail" class="ui-widget-content ui-corner-all" />
@@ -142,9 +137,9 @@
                     <input type="password" name="Password" id="updateUserPassword" class="ui-widget-content ui-corner-all" />
                     <label>Role</label>
                     <select name="Role" id="updateUserRole" class="ui-widget-content ui-corner-all">
-                        <option id="admin">admin</option>
-                        <option id="customer">customer</option>
-                        <option id="support">support</option>
+                        <option>admin</option>
+                        <option>customer</option>
+                        <option>support</option>
                     </select>
                     <label>Email (for Events/Notification)</label>
                     <input type="text" name="Email" id="updateUserEmail" class="ui-widget-content ui-corner-all" />
@@ -188,15 +183,15 @@
         <div id="tabsDiv"></div>
 
         <table id='footer' class="hidden">
-            <tr><td align="left" id="now">Loaded on </td>
-                <td align="right" id="title"></td>
+            <tr><td id="now">Loaded on </td>
+                <td id="title"></td>
             </tr>
             <tr class="bold">
-                <td align="left"><span id="version">DeployOM, version </span></td>
-                <td align="right"><a href="/jersey/application.wadl">Jersey WADL</a></td>
+                <td id="version">DeployOM, version </td>
+                <td class="right"><a href="/jersey/application.wadl">Jersey WADL</a></td>
             </tr>
             <tr class="bold">
-                <td align="left" colspan="2"><ul id="menu"></ul></td>
+                <td class="left" colspan="2"><ul id="menu"></ul></td>
             </tr>
         </table>
     </body>

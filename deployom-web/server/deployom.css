@@ -56,7 +56,6 @@ input[type=text]:focus {border-color:#23B1DB; }
 div.indent {text-indent: 15px; margin: 5px;}
 
 table { margin: 1em 0; border-collapse: collapse; width: 100%;}
-table.width50 { width: 50%; margin: auto;}
 table.hidden, td.hidden, form.hidden, div.hidden {display:none;}
 tr.high:hover { background-color: #ffffee; }
 
@@ -67,7 +66,7 @@ td.ui { border: 1px solid #eee; padding: 5px 5px; text-align: left; }
 td.hostname { width:180px; text-align: center;}
 td.IP { width:100px; text-align: center;}
 td.finished { width:250px; text-align: center;}
-td.head {text-align: left; border: 1px solid #eee; padding: 5px 5px; white-space: nowrap;}
+td.head {width: 1px; border: 1px solid #eee; padding: 5px 5px; white-space: nowrap;}
 
 img.flow {height:32px; width:32px; border: 0; margin: 0;}
 img.index {height:24px; width:24px; border: 0;}
@@ -85,7 +84,8 @@ button.flowService { z-index:20; font-size: 80% !important; height: 36px; width:
 fieldset.service { float:left;  width: 210px; margin-bottom: 5px; text-align:center;}
 
 legend.center, td.center, div.center, h1.center, h2.center, h3.center { text-align: center; }
-div.left { text-align: left; }
+td.left, div.left { text-align: left; }
+td.right { text-align: right; }
 div.floatLeft { float:left; }
 
 textarea.property { height:100px; width:500px; }
@@ -101,4 +101,4 @@ canvas.flow {z-index:10; position: absolute;}
 
 .chart { height:300px;}
 
-#title {font-style:italic;}
+#title {text-align: right; font-style:italic;}

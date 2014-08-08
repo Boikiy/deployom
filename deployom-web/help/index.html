@@ -1,31 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="-1" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-        <script type="text/javascript" src="/3p/jquery.js"></script>
-        <script type="text/javascript" src="/3p/jquery-ui.js"></script>
-        <script type="text/javascript" src="/3p/jquery.cookie.js"></script>
-        <link type="text/css" rel="stylesheet" href="/3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="../3p/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href="../server/custom.css"/>
+        <link type="text/css" rel="stylesheet" href="../server/deployom.css"/>
 
-        <script type="text/javascript" src="/help/help.js"></script>
-        <script type="text/javascript" src="/server/common.js"></script>
-        <link type="text/css" rel="stylesheet" href="/server/common.css"/>
-        <link type="text/css" rel="stylesheet" href="/server/custom.css"/>
+        <script type="text/javascript" src="../3p/jquery.js"></script>
+        <script type="text/javascript" src="../3p/jquery-ui.js"></script>
+        <script type="text/javascript" src="../3p/jquery.cookie.js"></script>
+        <script type="text/javascript" src="../help/help.js"></script>
+        <script type="text/javascript" src="../server/custom.js"></script>
+        <script type="text/javascript" src="../server/deployom.js"></script>
 
         <title>Help</title>
     </head>
     <body>
 
         <table id='header' class="hidden">
-            <tr><td width="95%"><h1 id="envName">Local</h1></td>
-                <td width="1%" class="head">
+            <tr><td><h1 id="envName">Local</h1></td>
+                <td class="head">
                     <div id="headSelect">
                         <input type="radio" id="help" name="menuSelect" checked="checked"/><label for="help">HELP</label>
                         <input type="radio" id="server" name="menuSelect"/><label for="server">SERVER</label>
@@ -120,16 +116,24 @@
             </div>
 
             <div id="changelog">
+                <h1 class="center">Version 4.0 (080814)</h1>
+                <ul>
+                    <li>Frontend:New Jquery, Jquery-UI libraries</li>
+                    <li>Performance: Grizzly Web Server updates</li>
+                </ul>
+
                 <h1 class="center">Version 3.0 (070314)</h1>
                 <ul>
                     <li>Backend: Cookie based Authentication added for Web-Services</li>
                     <li>Performance: XML format changed to JSON</li>
                 </ul>
+
                 <h1 class="center">Version 2.0 (042414)</h1>
                 <ul>
                     <li>Frontend: interface was completely redesigned based on new Server architecture</li>
                     <li>Performance: Tomcat Web Server was changed to Grizzly NIO Framework</li>
                 </ul>
+
                 <h1 class="center">Version 1.0</h1>
                 <ul>
                     <li>Initial Release</li>
@@ -139,11 +143,11 @@
         </div>
 
         <table id='footer' class="hidden">
-            <tr><td align="left" id="now">Loaded on </td>
-                <td align="right" id="title"></td>
+            <tr><td id="now">Loaded on </td>
+                <td id="title"></td>
             </tr>
             <tr class="bold">
-                <td align="left"><span id="version">DeployOM, version </span></td>
+                <td id="version" colspan="2">DeployOM, version </td>
             </tr>
         </table>
     </body>
