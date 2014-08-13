@@ -412,10 +412,10 @@ function afterLogin(config, role) {
 
     // Add Server tab
     var serverLi = $('<li/>');
-    var a = $('<a/>', {text: "Server", href: '#SERVER'});
+    var a = $('<a/>', {text: "Home", href: '#HOME'});
     serverLi.append(a);
     ul.append(serverLi);
-    $('#tabsDiv').append($('<div/>', {id: 'SERVER'}));
+    $('#tabsDiv').append($('<div/>', {id: 'HOME'}));
 
     a.click(function(event) {
         $.ajax({
@@ -423,16 +423,16 @@ function afterLogin(config, role) {
             type: "GET",
             dataType: "json",
             beforeSend: function(data) {
-                $('#SERVER').empty();
-                $('#SERVER').prepend(LANG.loading);
+                $('#HOME').empty();
+                $('#HOME').prepend(LANG.loading);
             },
             error: function() {
-                $('#SERVER').empty();
-                $('#SERVER').prepend(LANG.submitError);
+                $('#HOME').empty();
+                $('#HOME').prepend(LANG.submitError);
             },
             success: function(config) {
-                $('#SERVER').empty();
-                $('#SERVER').append(serverTab(config, role));
+                $('#HOME').empty();
+                $('#HOME').append(serverTab(config, role));
             }
         });
     });
@@ -801,7 +801,7 @@ function serverTab(config, role) {
     }
 
     // Add Buttons
-    var updateConfigButton = $('<button/>', {text: "Update Environment"});
+    var updateConfigButton = $('<button/>', {text: "Update Configuration"});
     setButtonIcon(updateConfigButton).click(function() {
         $('#updateConfigName').val(config.envName);
         $('#updateConfigTitle').val(config.title);

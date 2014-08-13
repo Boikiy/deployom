@@ -106,8 +106,8 @@ $(function() {
                 // Set buttonset
                 $("#headSelect").buttonset();
 
-                // Set server
-                $('#server').button({icons: {primary: "deployom-server"}}).click(function(event) {
+                // Set home
+                $('#home').button({icons: {primary: "deployom-home"}}).click(function(event) {
                     location.replace('/');
                 });
 
@@ -134,8 +134,29 @@ $(function() {
                     $('#A_' + $(".ui-tabs-active").text()).click();
                 }
 
-                // Enable notifications
-                enableNotifications();
+                // Enable SSE notifications
+                if (typeof (EventSource) === "undefined") {
+                    notificationMessage('Notifications Disabled, SSE not supported', "ui-state-error");
+                    return true;
+                } else {
+                    // Register
+                    var source = new EventSource("/jersey/History/addBroadcaster");
+
+                    // Show Notification
+                    source.onmessage = function(event) {
+                        notificationMessage(event.data, "ui-state-highlight");
+                    };
+
+                    // On open, console logging
+                    source.onopen = function(event) {
+                        console.log('Notifications Enabled');
+                    };
+
+                    // Error
+                    source.onerror = function(event) {
+                        notificationMessage('Notifications Disabled, Error occurred', "ui-state-error");
+                    };
+                }
             });
         }
     });
@@ -165,33 +186,6 @@ function notificationMessage(message, state) {
 
     // Return
     return dialog;
-}
-
-function enableNotifications() {
-
-    // Check if SSE available
-    if (typeof (EventSource) === "undefined") {
-        notificationMessage('Notifications Disabled, SSE not supported', "ui-state-error");
-        return true;
-    }
-
-    // Register
-    var source = new EventSource("/jersey/History/addBroadcaster");
-
-    // Show Notification
-    source.onmessage = function(event) {
-        notificationMessage(event.data, "ui-state-highlight");
-    };
-
-    // On open, console logging
-    source.onopen = function(event) {
-        console.log('Notifications Enabled');
-    };
-
-    // Error
-    source.onerror = function(event) {
-        notificationMessage('Notifications Disabled, Error occurred', "ui-state-error");
-    };
 }
 
 function broadcastMessage(site, message) {
