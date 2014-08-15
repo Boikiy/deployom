@@ -28,7 +28,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Confirm: function() {
+            Stop: function() {
 
                 // AJAX
                 $.ajax({
@@ -52,7 +52,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // Check User Name
                 if ($('#addUserName').val() === "") {
@@ -92,7 +92,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // Check Password
                 if ($('#updateUserPassword').val() === "") {
@@ -126,7 +126,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -307,7 +307,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // Check Module Name
                 if ($('#addModuleName').val() === "") {
@@ -347,7 +347,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // Check Login and Password
                 if ($('#updateModuleLogin').val() !== "" && $('#updateModulePassword').val() === "") {
@@ -381,7 +381,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({

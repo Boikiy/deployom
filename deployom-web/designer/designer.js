@@ -28,7 +28,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // Check Release Name
                 if ($('#addReleaseReleaseName').val() === "") {
@@ -62,7 +62,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -105,7 +105,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addFlowName').val() === "") {
                     alert('Please enter Flow Name');
@@ -138,7 +138,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -166,7 +166,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -194,7 +194,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -222,7 +222,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addJobName').val() === "") {
                     alert('Please enter Job Name');
@@ -255,7 +255,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addConnectionName').val() === "") {
                     alert('Please enter Connection Name');
@@ -288,7 +288,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -316,7 +316,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -344,7 +344,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -372,7 +372,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Rename: function() {
 
                 // AJAX
                 $.ajax({
@@ -400,7 +400,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -428,7 +428,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -456,7 +456,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -484,7 +484,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -512,7 +512,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -540,7 +540,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -568,7 +568,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -596,7 +596,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -624,7 +624,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -652,7 +652,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -680,7 +680,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -708,7 +708,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -736,7 +736,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -764,7 +764,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -792,7 +792,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -820,7 +820,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -848,7 +848,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Rename: function() {
 
                 // AJAX
                 $.ajax({
@@ -876,7 +876,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -903,7 +903,7 @@ $(function() {
         autoOpen: false,
         modal: true,
         buttons: {
-            Ok: function() {
+            Add: function() {
                 if ($('#addHostType').val() === "") {
                     alert('Please enter Host Type');
                     return false;
@@ -944,7 +944,7 @@ $(function() {
         autoOpen: false,
         modal: true,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 if ($('#updateServicePasswordLogin').val() === "") {
                     alert('Please enter Host Login');
@@ -986,7 +986,7 @@ $(function() {
         autoOpen: false,
         modal: true,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 if ($('#updateCommandPasswordLogin').val() === "") {
                     alert('Please enter Host Login');
@@ -1029,7 +1029,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -1057,7 +1057,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Rename: function() {
 
                 if ($('#renameHostNewHostName').val() === "") {
                     alert('Please enter New Host Type');
@@ -1090,7 +1090,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -1118,7 +1118,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 if ($('#updateServicePassword').val() === "") {
                     alert('Please enter Service Password');
@@ -1151,7 +1151,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Replace: function() {
 
                 if ($('#replaceServiceCommandsMatch').val() === "") {
                     alert('Please enter Match string');
@@ -1189,7 +1189,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Transfer: function() {
 
                 if ($('#transferServiceNewHostTepe').val() === "") {
                     alert('Please enter New Host Type');
@@ -1222,7 +1222,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Copy: function() {
 
                 if ($('#copyServiceNewHostType').val() === "") {
                     alert('Please enter Copy Host Type');
@@ -1260,7 +1260,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Rename: function() {
 
                 if ($('#renameServiceNewServiceName').val() === "") {
                     alert('Please enter New Service Name');
@@ -1293,7 +1293,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 // AJAX
                 $.ajax({
@@ -1321,7 +1321,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -1349,7 +1349,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addCommandId').val() === "") {
                     alert('Please enter Command Id');
@@ -1387,7 +1387,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addChartId').val() === "") {
                     alert('Please enter Chart Id');
@@ -1425,7 +1425,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addModuleName').val() === "") {
                     alert('Please enter Module Name');
@@ -1458,7 +1458,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -1486,7 +1486,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -1514,7 +1514,7 @@ $(function() {
         modal: true,
         width: 600,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 // AJAX
                 $.ajax({
@@ -1542,7 +1542,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -1570,7 +1570,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -1598,7 +1598,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({

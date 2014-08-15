@@ -28,7 +28,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Add: function() {
 
                 if ($('#addHostName').val() === "") {
                     alert('Please enter Host Name');
@@ -78,7 +78,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 // AJAX
                 $.ajax({
@@ -106,7 +106,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 var serverURL = $('#removeHostServerURL').val();
                 var url = "/jersey/Site/removeHost";
@@ -146,7 +146,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Remove: function() {
 
                 var serverURL = $('#removeEventsServerURL').val();
                 var url = "/jersey/Site/removeEvents";
@@ -185,7 +185,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Update: function() {
 
                 if ($('#updateHostIP').val() === "") {
                     alert('Please enter Host IP');
@@ -229,7 +229,7 @@ $(function() {
         modal: true,
         width: 400,
         buttons: {
-            Ok: function() {
+            Rename: function() {
 
                 if ($('#renameNewHostName').val() === "") {
                     alert('Please enter New Host Name');
