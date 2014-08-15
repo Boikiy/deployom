@@ -85,14 +85,13 @@ public class JobResource {
         }
 
         // Get executors
-        ExecutorService jobThread = (ExecutorService) context.getAttribute("JobThread");
-
-        if (jobThread == null) {
-            return "JobThread is not found";
+        ExecutorService executorJob = (ExecutorService) context.getAttribute("ExecutorJob");
+        if (executorJob == null) {
+            return "ExecutorJob is not found";
         }
 
         // Submit new Job to Executor
-        jobThread.submit(new JobThread(siteName, jobName, context));
+        executorJob.submit(new JobThread(siteName, jobName, context));
 
         // Return
         return jobName + " job scheduled";

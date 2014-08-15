@@ -109,8 +109,8 @@ public class JobThread implements Runnable {
         jobService.saveJob();
 
         // Update Site
-        ExecutorService siteThread = (ExecutorService) context.getAttribute("SiteThread");
-        Future<?> future = siteThread.submit(new SiteThread(siteName, jobName, context));
+        ExecutorService executorSite = (ExecutorService) context.getAttribute("ExecutorSite");
+        Future<?> future = executorSite.submit(new SiteThread(siteName, jobName, context));
 
         // Handle task
         try {

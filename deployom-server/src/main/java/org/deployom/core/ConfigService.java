@@ -51,10 +51,10 @@ import org.deployom.data.Module;
 import org.deployom.data.Release;
 import org.deployom.data.Site;
 import org.deployom.data.User;
+import org.deployom.server.Start;
 
 public final class ConfigService {
 
-    public static final String DATA_DIR = "data/";
     public static final String HOSTNAME = "([\\w-]+)\\.*.*";
     public static final String ILLEGAL = "[^\u0009\r\n\u0020-\uD7FF\uE000-\uFFFD\ud800\udc00-\udbff\udfff]";
     public static final String PATTERN = "[^A-Za-z0-9_-]+";
@@ -129,7 +129,7 @@ public final class ConfigService {
     }
 
     private Config config;
-    private final String version = "4.080414";
+    private final String version = "4.081514";
 
     public ConfigService() {
 
@@ -338,7 +338,7 @@ public final class ConfigService {
 
     public String getFileName() {
 
-        return DATA_DIR + "config.json";
+        return Start.DATA_DIR + "config.json";
     }
 
     public Module getModule(String moduleName) {
@@ -498,7 +498,7 @@ public final class ConfigService {
     public Config saveConfig() {
 
         //Create data folder if not exists
-        File dir = new File(DATA_DIR);
+        File dir = new File(Start.DATA_DIR);
         dir.mkdir();
 
         // Sort hosts

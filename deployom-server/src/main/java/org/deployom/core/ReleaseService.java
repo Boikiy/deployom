@@ -49,6 +49,7 @@ import org.deployom.data.Module;
 import org.deployom.data.Release;
 import org.deployom.data.Service;
 import org.deployom.data.Site;
+import org.deployom.server.Start;
 
 public class ReleaseService {
 
@@ -718,7 +719,7 @@ public class ReleaseService {
 
     public String getFileName() {
 
-        return ConfigService.DATA_DIR + release.getReleaseName() + ".release.json";
+        return Start.DATA_DIR + release.getReleaseName() + ".release.json";
     }
 
     public Flow getFlow(String flowName) {

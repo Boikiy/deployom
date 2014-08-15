@@ -48,9 +48,9 @@ public class Listener implements ServletContextListener {
     private static final Logger logger = Logger.getLogger(Listener.class.getName());
 
     private SseBroadcaster broadcaster;
-    private ExecutorService jobThread;
+    private ExecutorService executorJob;
     private List<ScheduledExecutorService> schedulers;
-    private ExecutorService siteThread;
+    private ExecutorService executorSite;
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
@@ -61,8 +61,8 @@ public class Listener implements ServletContextListener {
         }
 
         // Shutdown Executors
-        jobThread.shutdownNow();
-        siteThread.shutdownNow();
+        executorJob.shutdownNow();
+        executorSite.shutdownNow();
     }
 
     @Override
@@ -79,12 +79,12 @@ public class Listener implements ServletContextListener {
         context.setAttribute("Broadcaster", broadcaster);
 
         // Create Executor for Manual Job Running
-        jobThread = Executors.newSingleThreadExecutor();
-        context.setAttribute("JobThread", jobThread);
+        executorJob = Executors.newSingleThreadExecutor();
+        context.setAttribute("ExecutorJob", executorJob);
 
         // Create Executor for Update Site
-        siteThread = Executors.newSingleThreadExecutor();
-        context.setAttribute("SiteThread", siteThread);
+        executorSite = Executors.newSingleThreadExecutor();
+        context.setAttribute("ExecutorSite", executorSite);
 
         // Initialize schedulers
         schedulers = new ArrayList<ScheduledExecutorService>();

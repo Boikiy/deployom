@@ -233,8 +233,8 @@ public class HostResource {
         Command command = hostService.runCommand(service, commandId, host);
 
         // Update Site
-        ExecutorService siteThread = (ExecutorService) context.getAttribute("SiteThread");
-        Future<?> future = siteThread.submit(new SiteThread(siteName, host, context));
+        ExecutorService executorSite = (ExecutorService) context.getAttribute("ExecutorSite");
+        Future<?> future = executorSite.submit(new SiteThread(siteName, host, context));
 
         // Handle task
         try {

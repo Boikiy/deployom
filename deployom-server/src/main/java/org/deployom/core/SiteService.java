@@ -43,6 +43,7 @@ import org.deployom.data.Event;
 import org.deployom.data.Host;
 import org.deployom.data.Service;
 import org.deployom.data.Site;
+import org.deployom.server.Start;
 
 public class SiteService {
 
@@ -131,7 +132,7 @@ public class SiteService {
 
     public String getFileName() {
 
-        return ConfigService.DATA_DIR + site.getSiteName() + ".site.json";
+        return Start.DATA_DIR + site.getSiteName() + ".site.json";
     }
 
     public Host getHost(String hostName) {

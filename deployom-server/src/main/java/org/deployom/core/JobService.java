@@ -34,6 +34,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.deployom.data.Host;
 import org.deployom.data.Job;
+import org.deployom.server.Start;
 
 public class JobService {
 
@@ -84,7 +85,7 @@ public class JobService {
 
     public String getFileName() {
 
-        return ConfigService.DATA_DIR + job.toString() + ".job.json";
+        return Start.DATA_DIR + job.toString() + ".job.json";
     }
 
     public Job getJob() {

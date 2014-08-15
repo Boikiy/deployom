@@ -43,6 +43,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.deployom.data.Command;
 import org.deployom.data.Host;
 import org.deployom.data.Service;
+import org.deployom.server.Start;
 
 public class HostService {
 
@@ -197,7 +198,7 @@ public class HostService {
 
     public String getFileName() {
 
-        return ConfigService.DATA_DIR + host.toString() + ".host.json";
+        return Start.DATA_DIR + host.toString() + ".host.json";
     }
 
     public String getHostName() {

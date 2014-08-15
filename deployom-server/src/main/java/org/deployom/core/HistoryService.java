@@ -38,6 +38,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.deployom.data.Command;
 import org.deployom.data.Event;
 import org.deployom.data.History;
+import org.deployom.server.Start;
 import org.glassfish.jersey.media.sse.OutboundEvent;
 import org.glassfish.jersey.media.sse.SseBroadcaster;
 
@@ -125,7 +126,7 @@ public class HistoryService {
     public String getFileName() {
 
         // Return Path
-        return ConfigService.DATA_DIR + "history.json";
+        return Start.DATA_DIR + "history.json";
     }
 
     public History getHistory() {

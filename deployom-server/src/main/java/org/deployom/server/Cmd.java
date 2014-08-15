@@ -26,15 +26,19 @@ package org.deployom.server;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Form;
+import javax.ws.rs.core.MediaType;
 import org.deployom.core.ConfigService;
 import org.deployom.data.Module;
 
-public class Stop {
+public class Cmd {
 
-    public static String SERVER_IP = "127.0.0.1";
-    private static final Logger logger = Logger.getLogger(Stop.class.getName());
+    private static final Logger logger = Logger.getLogger(Cmd.class.getName());
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -50,7 +54,7 @@ public class Stop {
 
         // Override IP
         if (module.getIP() != null) {
-            SERVER_IP = module.getIP();
+            Stop.SERVER_IP = module.getIP();
         }
 
         // Override Port
@@ -60,20 +64,50 @@ public class Stop {
 
         // New client
         final Client client = ClientBuilder.newClient();
-        logger.log(Level.INFO, "Server stopping, http://{0}:" + Start.SERVER_PORT + "/jersey/Server/stopServer", SERVER_IP);
 
-        // Stop Server
-        try {
-            client.target("http://" + SERVER_IP + ":" + Start.SERVER_PORT + "/jersey/Server/stopServer").request()
-                    .cookie("userName", module.getLogin())
-                    .cookie("password", ConfigService.decryptBlowfish(module.getPassword()))
-                    .get();
-
-        } catch (Exception ex) {
-            logger.log(Level.INFO, "Server stopped");
-        } finally {
-            // Close Client
-            client.close();
+        // Arguments
+        String arguments = "";
+        for (String argument : args) {
+            arguments += argument + " ";
         }
+
+        String addHost = "add host -site (\\S+) -type (\\S+) -ip (\\S+) -host (\\S+)";
+        Matcher matcher = Pattern.compile(addHost, Pattern.CASE_INSENSITIVE).matcher(arguments);
+
+        // Add Host
+        if (matcher != null && matcher.find()) {
+
+            logger.log(Level.INFO, "Adding host, http://{0}:" + Start.SERVER_PORT + "/jersey/Site/addHost", Stop.SERVER_IP);
+
+            // Form
+            Form form = new Form();
+            form.param("SiteName", matcher.group(1));
+            form.param("HostType", matcher.group(2));
+            form.param("IP", matcher.group(3));
+            form.param("HostName", matcher.group(4));
+
+            // Add Host
+            try {
+
+                String result = client.target("http://" + Stop.SERVER_IP + ":" + Start.SERVER_PORT + "/jersey/Site/addHost").request()
+                        .cookie("userName", module.getLogin())
+                        .cookie("password", ConfigService.decryptBlowfish(module.getPassword()))
+                        .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE), String.class);
+
+                logger.log(Level.INFO, result);
+
+            } catch (Exception ex) {
+                logger.log(Level.WARNING, "Adding host", ex);
+            } finally {
+                // Close Client
+                client.close();
+            }
+
+            return;
+        }
+
+        logger.log(Level.WARNING, "Can''t parse: {0}", arguments);
+        System.out.println("Usage:");
+        System.out.println(" - Add Host: " + addHost);
     }
 }
