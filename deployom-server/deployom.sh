@@ -64,6 +64,20 @@ case "$1" in
         sleep 5
         ./deployom.sh status
         ;;
+    'add')
+
+        # Checking Server is running
+        if [ $pid ];
+        then
+            echo "INFO: Server is Running... pid $pid"
+        else
+            echo 'ERROR: Server is not Running'
+            exit
+        fi
+
+        # Run
+        $JAVA_HOME/bin/java -cp "lib/*" -Djava.util.logging.config.file=lib/logging.properties org.deployom.server.Cmd "$@" >> server.log
+        ;;
     'status')
 
         # Checking Server is running
@@ -83,6 +97,6 @@ case "$1" in
         lsof -n|grep $pid|grep TCP
         ;;
 *)
-        echo "Usage: $0 {start|status|stop}"
+        echo "Usage: $0 {add|start|status|stop}"
         ;;
 esac
