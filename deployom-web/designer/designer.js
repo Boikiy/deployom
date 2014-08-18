@@ -1736,15 +1736,15 @@ function releaseTab(release, ul) {
 
     // Create a table
     var releaseTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var releaseTd = $('<td/>', {'class': 'ui'});
-    releaseTable.append($('<tr/>', {'class': "ui"}).append(releaseTd));
+    var releaseTd = $('<td/>');
+    releaseTable.append($('<tr/>').append(releaseTd));
     div.append(releaseTable);
 
     var hostsTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui center', text: 'Host Types'});
+    var td1 = $('<td/>', {text: 'Host Type'});
     hostsTable.append($('<tr/>', {'class': "ui-widget-header"}).append(td1));
-    var hostsTd = $('<td/>', {'class': 'ui'});
-    hostsTable.append($('<tr/>', {'class': "ui"}).append(hostsTd));
+    var hostsTd = $('<td/>');
+    hostsTable.append($('<tr/>').append(hostsTd));
     div.append(hostsTable);
 
     // Add Custom Jobs Button
@@ -2082,7 +2082,7 @@ function releaseTab(release, ul) {
             });
 
             // Add New Button
-            var addHostButton = $('<button/>', {"class": "hostname", text: '+HostType'});
+            var addHostButton = $('<button/>', {"class": "hostname", text: 'Add Host Type'});
 
             // Set Host Icon
             setButtonIcon(addHostButton).click(function() {
@@ -2112,7 +2112,7 @@ function releaseTab(release, ul) {
             }
 
             // Add Buttons
-            var passwordTd = $('<td/>', {'class': 'ui'});
+            var passwordTd = $('<td/>');
             passwordTd.append(updateServicePasswordButton, updateCommandPasswordButton);
             hostsTable.append($('<tr/>').append(passwordTd));
         }
@@ -2152,15 +2152,15 @@ function flowsTab(release) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Flow'});
-    var td2 = $('<td/>', {'class': 'ui center', text: 'Reports Filter'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'Flow'});
+    var td2 = $('<td/>', {text: 'Reports Filter'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2));
     div.append(table);
 
     // If no Flows
     if (!release.flow.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noFlows);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // Add Flow button
@@ -2175,9 +2175,6 @@ function flowsTab(release) {
     $.each(release.flow, function() {
         var flow = this;
         var flowName = flow.flowName;
-
-        // Create a table
-        var td1 = $('<td/>', {'class': 'ui'});
 
         // Create job Button
         var flowButton = $('<button/>', {"class": "hostname", text: flowName});
@@ -2218,30 +2215,27 @@ function flowsTab(release) {
             return false;
         });
 
-        td1.append(flowButton);
+        // Table
+        var td1 = $('<td/>').append(flowButton);
+        var td2 = $('<td/>', {text: flow.filter});
+        table.append($('<tr/>', {'class': 'high'}).append(td1, td2));
 
-        var td2 = $('<td/>', {'class': 'ui', text: flow.filter});
-        table.append($('<tr/>').append(td1, td2));
-        var h1 = $('<h1/>', {'class': "center", text: flowName});
+        var h2 = $('<h2/>', {'class': "center", text: flowName});
 
         // Create a table
         var flowTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-        var flowTd1 = $('<td/>', {'class': 'ui hostname', text: 'Group'});
-        var flowTd2 = $('<td/>', {'class': 'ui center', text: 'Services'});
+        var flowTd1 = $('<td/>', {'class': 'hostname', text: 'Group'});
+        var flowTd2 = $('<td/>', {text: 'Services'});
         flowTable.append($('<tr/>', {'class': "ui-widget-header"}).append(flowTd1, flowTd2));
-
-        div.append(h1, flowTable);
-
-        var flowTd1 = $('<td/>', {'class': 'ui'});
-        flowTable.append($('<tr/>').append(flowTd1));
+        div.append(h2, flowTable);
 
         // For each host
         $.each(flow.host, function() {
             var host = this;
             var hostName = host.hostName;
 
-            var flowTd1 = $('<td/>', {'class': 'ui hostname'});
-            var flowTd2 = $('<td/>', {'class': 'ui'});
+            var flowTd1 = $('<td/>', {'class': 'hostname'});
+            var flowTd2 = $('<td/>');
             flowTable.append($('<tr/>').append(flowTd1, flowTd2));
 
             // Create Host Button
@@ -2325,7 +2319,7 @@ function flowsTab(release) {
             $("#addFlowHostDialog").dialog("open");
         });
 
-        var flowTd1 = $('<td/>', {'class': 'ui', colspan: 2});
+        var flowTd1 = $('<td/>', {colspan: 2});
         flowTable.append($('<tr/>').append(flowTd1));
         flowTd1.append(addFlowHostButton);
     });
@@ -2342,15 +2336,15 @@ function siteTab(release) {
 
     // Create a table
     var siteTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var siteTd1 = $('<td/>', {'class': 'ui hostname', text: 'Group'});
-    var siteTd2 = $('<td/>', {'class': 'ui center', text: 'Services'});
+    var siteTd1 = $('<td/>', {'class': 'hostname', text: 'Group'});
+    var siteTd2 = $('<td/>', {text: 'Services'});
     siteTable.append($('<tr/>', {'class': "ui-widget-header"}).append(siteTd1, siteTd2));
     div.append(siteTable);
 
     // If hosts exists
     if (!site || !site.host.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noHosts);
-        siteTable.append($('<tr/>', {'class': "ui"}).append(td1));
+        siteTable.append($('<tr/>').append(td1));
     }
 
     // For each host
@@ -2359,8 +2353,8 @@ function siteTab(release) {
         var hostType = host.hostType;
         var hostName = host.hostName;
 
-        var siteTd1 = $('<td/>', {'class': 'ui hostname'});
-        var siteTd2 = $('<td/>', {'class': 'ui'});
+        var siteTd1 = $('<td/>', {'class': 'hostname'});
+        var siteTd2 = $('<td/>');
         siteTable.append($('<tr/>').append(siteTd1, siteTd2));
 
         // Create Host Button
@@ -2447,13 +2441,13 @@ function jobsTab(release) {
     div.append(table);
 
     // Create a row
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Job'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'Job'});
     var tr = $('<tr/>', {'class': "ui-widget-header"}).append(td1);
     table.append(tr);
 
     // Create time fields
     for (var i = 2; i <= 10; i++) {
-        var td = $('<td/>', {'class': 'ui center', text: (i - 1) + " hour"});
+        var td = $('<td/>', {text: (i - 1) + " hour"});
         tr.append(td);
     }
 
@@ -2476,10 +2470,10 @@ function jobsTab(release) {
         var job = this;
         var jobName = job.jobName;
 
-        var h1 = $('<h1/>', {'class': "center", text: jobName});
+        var h2 = $('<h2/>', {'class': "center", text: jobName});
 
         // Create a row
-        var td1 = $('<td/>', {'class': 'ui'});
+        var td1 = $('<td/>');
         var tr = $('<tr/>').append(td1);
         table.append(tr);
 
@@ -2516,7 +2510,7 @@ function jobsTab(release) {
 
         // Add button
         td1.append(jobButton);
-        div.append(h1);
+        div.append(h2);
 
         // Check schedule
         var schedule = parseInt(job.start);
@@ -2524,7 +2518,7 @@ function jobsTab(release) {
         if (schedule > 0 && parseInt(job.period) > 0) {
 
             for (var i = 2; i <= 10; i++) {
-                var td = $('<td/>', {'class': 'ui center'});
+                var td = $('<td/>', {'class': 'center'});
                 tr.append(td);
 
                 while (schedule <= 60 * (i - 1)) {
@@ -2537,19 +2531,16 @@ function jobsTab(release) {
                 }
             }
         } else {
-            var td2 = $('<td/>', {'class': 'ui center bold', colspan: 11, text: 'On Demand'});
+            var td2 = $('<td/>', {'class': 'center bold', colspan: 11, text: 'On Demand'});
             tr.append(td2);
         }
 
         // Create a table for hosts
         var commandTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Group'});
-        var td2 = $('<td/>', {'class': 'ui center', text: 'Services'});
+        var td1 = $('<td/>', {'class': 'hostname', text: 'Group'});
+        var td2 = $('<td/>', {text: 'Services'});
         commandTable.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2));
         div.append(commandTable);
-
-        var td1 = $('<td/>', {'class': 'ui'});
-        commandTable.append($('<tr/>').append(td1));
 
         // For each host
         $.each(job.host, function() {
@@ -2557,8 +2548,8 @@ function jobsTab(release) {
             var hostType = host.hostType;
             var hostName = host.hostName;
 
-            var td1 = $('<td/>', {'class': 'ui hostname'});
-            var td2 = $('<td/>', {'class': 'ui'});
+            var td1 = $('<td/>', {'class': 'hostname'});
+            var td2 = $('<td/>');
             commandTable.append($('<tr/>').append(td1, td2));
 
             // Create Host Button
@@ -2663,7 +2654,7 @@ function jobsTab(release) {
             $("#addJobHostDialog").dialog("open");
         });
 
-        var td1 = $('<td/>', {'class': 'ui', colspan: 2});
+        var td1 = $('<td/>', {colspan: 2});
         commandTable.append($('<tr/>').append(td1));
         td1.append(addJobHostButton);
     });
@@ -2675,16 +2666,16 @@ function connectionsTab(release, div) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Connection'});
-    var td2 = $('<td/>', {'class': 'ui center', text: 'Start'});
-    var td3 = $('<td/>', {'class': 'ui center', text: 'End'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'Connection'});
+    var td2 = $('<td/>', {text: 'Start'});
+    var td3 = $('<td/>', {text: 'End'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3));
     div.append(table);
 
     // If no connections
     if (!release.connection.length) {
         var td1 = $('<td/>', {'colspan': 3}).append(LANG.noConnections);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // Add Connection button
@@ -2706,9 +2697,6 @@ function connectionsTab(release, div) {
         var startHostName = connection.start.hostName || '';
         var endServiceName = connection.end.serviceName;
         var endHostName = connection.end.hostName || '';
-
-        // Create a table
-        var td1 = $('<td/>', {'class': 'ui'});
 
         // Create connection Button
         var connectionButton = $('<button/>', {"class": "hostname", text: connection.connectionName});
@@ -2765,10 +2753,10 @@ function connectionsTab(release, div) {
             return false;
         });
 
-        td1.append(connectionButton);
-
-        var td2 = $('<td/>', {'class': 'ui center'}).append(startButton);
-        var td3 = $('<td/>', {'class': 'ui center'}).append(endButton);
+        // Create a table
+        var td1 = $('<td/>').append(connectionButton);
+        var td2 = $('<td/>', {'class': 'center'}).append(startButton);
+        var td3 = $('<td/>', {'class': 'center'}).append(endButton);
         table.append($('<tr/>').append(td1, td2, td3));
 
         startButton.mouseover(function() {
@@ -2845,13 +2833,13 @@ function modulesTab(release) {
         $('#addModuleHostType').append($('<option/>').val(host.hostType).text(host.hostType));
 
         // Service Header
-        var h1 = $('<h1/>', {'class': 'center', text: host.hostType});
+        var h2 = $('<h2/>', {'class': 'center', text: host.hostType});
 
         // Create a table
         var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
         var tr = $('<tr/>', {'class': "ui-widget-header"});
-        tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-        tr.append($('<td/>', {'class': 'ui center', text: 'Modules'}));
+        tr.append($('<td/>', {'class': 'hostname', text: 'Service'}));
+        tr.append($('<td/>', {text: 'Modules'}));
         table.append(tr);
 
         var anyModule = false;
@@ -2880,8 +2868,8 @@ function modulesTab(release) {
                 $("#addModuleServiceName").val(service.serviceName);
                 $("#addModuleDialog").dialog("open");
             });
-            tr.append($('<td/>', {'class': 'ui hostname'}).append(serviceButton));
-            var td = $('<td/>', {'class': 'ui'});
+            tr.append($('<td/>', {'class': 'hostname'}).append(serviceButton));
+            var td = $('<td/>');
             tr.append(td);
 
             // For each module
@@ -2936,20 +2924,20 @@ function modulesTab(release) {
                         var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
 
                         // Title
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Context'});
-                        var td2 = $('<td/>', {'class': 'ui', text: module.context});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Context'});
+                        var td2 = $('<td/>', {text: module.context});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Login'});
-                        var td2 = $('<td/>', {'class': 'ui', text: module.login || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Login'});
+                        var td2 = $('<td/>', {text: module.login || ''});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Password (encrypted)'});
-                        var td2 = $('<td/>', {'class': 'ui', text: module.password || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Password (encrypted)'});
+                        var td2 = $('<td/>', {text: module.password || ''});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Port'});
-                        var td2 = $('<td/>', {'class': 'ui', text: module.port || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Port'});
+                        var td2 = $('<td/>', {text: module.port || ''});
                         table.append($('<tr/>').append(td1, td2));
 
                         // Return
@@ -2962,7 +2950,7 @@ function modulesTab(release) {
 
         // If Modules found
         if (anyModule) {
-            div.append(h1, table);
+            div.append(h2, table);
         }
     });
 
@@ -2995,13 +2983,13 @@ function chartsTab(release) {
         var host = this;
 
         // Service Header
-        var h1 = $('<h1/>', {'class': 'center', text: host.hostType});
+        var h2 = $('<h2/>', {'class': 'center', text: host.hostType});
 
         // Create a table
         var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
         var tr = $('<tr/>', {'class': "ui-widget-header"});
-        tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-        tr.append($('<td/>', {'class': 'ui center', text: 'Modules'}));
+        tr.append($('<td/>', {'class': 'hostname', text: 'Service'}));
+        tr.append($('<td/>', {text: 'Modules'}));
         table.append(tr);
 
         var anyChart = false;
@@ -3020,8 +3008,8 @@ function chartsTab(release) {
             var tr = $('<tr/>', {'class': "ui high"});
             table.append(tr);
 
-            tr.append($('<td/>', {'class': 'ui hostname', 'text': service.serviceName}));
-            var td = $('<td/>', {'class': 'ui'});
+            tr.append($('<td/>', {'class': 'hostname', 'text': service.serviceName}));
+            var td = $('<td/>');
             tr.append(td);
 
             // For each chart
@@ -3077,20 +3065,20 @@ function chartsTab(release) {
                         var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
 
                         // Title
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Title'});
-                        var td2 = $('<td/>', {'class': 'ui', text: chart.title});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Title'});
+                        var td2 = $('<td/>', {text: chart.title});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Label 1'});
-                        var td2 = $('<td/>', {'class': 'ui', text: chart.label1 || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Label 1'});
+                        var td2 = $('<td/>', {text: chart.label1 || ''});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Label 2'});
-                        var td2 = $('<td/>', {'class': 'ui', text: chart.label2 || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Label 2'});
+                        var td2 = $('<td/>', {text: chart.label2 || ''});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Label 3'});
-                        var td2 = $('<td/>', {'class': 'ui', text: chart.label3 || ''});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Label 3'});
+                        var td2 = $('<td/>', {text: chart.label3 || ''});
                         table.append($('<tr/>').append(td1, td2));
 
                         // Return
@@ -3103,7 +3091,7 @@ function chartsTab(release) {
 
         // If Charts found
         if (anyChart) {
-            div.append(h1, table);
+            div.append(h2, table);
         }
     });
 
@@ -3169,9 +3157,9 @@ function commandsTab(release, host, li) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Linked Service on Host'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Commands'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Service'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'Linked Host'}));
+    tr.append($('<td/>', {text: 'Commands'}));
     table.append(tr);
     div.append(table);
 
@@ -3192,8 +3180,8 @@ function commandsTab(release, host, li) {
 
         // Create a service Button
         var serviceButton = $('<button/>', {"class": "hostname", text: serviceName});
-        tr.append($('<td/>', {'class': 'ui center'}).append(serviceButton));
-        tr.append($('<td/>', {'class': 'ui center', text: service.serviceLink || ''}));
+        tr.append($('<td/>').append(serviceButton));
+        tr.append($('<td/>', {'class': 'center', text: service.serviceLink || ''}));
 
         // Set Icon
         setServiceIcon(serviceButton, 'ui-icon-triangle-1-s').click(function() {
@@ -3283,20 +3271,20 @@ function commandsTab(release, host, li) {
                 var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
 
                 // Executable
-                var td1 = $('<td/>', {'class': 'ui hostname', text: 'Login'});
-                var td2 = $('<td/>', {'class': 'ui', text: service.login});
+                var td1 = $('<td/>', {'class': 'hostname', text: 'Login'});
+                var td2 = $('<td/>', {text: service.login});
                 table.append($('<tr/>').append(td1, td2));
 
                 // Title
-                var td1 = $('<td/>', {'class': 'ui hostname', text: 'Password (encrypted)'});
-                var td2 = $('<td/>', {'class': 'ui', text: service.password});
+                var td1 = $('<td/>', {'class': 'hostname', text: 'Password (encrypted)'});
+                var td2 = $('<td/>', {text: service.password});
                 table.append($('<tr/>').append(td1, td2));
 
                 // Return
                 return table;
             }});
 
-        var td = $('<td/>', {'class': 'ui'});
+        var td = $('<td/>');
         tr.append(td);
 
         // If no commands
@@ -3374,48 +3362,48 @@ function commandsTab(release, host, li) {
                     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
 
                     // Executable
-                    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Executable'});
-                    var td2 = $('<td/>', {'class': 'ui', text: command.exec});
+                    var td1 = $('<td/>', {'class': 'hostname', text: 'Executable'});
+                    var td2 = $('<td/>', {text: command.exec});
                     table.append($('<tr/>').append(td1, td2));
 
                     // Title
-                    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Title'});
-                    var td2 = $('<td/>', {'class': 'ui', text: command.title});
+                    var td1 = $('<td/>', {'class': 'hostname', text: 'Title'});
+                    var td2 = $('<td/>', {text: command.title});
                     table.append($('<tr/>').append(td1, td2));
 
                     // Timeout
                     if (command.timeout) {
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Timeout'});
-                        var td2 = $('<td/>', {'class': 'ui', text: command.timeout});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Timeout'});
+                        var td2 = $('<td/>', {text: command.timeout});
                         table.append($('<tr/>').append(td1, td2));
                     }
 
                     // Group
-                    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Group'});
-                    var td2 = $('<td/>', {'class': 'ui', text: command.group});
+                    var td1 = $('<td/>', {'class': 'hostname', text: 'Group'});
+                    var td2 = $('<td/>', {text: command.group});
                     table.append($('<tr/>').append(td1, td2));
 
                     // Match
-                    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Match'});
-                    var td2 = $('<td/>', {'class': 'ui', text: command.match});
+                    var td1 = $('<td/>', {'class': 'hostname', text: 'Match'});
+                    var td2 = $('<td/>', {text: command.match});
                     table.append($('<tr/>').append(td1, td2));
 
                     // Match2
                     if (command.match2) {
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Match 2'});
-                        var td2 = $('<td/>', {'class': 'ui', text: command.match2});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Match 2'});
+                        var td2 = $('<td/>', {text: command.match2});
                         table.append($('<tr/>').append(td1, td2));
                     }
 
                     // NotMatch
-                    var td1 = $('<td/>', {'class': 'ui hostname', text: 'NotMatch'});
-                    var td2 = $('<td/>', {'class': 'ui', text: command.notMatch});
+                    var td1 = $('<td/>', {'class': 'hostname', text: 'NotMatch'});
+                    var td2 = $('<td/>', {text: command.notMatch});
                     table.append($('<tr/>').append(td1, td2));
 
                     // NotMatch2
                     if (command.notMatch2) {
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'NotMatch 2'});
-                        var td2 = $('<td/>', {'class': 'ui', text: command.notMatch2});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'NotMatch 2'});
+                        var td2 = $('<td/>', {text: command.notMatch2});
                         table.append($('<tr/>').append(td1, td2));
                     }
 
