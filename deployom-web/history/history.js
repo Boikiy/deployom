@@ -97,7 +97,7 @@ function eventsTab(log) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'finished', text: 'Date Time'});
+    var td1 = $('<td/>', {'class': 'width250', text: 'Date Time'});
     var td2 = $('<td/>', {'class': 'hostname', text: 'Site'});
     var td3 = $('<td/>', {'class': 'hostname', text: 'Host'});
     var td4 = $('<td/>', {'class': 'hostname', text: 'Service'});
@@ -144,7 +144,7 @@ function commandsTab(log) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'finished', text: 'Date Time'});
+    var td1 = $('<td/>', {'class': 'width250', text: 'Date Time'});
     var td2 = $('<td/>', {'class': 'hostname', text: 'Who'});
     var td3 = $('<td/>', {'class': 'hostname', text: 'Site'});
     var td4 = $('<td/>', {'class': 'hostname', text: 'Host'});

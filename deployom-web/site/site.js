@@ -366,7 +366,7 @@ $(function() {
 function afterLogin(config, role) {
 
     // Set sites
-    $('#site').button({icons: {primary: "deployom-site"}}).click(function(event) {
+    $('#site').button({icons: {primary: "deployom-local"}}).click(function(event) {
         location.replace('/site');
     });
 
@@ -424,16 +424,16 @@ function siteTab(configSite, role, ul) {
 
     // Create a table
     var siteTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var siteTd = $('<td/>', {'class': 'ui'});
-    siteTable.append($('<tr/>', {'class': "ui"}).append(siteTd));
+    var siteTd = $('<td/>');
+    siteTable.append($('<tr/>').append(siteTd));
     div.append(siteTable);
 
     var jobsTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui center', text: 'Custom Jobs', colspan: 2}));
+    tr.append($('<td/>', {text: 'Custom Jobs', colspan: 2}));
     jobsTable.append(tr);
-    var jobsTd = $('<td/>', {'class': 'ui'});
-    jobsTable.append($('<tr/>', {'class': "ui"}).append(jobsTd));
+    var jobsTd = $('<td/>');
+    jobsTable.append($('<tr/>').append(jobsTd));
     div.append(jobsTable);
 
     // Add Hosts tab
@@ -475,7 +475,7 @@ function siteTab(configSite, role, ul) {
 
                     // If no Hosts defined
                     if (!site.host.length) {
-                        return true;
+                        notificationMessage(LANG.noHosts);
                     }
 
                     // Empty Select
@@ -902,32 +902,6 @@ function siteTab(configSite, role, ul) {
                     $("#tabsDiv").tabs({active: -1});
                 });
                 jobsTd.append(jobButton);
-
-                // If any host found
-                if (job.host.length) {
-                    jobButton.addClass('ui-state-ok');
-                }
-
-                // For each Host
-                $.each(job.host, function() {
-                    var host = this;
-
-                    $.each(host.service, function() {
-                        var service = this;
-
-                        // For each command
-                        $.each(service.command, function() {
-                            var command = this;
-
-                            // If no Error
-                            if (!command.error) {
-                                return true;
-                            }
-
-                            jobButton.addClass('ui-state-error');
-                        });
-                    });
-                });
             });
         },
         error: function() {
@@ -1009,22 +983,22 @@ function mapTab(site) {
     // Create a Site table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui center', text: 'Site Map', colspan: 2}));
+    tr.append($('<td/>', {text: 'Site Map', colspan: 2}));
     table.append(tr);
     $('#' + site.siteName + '_MAP').append(table);
 
     // Check if no hosts
     if (!site.host.length) {
         var td1 = $('<td/>', {'colspan': 4}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each host
     $.each(site.host, function() {
         var host = this;
 
-        var td1 = $('<td/>', {'class': 'ui IP', text: host.hostName.replace(/\([\S+\s+]+\)/, "")});
-        var td2 = $('<td/>', {'class': 'ui'});
+        var td1 = $('<td/>', {'class': 'hostname', text: host.hostName.replace(/\([\S+\s+]+\)/, "")});
+        var td2 = $('<td/>');
         table.append($('<tr/>').append(td1, td2));
 
         // For Each Service
@@ -1086,8 +1060,8 @@ function eventsTab(site) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Service Events'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {text: 'Service Events'}));
     table.append(tr);
 
     // Events
@@ -1099,8 +1073,8 @@ function eventsTab(site) {
 
         // Create a row
         var tr = $('<tr/>');
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostName}));
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname', text: host.hostName}));
+        var td = $('<td/>');
         tr.append(td);
 
         // For each event
@@ -1139,7 +1113,7 @@ function eventsTab(site) {
     // If no events
     if (!jobEvents) {
         var td1 = $('<td/>', {'colspan': 4}).append(LANG.noEvents);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // Remove Events
@@ -1163,16 +1137,16 @@ function servicesTab(site) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui IP', text: 'IP'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Services'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'IP'}));
+    tr.append($('<td/>', {text: 'Services'}));
     table.append(tr);
     div.append(table);
 
     // Check if no hosts
     if (!site.host.length) {
         var td1 = $('<td/>', {'colspan': 4}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each Host
@@ -1181,9 +1155,9 @@ function servicesTab(site) {
 
         // Create a row
         var tr = $('<tr/>');
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostName + " [" + host.hostType + "]"}));
-        tr.append($('<td/>', {'class': 'ui center', text: host.ip}));
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname', text: host.hostName + " [" + host.hostType + "]"}));
+        tr.append($('<td/>', {'class': 'width100', text: host.ip}));
+        var td = $('<td/>');
         tr.append(td);
 
         // For each service
@@ -1240,16 +1214,16 @@ function layoutTab(site) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui IP', text: 'Type'}));
-    tr.append($('<td/>', {'class': 'ui IP', text: 'IP'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Services'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'Type'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'IP'}));
+    tr.append($('<td/>', {text: 'Services'}));
     table.append(tr);
 
     // Check if no hosts
     if (!site.host.length) {
         var td1 = $('<td/>', {'colspan': 4}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each hosts
@@ -1306,11 +1280,10 @@ function layoutTab(site) {
         });
 
         // Create a row
-        tr.append($('<td/>', {'class': 'ui'}).append(hostButton));
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostType}));
-        tr.append($('<td/>', {'class': 'ui center', text: host.ip}));
-
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname'}).append(hostButton));
+        tr.append($('<td/>', {'class': 'width100', text: host.hostType}));
+        tr.append($('<td/>', {'class': 'width100', text: host.ip}));
+        var td = $('<td/>');
         tr.append(td);
 
         // For each service
@@ -1471,8 +1444,8 @@ function discoveryTab(configSite, job) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Services'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {text: 'Services'}));
     table.append(tr);
 
     // Check if running
@@ -1487,7 +1460,7 @@ function discoveryTab(configSite, job) {
     // Check if no hosts
     if (!job.host.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each hosts
@@ -1499,8 +1472,8 @@ function discoveryTab(configSite, job) {
         table.append(tr);
 
         // Create a row
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostName}));
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname', text: host.hostName}));
+        var td = $('<td/>');
         tr.append(td);
 
         // For each service
@@ -1582,8 +1555,8 @@ function jobTab(configSite, job) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Services'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {text: 'Services'}));
     table.append(tr);
 
     // Check if running
@@ -1601,7 +1574,7 @@ function jobTab(configSite, job) {
     // Check if no hosts
     if (!job.host.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each hosts
@@ -1613,8 +1586,8 @@ function jobTab(configSite, job) {
         table.append(tr);
 
         // Create a row
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostName}));
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname', text: host.hostName}));
+        var td = $('<td/>');
         tr.append(td);
 
         // For each service
@@ -1727,17 +1700,17 @@ function hostsTab(site) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'HostName'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Type'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'IP'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Info'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'HostName'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'Type'}));
+    tr.append($('<td/>', {'class': 'width100', text: 'IP'}));
+    tr.append($('<td/>', {text: 'Info'}));
     table.append(tr);
     div.append(table);
 
     // Check if no hosts
     if (!site.host.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noHosts);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
         return div;
     }
 
@@ -1750,10 +1723,10 @@ function hostsTab(site) {
 
         // Host row
         var tr = $('<tr/>', {'class': 'ui'});
-        tr.append($('<td/>', {'class': 'ui hostname'}).append(hostButton));
-        tr.append($('<td/>', {'class': 'ui hostname', text: host.hostType || ''}));
-        tr.append($('<td/>', {'class': 'ui hostname', text: host.ip}));
-        var infoTd = $('<td/>', {'class': 'ui', text: host.info || 'Already defined'});
+        tr.append($('<td/>', {'class': 'hostname'}).append(hostButton));
+        tr.append($('<td/>', {'class': 'width100', text: host.hostType || ''}));
+        tr.append($('<td/>', {'class': 'width100', text: host.ip}));
+        var infoTd = $('<td/>', {text: host.info || 'Already defined'});
         tr.append(infoTd);
         table.append(tr);
 
