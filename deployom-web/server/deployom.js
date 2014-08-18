@@ -25,7 +25,7 @@ var LANG = {
     ok: "Ok",
     error: "Error",
     authError: "For Authorized personnel use ONLY. Please Authenticate",
-    remoteAuthError: "Please Authenticate on Remote Site before Adding",
+    remoteAuthError: "Please Authenticate on Remote Site",
     authAdmin: "You have to login as Admin",
     accessDenied: "Access denied",
     siteDisabled: "Updating is Disabled",

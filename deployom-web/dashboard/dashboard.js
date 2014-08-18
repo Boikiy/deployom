@@ -511,7 +511,7 @@ function eventsTable(site) {
             var serviceName = event.serviceName;
 
             // Create Service button
-            var serviceButton = $('<button/>', {"class": "eventService ui-state-error",
+            var serviceButton = $('<button/>', {"class": "event ui-state-error",
                 text: event.title + " [" + serviceName + "]"});
 
             // Set service icon
