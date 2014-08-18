@@ -103,9 +103,15 @@ function dashboardTab(configSite, ul) {
             flowsDiv.prepend(flowsTable(site, ul));
             flowsDiv.append(modulesTable(site));
         },
-        error: function() {
+        error: function(jqXHR) {
             flowsDiv.empty();
-            flowsDiv.prepend(LANG.submitError);
+            if (jqXHR.status === 0) {
+                flowsDiv.prepend(LANG.connectionError);
+            } else if (jqXHR.status === 401) {
+                flowsDiv.prepend(LANG.remoteAuthError);
+            } else {
+                flowsDiv.prepend(LANG.submitError);
+            }
         }
     });
 
@@ -132,9 +138,15 @@ function dashboardTab(configSite, ul) {
             site.serverURL = configSite.serverURL;
             eventsDiv.prepend(eventsTable(site));
         },
-        error: function() {
+        error: function(jqXHR) {
             eventsDiv.empty();
-            eventsDiv.prepend(LANG.submitError);
+            if (jqXHR.status === 0) {
+                eventsDiv.prepend(LANG.connectionError);
+            } else if (jqXHR.status === 401) {
+                eventsDiv.prepend(LANG.remoteAuthError);
+            } else {
+                eventsDiv.prepend(LANG.submitError);
+            }
         }
     });
 
@@ -146,7 +158,7 @@ function flowsTable(site, ul) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui'});
+    var td1 = $('<td/>');
     table.append($('<tr/>', {'class': "ui"}).append(td1));
 
     // Check if no flows
@@ -166,15 +178,13 @@ function flowsTable(site, ul) {
         // Set Button Icon
         setFlowImage(flowButton);
 
+        // Counters
+        var errors = 0;
+        var services = 0;
+
         // For each Host
         $.each(flow.host, function() {
             var host = this;
-
-            // If services defined
-            if (host.service.length) {
-                flowButton.addClass("ui-state-ok");
-                flowButton.attr('title', 'All Services are Online');
-            }
 
             // Check offline Services
             $.each(host.service, function() {
@@ -182,12 +192,21 @@ function flowsTable(site, ul) {
 
                 // Add Class
                 if (!service.online) {
-                    flowButton.addClass('ui-state-error');
-                    flowButton.attr('title', 'Offline Services found');
+                    errors++;
                     return true;
                 }
+                services++;
             });
         });
+
+        // Status
+        if (errors === 0 && services > 0) {
+            flowButton.addClass("ui-state-ok");
+            flowButton.attr('title', services + ' Services are Online');
+        } else {
+            flowButton.addClass('ui-state-error');
+            flowButton.attr('title', errors + ' Offline Services found');
+        }
 
         // Add Flow Click
         flowButton.click(function() {
@@ -260,10 +279,10 @@ function modulesTable(site) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui center', text: 'Service Modules'});
+    var td1 = $('<td/>', {text: 'Service Modules'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1));
-    var td1 = $('<td/>', {'class': 'ui'});
-    table.append($('<tr/>', {'class': "ui"}).append(td1));
+    var td1 = $('<td/>');
+    table.append($('<tr/>').append(td1));
 
     // Check if no modules
     if (!site.module.length) {
@@ -305,36 +324,28 @@ function flowTab(flow, site, div) {
     // Create Reports table
     var reportsTable = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Report'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Service'}));
+    tr.append($('<td/>', {text: 'Report'}));
     reportsTable.append(tr);
 
     // Create Configuration table
     var configurationTable = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Configuration'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Service'}));
+    tr.append($('<td/>', {text: 'Configuration'}));
     configurationTable.append(tr);
-
-    // Create Database table
-    var databaseTable = $('<table/>', {'class': 'ui-widget ui-widget-content'});
-    var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Service'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Database'}));
-    databaseTable.append(tr);
 
     // Detailed options
     var anyReports = false;
     var anyConfiguration = false;
-    var anyDatabase = false;
 
     // For each host
     $.each(flow.host, function() {
         var host = this;
 
         // Add Host
-        var td1 = $('<td/>', {'class': 'ui IP', text: host.hostName.replace(/\([\S+\s+]+\)/, "")});
-        var td2 = $('<td/>', {'class': 'ui'});
+        var td1 = $('<td/>', {'class': 'hostname', text: host.hostName.replace(/\([\S+\s+]+\)/, "")});
+        var td2 = $('<td/>');
         table.append($('<tr/>').append(td1, td2));
 
         // For Each Service
@@ -366,25 +377,18 @@ function flowTab(flow, site, div) {
 
             // Create a row for reports
             var reportsTr = $('<tr/>');
-            reportsTr.append($('<td/>', {'class': 'ui hostname', text: serviceName + " [" + hostName + "]"}));
-            var reportsTd = $('<td/>', {'class': 'ui'});
+            reportsTr.append($('<td/>', {'class': 'hostname', text: serviceName + " [" + hostName + "]"}));
+            var reportsTd = $('<td/>');
             reportsTr.append(reportsTd);
 
             // Create a row for configuration
             var configurationTr = $('<tr/>');
-            configurationTr.append($('<td/>', {'class': 'ui hostname', text: serviceName + " [" + hostName + "]"}));
-            var configurationTd = $('<td/>', {'class': 'ui'});
+            configurationTr.append($('<td/>', {'class': 'hostname', text: serviceName + " [" + hostName + "]"}));
+            var configurationTd = $('<td/>');
             configurationTr.append(configurationTd);
-
-            // Create a row for database
-            var databaseTr = $('<tr/>');
-            databaseTr.append($('<td/>', {'class': 'ui hostname', text: serviceName + " [" + hostName + "]"}));
-            var databaseTd = $('<td/>', {'class': 'ui'});
-            databaseTr.append(databaseTd);
 
             var reportsService = false;
             var configurationService = false;
-            var databaseService = false;
 
             // For each Command
             $.each(service.command, function() {
@@ -426,12 +430,6 @@ function flowTab(flow, site, div) {
                     configurationTd.append(commandButton);
                     configurationService = true;
                     anyConfiguration = true;
-
-                } else if (group.match(/Database/i)) {
-
-                    databaseTd.append(commandButton);
-                    databaseService = true;
-                    anyDatabase = true;
                 }
             });
 
@@ -441,10 +439,6 @@ function flowTab(flow, site, div) {
 
             if (configurationService) {
                 configurationTable.append(configurationTr);
-            }
-
-            if (databaseService) {
-                databaseTable.append(databaseTr);
             }
         });
     });
@@ -459,12 +453,6 @@ function flowTab(flow, site, div) {
     if (anyConfiguration) {
         var h2 = $('<h2/>', {'class': "center", text: 'Service Configuration'});
         div.append(h2, configurationTable);
-    }
-
-    // Check if database found
-    if (anyDatabase) {
-        var h2 = $('<h2/>', {'class': "center", text: 'Database Information'});
-        div.append(h2, databaseTable);
     }
 
     // Create a Canvas for table
@@ -498,8 +486,8 @@ function eventsTable(site) {
     // Create a table
     var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
     var tr = $('<tr/>', {'class': "ui-widget-header"});
-    tr.append($('<td/>', {'class': 'ui hostname', text: 'Host'}));
-    tr.append($('<td/>', {'class': 'ui center', text: 'Service Events'}));
+    tr.append($('<td/>', {'class': 'hostname', text: 'Host'}));
+    tr.append($('<td/>', {text: 'Service Events'}));
     table.append(tr);
 
     // Events
@@ -511,8 +499,8 @@ function eventsTable(site) {
 
         // Add row
         var tr = $('<tr/>');
-        tr.append($('<td/>', {'class': 'ui center', text: host.hostName}));
-        var td = $('<td/>', {'class': 'ui'});
+        tr.append($('<td/>', {'class': 'hostname', text: host.hostName}));
+        var td = $('<td/>');
         tr.append(td);
 
         var anyService = false;
@@ -557,7 +545,7 @@ function eventsTable(site) {
     // If no events
     if (!siteEvents) {
         var td1 = $('<td/>', {'colspan': 4}).append(LANG.noEvents);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // Return table
