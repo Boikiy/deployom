@@ -24,7 +24,7 @@
 function afterLogin(config, role) {
 
     // Set history
-    $('#history').button({icons: {primary: "deployom-history"}}).click(function(event) {
+    $('#history').button({icons: {primary: "deployom-database"}}).click(function(event) {
         location.replace('/history');
     });
 
@@ -97,17 +97,17 @@ function eventsTab(log) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui finished', text: 'Date Time'});
-    var td2 = $('<td/>', {'class': 'ui hostname', text: 'Site'});
-    var td3 = $('<td/>', {'class': 'ui hostname', text: 'Host'});
-    var td4 = $('<td/>', {'class': 'ui hostname', text: 'Service'});
-    var td5 = $('<td/>', {'class': 'ui', text: 'Command'});
+    var td1 = $('<td/>', {'class': 'finished', text: 'Date Time'});
+    var td2 = $('<td/>', {'class': 'hostname', text: 'Site'});
+    var td3 = $('<td/>', {'class': 'hostname', text: 'Host'});
+    var td4 = $('<td/>', {'class': 'hostname', text: 'Service'});
+    var td5 = $('<td/>', {text: 'Command'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3, td4, td5));
 
     // If no events defined
     if (!log.event.length) {
         var td1 = $('<td/>', {'colspan': 5}).append(LANG.noEvents);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each event
@@ -115,14 +115,14 @@ function eventsTab(log) {
         var event = this;
 
         // Data columns
-        var td1 = $('<td/>', {'class': 'ui', text: event.datetime});
-        var td2 = $('<td/>', {'class': 'ui', text: event.siteName});
-        var td3 = $('<td/>', {'class': 'ui', text: event.hostName});
-        var td4 = $('<td/>', {'class': 'ui', text: event.serviceName});
-        var td5 = $('<td/>', {'class': 'ui', text: event.title});
+        var td1 = $('<td/>', {text: event.datetime});
+        var td2 = $('<td/>', {text: event.siteName});
+        var td3 = $('<td/>', {text: event.hostName});
+        var td4 = $('<td/>', {text: event.serviceName});
+        var td5 = $('<td/>', {text: event.title});
 
         // Add row
-        var tr = $('<tr/>', {'class': "ui high"}).append(td1, td2, td3, td4, td5);
+        var tr = $('<tr/>', {'class': "high"}).append(td1, td2, td3, td4, td5);
         table.append(tr);
 
         // Set Tooltip
@@ -144,18 +144,18 @@ function commandsTab(log) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui finished', text: 'Date Time'});
-    var td2 = $('<td/>', {'class': 'ui hostname', text: 'Who'});
-    var td3 = $('<td/>', {'class': 'ui hostname', text: 'Site'});
-    var td4 = $('<td/>', {'class': 'ui hostname', text: 'Host'});
-    var td5 = $('<td/>', {'class': 'ui hostname', text: 'Service'});
-    var td6 = $('<td/>', {'class': 'ui', text: 'Command'});
+    var td1 = $('<td/>', {'class': 'finished', text: 'Date Time'});
+    var td2 = $('<td/>', {'class': 'hostname', text: 'Who'});
+    var td3 = $('<td/>', {'class': 'hostname', text: 'Site'});
+    var td4 = $('<td/>', {'class': 'hostname', text: 'Host'});
+    var td5 = $('<td/>', {'class': 'hostname', text: 'Service'});
+    var td6 = $('<td/>', {text: 'Command'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3, td4, td5, td6));
 
     // If no events defined
     if (!log.command.length) {
         var td1 = $('<td/>', {'colspan': 6}).append(LANG.noOperations);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each commands
@@ -163,15 +163,15 @@ function commandsTab(log) {
         var command = this;
 
         // Data columns
-        var td1 = $('<td/>', {'class': 'ui', text: command.datetime});
-        var td2 = $('<td/>', {'class': 'ui', text: command.userName});
-        var td3 = $('<td/>', {'class': 'ui', text: command.siteName});
-        var td4 = $('<td/>', {'class': 'ui', text: command.hostName});
-        var td5 = $('<td/>', {'class': 'ui', text: command.serviceName});
-        var td6 = $('<td/>', {'class': 'ui', text: command.title});
+        var td1 = $('<td/>', {text: command.datetime});
+        var td2 = $('<td/>', {text: command.userName});
+        var td3 = $('<td/>', {text: command.siteName});
+        var td4 = $('<td/>', {text: command.hostName});
+        var td5 = $('<td/>', {text: command.serviceName});
+        var td6 = $('<td/>', {text: command.title});
 
         // Add row
-        var tr = $('<tr/>', {'class': "ui high"}).append(td1, td2, td3, td4, td5, td6);
+        var tr = $('<tr/>', {'class': "high"}).append(td1, td2, td3, td4, td5, td6);
         table.append(tr);
 
         // Set Tooltip
