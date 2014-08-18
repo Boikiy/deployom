@@ -432,7 +432,7 @@ function afterLogin(config, role) {
             },
             success: function(config) {
                 $('#HOME').empty();
-                $('#HOME').append(serverTab(config, role));
+                $('#HOME').append(homeTab(config, role));
             }
         });
     });
@@ -534,7 +534,7 @@ function afterLogin(config, role) {
     return ul;
 }
 
-function serverTab(config, role) {
+function homeTab(config, role) {
 
     var div = $('<div/>').click(function() {
         $('#menu').hide();
@@ -545,8 +545,8 @@ function serverTab(config, role) {
     div.append(table);
 
     // Flows Row
-    var td1 = $('<td/>', {'class': 'ui'});
-    table.append($('<tr/>', {'class': "ui"}).append(td1));
+    var td1 = $('<td/>');
+    table.append($('<tr/>').append(td1));
 
     // Dashboard
     var dashboardButton = $('<button/>', {text: 'DASHBOARD', 'class': 'flow', 'title': 'Dashboard with Flows and Registered Events'});
@@ -614,13 +614,10 @@ function serverTab(config, role) {
     var sitesTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     div.append(sitesTable);
 
-    // Header Row
-    var headerTd1 = $('<td/>', {'class': 'ui center', text: 'Site Management'});
-    sitesTable.append($('<tr/>', {'class': 'ui-widget-header'}).append(headerTd1));
-
-    // Sites Row
-    var sitesTd1 = $('<td/>', {'class': 'ui'});
-    sitesTable.append($('<tr/>', {'class': "ui"}).append(sitesTd1));
+    // Sites
+    sitesTable.append($('<tr/>', {'class': 'ui-widget-header'}).append($('<td/>', {text: 'Site Management'})));
+    var sitesTd1 = $('<td/>');
+    sitesTable.append($('<tr/>').append(sitesTd1));
 
     // If no Sites
     if (!config.site.length) {
@@ -669,8 +666,8 @@ function serverTab(config, role) {
                         var table = $('<table/>', {'class': 'ui-widget ui-widget-content'});
 
                         // Title
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Type'});
-                        var td2 = $('<td/>', {'class': 'ui', 'text': 'Local'});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Type'});
+                        var td2 = $('<td/>', {text: 'Local'});
                         table.append($('<tr/>').append(td1, td2));
 
                         // Remote site
@@ -680,12 +677,12 @@ function serverTab(config, role) {
                             td2.append(a);
                         }
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Release'});
-                        var td2 = $('<td/>', {'class': 'ui', text: site.releaseName});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Release'});
+                        var td2 = $('<td/>', {text: site.releaseName});
                         table.append($('<tr/>').append(td1, td2));
 
-                        var td1 = $('<td/>', {'class': 'ui hostname', text: 'Hosts'});
-                        var td2 = $('<td/>', {'class': 'ui', text: site.host.length});
+                        var td1 = $('<td/>', {'class': 'hostname', text: 'Hosts'});
+                        var td2 = $('<td/>', {text: site.host.length});
                         table.append($('<tr/>').append(td1, td2));
 
                         // Return
@@ -768,13 +765,10 @@ function serverTab(config, role) {
     var modulesTable = $('<table/>', {'class': "ui-widget ui-widget-content"});
     div.append(modulesTable);
 
-    // Header Row
-    var headerTd1 = $('<td/>', {'class': 'ui center', text: 'Modules'});
-    modulesTable.append($('<tr/>', {'class': 'ui-widget-header'}).append(headerTd1));
-
-    // Modules Row
-    var modulesTd1 = $('<td/>', {'class': 'ui'});
-    modulesTable.append($('<tr/>', {'class': "ui"}).append(modulesTd1));
+    // Modules
+    modulesTable.append($('<tr/>', {'class': 'ui-widget-header'}).append($('<td/>', {text: 'Modules'})));
+    var modulesTd1 = $('<td/>');
+    modulesTable.append($('<tr/>').append(modulesTd1));
 
     var anyModule = false;
 
@@ -828,10 +822,10 @@ function usersTab(config, role) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'User Name'});
-    var td2 = $('<td/>', {'class': 'ui hostname', text: 'Role'});
-    var td3 = $('<td/>', {'class': 'ui hostname', text: 'Email'});
-    var td4 = $('<td/>', {'class': 'ui center', text: 'Information'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'User'});
+    var td2 = $('<td/>', {'class': 'width100', text: 'Role'});
+    var td3 = $('<td/>', {text: 'Email'});
+    var td4 = $('<td/>', {text: 'Information'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3, td4));
 
     // If no users defined
@@ -846,13 +840,13 @@ function usersTab(config, role) {
         var userName = user.userName;
 
         // Data columns
-        var td1 = $('<td/>', {'class': 'ui hostname'});
-        var td2 = $('<td/>', {'class': 'ui', text: user.role || ''});
-        var td3 = $('<td/>', {'class': 'ui', text: user.email || ''});
-        var td4 = $('<td/>', {'class': 'ui', text: user.info || ''});
+        var td1 = $('<td/>');
+        var td2 = $('<td/>', {text: user.role || ''});
+        var td3 = $('<td/>', {text: user.email || ''});
+        var td4 = $('<td/>', {text: user.info || ''});
 
         // User row
-        table.append($('<tr/>', {'class': "ui high"}).append(td1, td2, td3, td4));
+        table.append($('<tr/>', {'class': "high"}).append(td1, td2, td3, td4));
 
         // Add User Button
         var userButton = $('<button/>', {"class": "hostname", text: userName});
@@ -917,18 +911,18 @@ function modulesTab(config, role) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Module Name'});
-    var td2 = $('<td/>', {'class': 'ui center', text: 'Context'});
-    var td3 = $('<td/>', {'class': 'ui hostname', text: 'Login'});
-    var td4 = $('<td/>', {'class': 'ui hostname', text: 'Password (encrypted)'});
-    var td5 = $('<td/>', {'class': 'ui hostname', text: 'IP'});
-    var td6 = $('<td/>', {'class': 'ui hostname', text: 'Port'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'Module'});
+    var td2 = $('<td/>', {text: 'Context'});
+    var td3 = $('<td/>', {text: 'Login/User'});
+    var td4 = $('<td/>', {text: 'Password (encrypted)'});
+    var td5 = $('<td/>', {text: 'IP'});
+    var td6 = $('<td/>', {text: 'Port'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3, td4, td5, td6));
 
     // If no modules defined
     if (!config.module.length) {
         var td1 = $('<td/>', {'colspan': 2}).append(LANG.noModules);
-        table.append($('<tr/>', {'class': "ui"}).append(td1));
+        table.append($('<tr/>').append(td1));
     }
 
     // For each module
@@ -937,12 +931,12 @@ function modulesTab(config, role) {
         var moduleName = module.moduleName;
 
         // Data columns
-        var td1 = $('<td/>', {'class': 'ui hostname'});
-        var td2 = $('<td/>', {'class': 'ui', text: module.context || ''});
-        var td3 = $('<td/>', {'class': 'ui', text: module.login || ''});
-        var td4 = $('<td/>', {'class': 'ui', text: module.password || ''});
-        var td5 = $('<td/>', {'class': 'ui', text: module.ip || ''});
-        var td6 = $('<td/>', {'class': 'ui', text: module.port || ''});
+        var td1 = $('<td/>');
+        var td2 = $('<td/>', {text: module.context || ''});
+        var td3 = $('<td/>', {'class': 'center', text: module.login || ''});
+        var td4 = $('<td/>', {text: module.password || ''});
+        var td5 = $('<td/>', {'class': 'center', text: module.ip || ''});
+        var td6 = $('<td/>', {'class': 'center', text: module.port || ''});
 
         // Modules row
         table.append($('<tr/>', {'class': "ui high"}).append(td1, td2, td3, td4, td5, td6));
