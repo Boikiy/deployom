@@ -103,9 +103,9 @@ function auditTab(site) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname', text: 'Job'});
-    var td2 = $('<td/>', {'class': 'ui hostname', text: 'Periodic'});
-    var td3 = $('<td/>', {'class': 'ui', text: 'Finished'});
+    var td1 = $('<td/>', {'class': 'hostname', text: 'Job'});
+    var td2 = $('<td/>', {'class': 'hostname', text: 'Periodic'});
+    var td3 = $('<td/>', {text: 'Finished'});
     table.append($('<tr/>', {'class': "ui-widget-header"}).append(td1, td2, td3));
     div.append(table);
 
@@ -140,17 +140,17 @@ function auditTab(site) {
         });
 
         // Data columns
-        var td1 = $('<td/>', {'class': 'ui'}).append(jobButton);
-        var td2 = $('<td/>', {'class': 'ui', text: 'On Demand'});
-        var td3 = $('<td/>', {'class': 'ui', text: job.finished});
+        var td1 = $('<td/>').append(jobButton);
+        var td2 = $('<td/>', {text: 'On Demand'});
+        var td3 = $('<td/>', {text: job.finished});
 
         // Add row
-        var tr = $('<tr/>', {'class': "ui"}).append(td1, td2, td3);
+        var tr = $('<tr/>', {'class': 'high'}).append(td1, td2, td3);
         table.append(tr);
 
         // If disabled
         if (!job.enabled) {
-            td3.text('DISABLED');
+            td3.text('Disabled');
         }
 
         // If scheduled
@@ -160,7 +160,8 @@ function auditTab(site) {
 
         // If running
         if (job.running) {
-            td3.text('RUNNING');
+            td3.text('Running now');
+            td3.addClass('bold');
             jobButton.button('disable');
         }
         else if (!job.finished) {
