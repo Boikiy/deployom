@@ -302,7 +302,7 @@ public class HostService {
 
         if (commandRelease.getMatch() != null) {
 
-            Matcher matcher = Pattern.compile(commandRelease.getMatch(), Pattern.CASE_INSENSITIVE).matcher(command.getOut());
+            Matcher matcher = Pattern.compile(commandRelease.getMatch(), Pattern.MULTILINE | Pattern.CASE_INSENSITIVE).matcher(command.getOut());
 
             // If not match
             if (matcher == null || !matcher.find()) {
@@ -328,7 +328,7 @@ public class HostService {
 
         if (commandRelease.getMatch2() != null) {
 
-            Matcher matcher = Pattern.compile(commandRelease.getMatch2(), Pattern.CASE_INSENSITIVE).matcher(command.getOut());
+            Matcher matcher = Pattern.compile(commandRelease.getMatch2(), Pattern.MULTILINE | Pattern.CASE_INSENSITIVE).matcher(command.getOut());
 
             // If not match
             if (matcher == null || !matcher.find()) {
@@ -341,7 +341,7 @@ public class HostService {
 
         if (commandRelease.getNotMatch() != null) {
 
-            Matcher matcher = Pattern.compile(commandRelease.getNotMatch(), Pattern.CASE_INSENSITIVE).matcher(command.getOut());
+            Matcher matcher = Pattern.compile(commandRelease.getNotMatch(), Pattern.MULTILINE | Pattern.CASE_INSENSITIVE).matcher(command.getOut());
 
             // If match
             if (matcher != null && matcher.find()) {
@@ -354,7 +354,7 @@ public class HostService {
 
         if (commandRelease.getNotMatch2() != null) {
 
-            Matcher matcher = Pattern.compile(commandRelease.getNotMatch2(), Pattern.CASE_INSENSITIVE).matcher(command.getOut());
+            Matcher matcher = Pattern.compile(commandRelease.getNotMatch2(), Pattern.MULTILINE | Pattern.CASE_INSENSITIVE).matcher(command.getOut());
 
             // If match
             if (matcher != null && matcher.find()) {
