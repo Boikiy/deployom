@@ -1,42 +1,169 @@
-.deployom-home {background-image: url(/server/img/server.png) !important; background-size: 16px;}
-.deployom-dashboard {background-image: url(/server/img/dashboard.png) !important; background-size: 16px;}
-.deployom-module {background-image: url(/server/img/module.png) !important; background-size: 16px;}
-.deployom-charts {background-image: url(/server/img/charts.png) !important; background-size: 16px;}
-.deployom-designer {background-image: url(/server/img/designer.png) !important; background-size: 16px;}
-.deployom-site {background-image: url(/server/img/local.png) !important; background-size: 16px;}
-.deployom-help {background-image: url(/server/img/help.png) !important; background-size: 16px;}
-.deployom-history {background-image: url(/server/img/database.png) !important; background-size: 16px;}
+.deployom-alert {
+    background-image:url(/server/img/alert.png)!important;
+    background-size:16px 16px;
+}
 
-.deployom-prod {background-image: url(/server/img/prod.png) !important; background-size: 16px;}
-.deployom-test {background-image: url(/server/img/test.png) !important; background-size: 16px;}
-.deployom-local {background-image: url(/server/img/local.png) !important; background-size: 16px;}
+.deployom-backup {
+    background-image:url(/server/img/backup.png)!important;
+    background-size:16px 16px;
+}
 
-.deployom-backup {background-image: url(/server/img/backup.png) !important; background-size: 16px;}
-.deployom-http {background-image: url(/server/img/dashboard.png) !important; background-size: 16px;}
-.deployom-billing {background-image: url(/server/img/billing.png) !important; background-size: 16px;}
-.deployom-charging {background-image: url(/server/img/charging.png) !important; background-size: 16px;}
-.deployom-customer {background-image: url(/server/img/customer.png) !important; background-size: 16px;}
-.deployom-database {background-image: url(/server/img/database.png) !important; background-size: 16px;}
-.deployom-frontend {background-image: url(/server/img/frontend.png) !important; background-size: 16px;}
-.deployom-config {background-image: url(/server/img/config.png) !important; background-size: 16px;}
-.deployom-discovery {background-image: url(/server/img/discovery.png) !important; background-size: 16px;}
-.deployom-interface {background-image: url(/server/img/interface.png) !important; background-size: 16px;}
-.deployom-rating {background-image: url(/server/img/rating.png) !important; background-size: 16px;}
-.deployom-oam {background-image: url(/server/img/oam.png) !important; background-size: 16px;}
-.deployom-file {background-image: url(/server/img/file.png) !important; background-size: 16px;}
-.deployom-storage {background-image: url(/server/img/storage.png) !important; background-size: 16px;}
-.deployom-mediation {background-image: url(/server/img/mediation.png) !important; background-size: 16px;}
-.deployom-security {background-image: url(/server/img/security.png) !important; background-size: 16px;}
-.deployom-propagation {background-image: url(/server/img/propagation.png) !important; background-size: 16px;}
-.deployom-management {background-image: url(/server/img/charts.png) !important; background-size: 16px;}
-.deployom-os {background-image: url(/server/img/os.png) !important; background-size: 16px;}
-.deployom-virtual {background-image: url(/server/img/virtual.png) !important; background-size: 16px;}
-.deployom-rating {background-image: url(/server/img/rating.png) !important; background-size: 16px;}
-.deployom-flow {background-image: url(/server/img/flow.png) !important; background-size: 16px;}
-.deployom-workflow {background-image: url(/server/img/workflow.png) !important; background-size: 16px;}
-.deployom-web {background-image: url(/server/img/web.png) !important; background-size: 16px;}
-.deployom-mail {background-image: url(/server/img/mail.png) !important; background-size: 16px;}
+.deployom-billing {
+    background-image:url(/server/img/billing.png)!important;
+    background-size:16px 16px;
+}
 
-.deployom-online {background-image: url(/server/img/online.png) !important; background-size: 16px;}
-.deployom-start {background-image: url(/server/img/start.png) !important; background-size: 16px;}
-.deployom-alert {background-image: url(/server/img/alert.png) !important; background-size: 16px;}
+.deployom-charging {
+    background-image:url(/server/img/charging.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-charts {
+    background-image:url(/server/img/charts.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-config {
+    background-image:url(/server/img/config.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-customer {
+    background-image:url(/server/img/customer.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-dashboard {
+    background-image:url(/server/img/dashboard.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-database {
+    background-image:url(/server/img/database.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-designer {
+    background-image:url(/server/img/designer.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-discovery {
+    background-image:url(/server/img/discovery.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-file {
+    background-image:url(/server/img/file.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-flow {
+    background-image:url(/server/img/flow.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-frontend {
+    background-image:url(/server/img/frontend.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-help {
+    background-image:url(/server/img/help.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-home {
+    background-image:url(/server/img/home.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-interface {
+    background-image:url(/server/img/interface.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-local {
+    background-image:url(/server/img/local.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-mail {
+    background-image:url(/server/img/mail.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-mediation {
+    background-image:url(/server/img/mediation.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-module {
+    background-image:url(/server/img/module.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-oam {
+    background-image:url(/server/img/oam.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-online {
+    background-image:url(/server/img/online.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-os {
+    background-image:url(/server/img/os.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-production {
+    background-image:url(/server/img/production.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-propagation {
+    background-image:url(/server/img/propagation.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-rating {
+    background-image:url(/server/img/rating.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-security {
+    background-image:url(/server/img/security.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-start {
+    background-image:url(/server/img/start.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-storage {
+    background-image:url(/server/img/storage.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-test {
+    background-image:url(/server/img/test.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-virtual {
+    background-image:url(/server/img/virtual.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-web {
+    background-image:url(/server/img/web.png)!important;
+    background-size:16px 16px;
+}
+
+.deployom-workflow {
+    background-image:url(/server/img/workflow.png)!important;
+    background-size:16px 16px;
+}

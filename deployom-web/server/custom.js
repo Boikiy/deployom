@@ -157,7 +157,7 @@ function setServiceIcon(button, secondary) {
     } else if (name.match(/^PURGE/i)) {
         button.button({icons: {primary: "deployom-flow", secondary: secondary}});
     } else if (name.match(/^HTTP|FEADMIN|LDAP|Application|Session/i)) {
-        button.button({icons: {primary: "deployom-http", secondary: secondary}});
+        button.button({icons: {primary: "deployom-dashboard", secondary: secondary}});
     } else if (name.match(/^BACKUP/i)) {
         button.button({icons: {primary: "deployom-backup", secondary: secondary}});
     } else if (name.match(/ASU|RHT|SAPI|Order|Frontend/i)) {
@@ -175,7 +175,7 @@ function setServiceIcon(button, secondary) {
     } else if (name.match(/NOTIF|Interface|SMS|IVR/i)) {
         button.button({icons: {primary: "deployom-interface", secondary: secondary}});
     } else if (name.match(/INFOR_OM|Usage|Management|Utilization/i)) {
-        button.button({icons: {primary: "deployom-management", secondary: secondary}});
+        button.button({icons: {primary: "deployom-charts", secondary: secondary}});
     } else if (name.match(/OMNI|Rating|Voice|Diameter|OPPS|TPPS|CCAP|OCS_SLF/i)) {
         button.button({icons: {primary: "deployom-rating", secondary: secondary}});
     } else if (name.match(/CLUSTER|Virtual|Hardware|Platform|LPAR/i)) {
@@ -210,7 +210,7 @@ function setSiteIcon(button, secondary) {
 
     // Set Site Button
     if (name.match(/prod/i)) {
-        button.button({icons: {primary: "deployom-prod", secondary: secondary}});
+        button.button({icons: {primary: "deployom-production", secondary: secondary}});
     } else if (name.match(/test/i)) {
         button.button({icons: {primary: "deployom-test", secondary: secondary}});
     } else {
@@ -228,7 +228,7 @@ function setUserIcon(role, button, secondary) {
 
     // Set User Button
     if (role.match(/admin/i)) {
-        button.button({icons: {primary: "deployom-prod", secondary: secondary}});
+        button.button({icons: {primary: "deployom-production", secondary: secondary}});
     } else if (role.match(/support/i)) {
         button.button({icons: {primary: "deployom-test", secondary: secondary}});
     } else {
@@ -330,7 +330,7 @@ function setSiteImage(button) {
     button.button();
 
     if (name.match(/prod/i)) {
-        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/prod.png'}));
+        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/production.png'}));
     } else if (name.match(/test/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/test.png'}));
     } else {
@@ -372,9 +372,6 @@ function setModuleImage(button) {
     }
     else if (name.match(/help/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/help.png'}));
-    }
-    else if (name.match(/server/i)) {
-        button.prepend($('<img/>', {'class': 'flow', src: '/server/img/server.png'}));
     }
     else if (name.match(/mail/i)) {
         button.prepend($('<img/>', {'class': 'flow', src: '/server/img/mail.png'}));
