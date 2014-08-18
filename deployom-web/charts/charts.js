@@ -112,8 +112,8 @@ function chartsTab(site) {
 
     // Create a table
     var table = $('<table/>', {'class': "ui-widget ui-widget-content"});
-    var td1 = $('<td/>', {'class': 'ui hostname'});
-    var td2 = $('<td/>', {'class': 'ui'});
+    var td1 = $('<td/>', {'class': 'hostname'});
+    var td2 = $('<td/>', {});
     table.append($('<tr/>').append(td1, td2));
     div.append(table);
 
