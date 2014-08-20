@@ -111,6 +111,11 @@ $(function() {
                     location.replace('/');
                 });
 
+                // Set dashboard
+                $('#dashboard').button({icons: {primary: "deployom-dashboard"}}).click(function(event) {
+                    location.replace('/dashboard');
+                });
+
                 // Legend buttong
                 $('#legend-ok').button();
                 $('#legend-error').button();

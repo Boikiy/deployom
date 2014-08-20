@@ -23,11 +23,6 @@
  */
 function afterLogin(config, role) {
 
-    // Set dashboard
-    $('#dashboard').button({icons: {primary: "deployom-dashboard"}}).click(function(event) {
-        location.replace('/dashboard');
-    });
-
     // If no Sites
     if (!config.site.length) {
         return $('<div/>', {'text': LANG.noSites});

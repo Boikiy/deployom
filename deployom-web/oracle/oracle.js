@@ -28,11 +28,6 @@ function afterLogin(config, role) {
         location.replace('/oracle');
     });
 
-    // Set dashboard
-    $('#dashboard').button({icons: {primary: "deployom-dashboard"}}).click(function(event) {
-        location.replace('/dashboard');
-    });
-
     var div = $('<div/>');
 
     // If no sites
