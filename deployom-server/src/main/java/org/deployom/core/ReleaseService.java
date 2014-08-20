@@ -2097,7 +2097,7 @@ public class ReleaseService {
         }
 
         // Set Port
-        if (port != 0) {
+        if (port != null) {
             module.setPort(port);
         }
 

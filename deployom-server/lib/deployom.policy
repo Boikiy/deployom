@@ -1,4 +1,3 @@
-# Required for ojdbc
 grant {
    permission javax.management.MBeanTrustPermission "register";
 };

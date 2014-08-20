@@ -40,7 +40,7 @@ case "$1" in
         fi
 
         # Run
-        $JAVA_HOME/bin/java -cp "lib/*" -Djava.security.policy=lib/deployom.policy -Djava.util.logging.config.file=lib/logging.properties org.deployom.server.Start >server.log 2>&1 &
+        $JAVA_HOME/bin/java -cp "lib/*" -Djava.security.policy=lib/deployom.policy -Djava.security.egd=file:///dev/urandom -Djava.util.logging.config.file=lib/logging.properties org.deployom.server.Start >server.log 2>&1 &
 
         # Sleep and Show
         sleep 5
