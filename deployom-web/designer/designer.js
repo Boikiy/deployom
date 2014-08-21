@@ -2624,6 +2624,41 @@ function jobsTab(release) {
                 // Add Command button
                 var addCommandButton = $('<button/>', {text: "Command"});
                 addCommandButton.button({icons: {primary: "ui-icon-circle-plus"}}).click(function() {
+
+                    $('#addJobCommandList').empty();
+
+                    // Hosts
+                    $.each(release.host, function() {
+                        var releaseHost = this;
+
+                        // Skip wrong Hosts
+                        if (!releaseHost.hostType.match(host.hostType)) {
+                            return true;
+                        }
+
+                        // Services
+                        $.each(releaseHost.service, function() {
+                            var releaseService = this;
+
+                            // Skip wrong Services
+                            if (!releaseService.serviceName.match(service.serviceName)) {
+                                return true;
+                            }
+
+                            // Commands
+                            $.each(releaseService.command, function() {
+                                var command = this;
+
+                                // Skip Operations
+                                if (command.group && command.group.match(/Operations/i)) {
+                                    return true;
+                                }
+
+                                $('#addJobCommandList').append($('<option/>').val(command.commandId).text(command.commandId));
+                            });
+                        });
+                    });
+
                     $('#addJobCommandReleaseName').val(releaseName);
                     $('#addJobCommandJobName').val(jobName);
                     $('#addJobCommandHostName').val(hostName);
