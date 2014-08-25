@@ -2562,6 +2562,30 @@ function jobsTab(release) {
                 var hostMenu = [];
                 var addService = $('<li/>', {text: "Add Service"}).click(function() {
                     $('#menu').hide();
+
+                    $('#addJobServiceList').empty();
+
+                    // Hosts
+                    $.each(release.host, function() {
+                        var releaseHost = this;
+
+                        // Skip wrong Hosts
+                        if (!releaseHost.hostType.match(host.hostType)) {
+                            return true;
+                        }
+
+                        // Services
+                        $.each(releaseHost.service, function() {
+                            var service = this;
+
+                            if ($("#addJobServiceList option[value='" + service.serviceName + "']").length) {
+                                return true;
+                            }
+
+                            $('#addJobServiceList').append($('<option/>').val(service.serviceName).text(service.serviceName));
+                        });
+                    });
+
                     $('#addJobServiceReleaseName').val(releaseName);
                     $('#addJobServiceJobName').val(jobName);
                     $('#addJobServiceHostName').val(hostName);
@@ -2654,6 +2678,10 @@ function jobsTab(release) {
                                     return true;
                                 }
 
+                                if ($("#addJobCommandList option[value='" + command.commandId + "']").length) {
+                                    return true;
+                                }
+
                                 $('#addJobCommandList').append($('<option/>').val(command.commandId).text(command.commandId));
                             });
                         });
@@ -2684,6 +2712,17 @@ function jobsTab(release) {
         // Add Job button
         var addJobHostButton = $('<button/>', {text: "Add Group"});
         setButtonIcon(addJobHostButton).click(function() {
+
+            $('#addJobHostList').empty();
+
+            // Hosts
+            $.each(release.host, function() {
+                var host = this;
+
+                $('#addJobServiceList').append($('<option/>').val(host.hostType).text(host.hostType));
+            });
+
+
             $('#addJobHostReleaseName').val(releaseName);
             $('#addJobHostJobName').val(jobName);
             $("#addJobHostDialog").dialog("open");

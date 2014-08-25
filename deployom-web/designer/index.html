@@ -281,7 +281,8 @@
                     <label>Group Name</label>
                     <input type="text" name="HostName" id="addJobHostName" class="ui-widget-content ui-corner-all" />
                     <label>Group Type (regex)</label>
-                    <input type="text" name="HostType" id="addJobHostType" class="ui-widget-content ui-corner-all" />
+                    <input type="text" name="HostType" id="addJobHostType" class="ui-widget-content ui-corner-all" list="addJobServiceList"/>
+                    <datalist id="addJobHostList"></datalist>
                 </fieldset>
             </form>
         </div>
@@ -439,7 +440,8 @@
                     <label>Group Name</label>
                     <input type="text" readonly="readonly" name="HostName" id="addJobServiceHostName" class="ui-widget-content ui-corner-all" />
                     <label>Service Name</label>
-                    <input type="text" name="ServiceName" id="addJobServiceName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" name="ServiceName" id="addJobServiceName" class="ui-widget-content ui-corner-all" list="addJobServiceList"/>
+                    <datalist id="addJobServiceList"></datalist>
                 </fieldset>
             </form>
         </div>
@@ -452,9 +454,9 @@
                     <label>Job Name</label>
                     <input type="text" readonly="readonly" name="JobName" id="removeJobServiceJobName" class="ui-widget-content ui-corner-all" />
                     <label>Group Name</label>
-                    <input type="text" name="HostName" id="removeJobServiceHostName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="HostName" id="removeJobServiceHostName" class="ui-widget-content ui-corner-all" />
                     <label>Service Name</label>
-                    <input type="text" name="ServiceName" id="removeJobServiceName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="ServiceName" id="removeJobServiceName" class="ui-widget-content ui-corner-all" />
                 </fieldset>
             </form>
         </div>
@@ -467,9 +469,9 @@
                     <label>Job Name</label>
                     <input type="text" readonly="readonly" name="JobName" id="addJobCommandJobName" class="ui-widget-content ui-corner-all" />
                     <label>Group Name</label>
-                    <input type="text" name="HostName" id="addJobCommandHostName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="HostName" id="addJobCommandHostName" class="ui-widget-content ui-corner-all" />
                     <label>Service Name</label>
-                    <input type="text" name="ServiceName" id="addJobCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="ServiceName" id="addJobCommandServiceName" class="ui-widget-content ui-corner-all" />
                     <label>Command</label>
                     <input type="text" name="CommandId" id="addJobCommandId" class="ui-widget-content ui-corner-all" list="addJobCommandList"/>
                     <datalist id="addJobCommandList"></datalist>
@@ -485,11 +487,11 @@
                     <label>Job Name</label>
                     <input type="text" readonly="readonly" name="JobName" id="removeJobCommandJobName" class="ui-widget-content ui-corner-all" />
                     <label>Group Name</label>
-                    <input type="text" name="HostName" id="removeJobCommandHostName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="HostName" id="removeJobCommandHostName" class="ui-widget-content ui-corner-all" />
                     <label>Service Name</label>
-                    <input type="text" name="ServiceName" id="removeJobCommandServiceName" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="ServiceName" id="removeJobCommandServiceName" class="ui-widget-content ui-corner-all" />
                     <label>Command</label>
-                    <input type="text" name="CommandId" id="removeJobCommandId" class="ui-widget-content ui-corner-all" />
+                    <input type="text" readonly="readonly" name="CommandId" id="removeJobCommandId" class="ui-widget-content ui-corner-all" />
                 </fieldset>
             </form>
         </div>
