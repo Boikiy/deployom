@@ -141,7 +141,7 @@ $(function() {
 
                 // Enable SSE notifications
                 if (typeof (EventSource) === "undefined") {
-                    notificationMessage('Notifications Disabled, SSE not supported', "ui-state-error");
+                    notificationMessage('Notifications Disabled, SSE not supported', "ui-state-highlight");
                     return true;
                 } else {
                     // Register
