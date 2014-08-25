@@ -106,8 +106,9 @@ public class Cmd {
             return;
         }
 
+        // Info
         logger.log(Level.WARNING, "Can''t parse: {0}", arguments);
-        System.out.println("Usage:");
-        System.out.println(" - Add Host: " + addHost);
+        logger.log(Level.INFO, "Usage:");
+        logger.log(Level.INFO, " - Add Host: {0}", addHost);
     }
 }
