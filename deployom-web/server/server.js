@@ -749,6 +749,11 @@ function homeTab(config, role) {
     });
     sitesTd1.append(addSiteLocalButton);
 
+    // If no Sites
+    if (!config.site.length) {
+        addSiteLocalButton.addClass('ui-state-highlight');
+    }
+
     var addSiteRemoteButton = $('<button/>', {text: 'Connect Remote Site', 'class': 'flow', 'title': 'Click to connect Remote Site'});
     setModuleImage(addSiteRemoteButton).click(function() {
         $("#addSiteRemoteDialog").dialog("open");
